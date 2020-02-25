@@ -47,3 +47,21 @@
     transform: rotate(360deg);
   }
 }
+
+
+.header {
+  background-color: black;
+  padding-left: 1%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  color: green;
+}
+
+.navBar {
+  margin-bottom: 1%;
+}
+
+/* body {
+  background-image: url("./movies_poster_2019_collage.jpg");
+  background-repeat: no-repeat;
+} */

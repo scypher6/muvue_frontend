@@ -6,14 +6,17 @@ import { store } from 'react-redux';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import 'semantic-ui-css/semantic.min.css';
+import {BrowserRouter as Router} from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
-import movieReducer  from './Redux/movieReducer';
+import movieReducer  from './Reducers/movieReducer';
 
 let storeObj = createStore(movieReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 ReactDOM.render(
-                // <Provider> store={ storeObj }
-                    <App />
-                // </Provider>
+                <Provider store={ storeObj } >
+                    <Router>
+                        <App />
+                    </Router>
+                </Provider>
                 , document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
