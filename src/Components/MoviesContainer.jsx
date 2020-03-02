@@ -1,20 +1,46 @@
 import React, { Component } from 'react';
 import MoviePoster from './MoviePoster';
-import { Grid } from 'semantic-ui-react';
+import { connect } from 'react-redux';
+import { getMovies } from '../Actions/movieActions'; 
+import { withRouter } from 'react-router';
 
 
 const KEY = 'AIzaSyClQEe2YFSdU3uUvnsQqmoUpkDAkohrRiI';
 
 export class MoviesContainer extends Component {
 
-    state = {
-        movies: [],
-        genre: "",
-        videoId: "",
-        title: ""
+    // state = {
+    //     movies: []
+    // }
+    componentDidUpdate(prevProps) {
+        if (prevProps.newGenre !== this.props.newGenre) {
+            // console.log("Props changed", this.props.newGenre)
+        } else {
+            return null
+        }
+
+
+        let genre = this.props.newGenre
+        console.log('genre:', this.props.location.pathname)
+                if (!genre)
+                    genre = 'action'
+                else
+                    genre = this.props.newGenre
+        
+                // this.props.passGenre ? 'action' : this.props.history.location.pathname.split('/')[1];
+         
+                fetch(`http://localhost:3000/genres/${genre}`)
+                .then( r => r.json() )
+                .then( movieData => {
+        
+                    console.log(movieData)
+                    this.props.getMovies(movieData)
+          
+                })
     }
 
-    handleFetch = () => {
+    componentDidMount() {
+console.log('HI')
         // Video format: https://www.youtube.com/embed/tgbNymZ7vqY
         // Query URL: https://www.googleapis.com/youtube/v3/search?part=snippet&key=AIzaSyClQEe2YFSdU3uUvnsQqmoUpkDAkohrRiI&type=video&maxResults=10
         // Playlist URL: https://www.googleapis.com/youtube/v3/playlists?part=contentDetails&id=PLOU2XLYxmsIIM9h1Ybw2DuRw6o2fkNMeR&key=[YOUR_API_KEY]
@@ -31,57 +57,61 @@ export class MoviesContainer extends Component {
         // fantasy
         // animation
         //Set document title
-        document.title = 'Muvue: Movies that move you!'
 
-        
-         let genre = 'action';
-
-        console.log(this.props)
         // if (genre === undefined) genre = 'action';
         // else 
         //     genre = this.props.match.url.split('/')[1];
 
 // let url = `https://www.googleapis.com/youtube/v3/search?part=snippet&key=${KEY}&type=video&q=youtube+movies+free+with+ads+${genre}&maxResults=50`;
-// console.log(url)
-        fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=50&key=${KEY}&type=video&q=youtube+movies+free+with+ads+${genre}`)
+//https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=50&key=${KEY}&type=video&q=youtube+movies+free+with+ads+${genre}
+        // let {videoId} = movieData.items[1].id
+        // let {title} = movieData.items[1].snippet
+        
+        let genre = this.props.newGenre
+console.log('genre:', this.props.location.pathname)
+        if (!genre)
+            genre = 'action'
+        else
+            genre = this.props.newGenre
+
+        // this.props.passGenre ? 'action' : this.props.history.location.pathname.split('/')[1];
+ 
+        fetch(`http://localhost:3000/genres/${genre}`)
         .then( r => r.json() )
         .then( movieData => {
+
+            console.log(movieData)
+            this.props.getMovies(movieData)
   
-          let {videoId} = movieData.items[1].id
-          let {title} = movieData.items[1].snippet
-          // console.log(movieData.items[0])
-          this.setState({
-              movies: movieData.items,
-              videoId,
-              title
-          })
-  
-          // movieData.items[0].id.videoId
-          //  console.log(title)
         })
     }
 
+    movieMapper = () => {
+      
+        let movies = this.props.moviesProps.movies
+        let {videoId} = movies
+        return movies.map( movie => <MoviePoster key={videoId} movie={movie} /> )   
+    }
+
     render() {
-        //fetch all movies
-        this.handleFetch();
-        // let {firstmovie} = this.state.movies[0];
-        let {videoId} = this.state
-        let movieMapper = this.state.movies.map( movie => 
-            <Grid>
-                <Grid.Column>
-                    <MoviePoster key={videoId} movie={movie} />
-                </Grid.Column>  
-            </Grid>
-            )
-           
+        document.title = 'Muvue: Movies that move you!'
+
         return (
-                
-                <div>   
-                     {movieMapper}  
-                </div>
+                <div className = "ui container"> 
+                  <div class="ui grid">
+                     {this.movieMapper()}  
+                  </div>
+                </div> 
                 
         )
     }
 }
 
-export default MoviesContainer
+   const mapStateToProps = (state) =>{
+    // console.log(state)
+        return {moviesProps: state.movies}
+    }
+
+
+export default connect(mapStateToProps, {getMovies} ) (withRouter(MoviesContainer))
+// state => ({moviesProps: state.movies, newGenre: state})

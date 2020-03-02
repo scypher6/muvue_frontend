@@ -2,15 +2,21 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import { store } from 'react-redux';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import 'semantic-ui-css/semantic.min.css';
 import {BrowserRouter as Router} from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
+import userReducer  from './Reducers/userReducer';
 import movieReducer  from './Reducers/movieReducer';
+import { combineReducers } from "redux";
 
-let storeObj = createStore(movieReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+const rootReducer = combineReducers({
+    movies: movieReducer,
+    users: userReducer
+  })
+
+let storeObj = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 ReactDOM.render(
                 <Provider store={ storeObj } >
                     <Router>
