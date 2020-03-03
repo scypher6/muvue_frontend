@@ -5,8 +5,6 @@ import { getMovies } from '../Actions/movieActions';
 import { withRouter } from 'react-router';
 
 
-const KEY = 'AIzaSyClQEe2YFSdU3uUvnsQqmoUpkDAkohrRiI';
-
 export class MoviesContainer extends Component {
 
     // state = {
@@ -15,10 +13,6 @@ export class MoviesContainer extends Component {
     componentDidUpdate(prevProps) {
         if (prevProps.newGenre !== this.props.newGenre) {
             // console.log("Props changed", this.props.newGenre)
-        } else {
-            return null
-        }
-
 
         let genre = this.props.newGenre
         console.log('genre:', this.props.location.pathname)
@@ -26,7 +20,7 @@ export class MoviesContainer extends Component {
                     genre = 'action'
                 else
                     genre = this.props.newGenre
-        
+                    console.log(genre)     
                 // this.props.passGenre ? 'action' : this.props.history.location.pathname.split('/')[1];
          
                 fetch(`http://localhost:3000/genres/${genre}`)
@@ -37,12 +31,13 @@ export class MoviesContainer extends Component {
                     this.props.getMovies(movieData)
           
                 })
+        } else 
+                return null
+        
     }
 
     componentDidMount() {
-console.log('HI')
         // Video format: https://www.youtube.com/embed/tgbNymZ7vqY
-        // Query URL: https://www.googleapis.com/youtube/v3/search?part=snippet&key=AIzaSyClQEe2YFSdU3uUvnsQqmoUpkDAkohrRiI&type=video&maxResults=10
         // Playlist URL: https://www.googleapis.com/youtube/v3/playlists?part=contentDetails&id=PLOU2XLYxmsIIM9h1Ybw2DuRw6o2fkNMeR&key=[YOUR_API_KEY]
         // `https://www.googleapis.com/youtube/v3/playlists?part=contentDetails&id=kgEmCGQSIlBMSFBUeFR4dEMwaWJWWnJUMl9XS1dVbDJTQXhzS3VLd3iiBQIoAg&key=${{KEY}`
         // Youtube Movies (Free with ads) Playlist ID: PLHPTxTxtC0ibVZrT2_WKWUl2SAxsKuKwx
@@ -58,17 +53,13 @@ console.log('HI')
         // animation
         //Set document title
 
-        // if (genre === undefined) genre = 'action';
-        // else 
-        //     genre = this.props.match.url.split('/')[1];
-
 // let url = `https://www.googleapis.com/youtube/v3/search?part=snippet&key=${KEY}&type=video&q=youtube+movies+free+with+ads+${genre}&maxResults=50`;
 //https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=50&key=${KEY}&type=video&q=youtube+movies+free+with+ads+${genre}
         // let {videoId} = movieData.items[1].id
         // let {title} = movieData.items[1].snippet
         
         let genre = this.props.newGenre
-console.log('genre:', this.props.location.pathname)
+// console.log('genre:', this.props.location.pathname)
         if (!genre)
             genre = 'action'
         else

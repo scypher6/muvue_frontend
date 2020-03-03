@@ -9,10 +9,12 @@ const userReducer = (state = initialState, action) => {
 
     switch(action.type){
         case 'ADD_USER':
-            return {
+            return { ...state,
                     user: action.user,
                     token: action.user.token,
-                    likes: action.user.likes
+                    likes: action.user.likes,
+                    movies: action.user.movies
+
             }
         case 'DELETE_USER':
             return initialState;
@@ -20,14 +22,12 @@ const userReducer = (state = initialState, action) => {
             return initialState;
         case 'ADD_LIKES':
             
-            return {
+            return {...state,
                     user: action.user,
                     token: action.user.token,
                     likes: action.user.likes + 1
             }
-            // {...state,
-            //         //  users: [...state.users, likes: action.user.likes]
-            // }
+ 
         default:
             return state;
     }

@@ -8,7 +8,7 @@ const movieReducer = ( state = initialState, action) => {
     let newGenre = '';
     switch(action.type){
         case 'GET_MOVIES':
-            // console.log(action.movies)
+             console.log(action.movies)
             newGenre = state.genre
             return { 
                     ...state,
@@ -18,7 +18,7 @@ const movieReducer = ( state = initialState, action) => {
         case 'ADD_GENRE':
             // console.log(action.movies)
             newGenre = action.genre
-            console.log(action.genre)
+
             return { 
                     ...state,
                     movies: [...state.movies],

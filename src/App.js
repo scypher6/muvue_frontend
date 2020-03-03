@@ -8,7 +8,7 @@ import MoviesItem from './Components/MoviesItem';
 import Form from './Components/Form';
 import MoviesContainer from './Components/MoviesContainer';
 import { addUser } from './Actions/userActions';
-import { addGenre } from './Actions/movieActions';
+import { addGenre, getMovies } from './Actions/movieActions';
 import Profile from './Components/Profile'
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router'
@@ -43,7 +43,7 @@ class App extends React.Component {
         console.log(user);
         if (!user.error) {
             localStorage.setItem("token", user.token)
-            this.props.addUser(user)      
+            this.props.addUser(user)    
             this.props.history.push("/profile")
         }
     })
@@ -60,14 +60,30 @@ class App extends React.Component {
       })
       .then(r => r.json())
       .then((user) => {
+  console.log('USER', user)
           if (user.token) {
               localStorage.setItem("token", user.token)
               localStorage.setItem('user', user)
               this.props.addUser(user)
         }
       })
+    
     }
-  }
+  
+    
+  
+    fetch(`http://localhost:3000/movies`)
+        .then( r => r.json() )
+        .then( movieData => {
+
+             console.log("2ND FETCH", movieData)
+             this.props.getMovies(movieData)
+
+        })
+    }//COMPONENTDIDMOUNT
+  
+  
+  
   
 
   signupSubmit = (user) => {
@@ -137,4 +153,4 @@ class App extends React.Component {
 }
 }
 
-export default connect(state => ({movies: state.movies.movies}), { addUser, addGenre }) (withRouter(App));
+export default connect(state => ({movies: state.movies.movies}), { addUser, addGenre, getMovies }) (withRouter(App));

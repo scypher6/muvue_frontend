@@ -15,23 +15,15 @@ class Navbar extends Component {
       handleItemClick = (e, { name }) => {	        // console.log(name)
           // console.log(name)	        // console.log(this.props)
           // let route = `/${name.toLowerCase()}`	       
-          // this.handleNav(name);
-          this.setState({ activeItem: name }) //, () => this.props.history.push(route))	         
+          this.setState({ activeItem: name }) //, () => this.props.history.push(route))	
+                   
       }	    
-    
-
-
-//     handleNav = (name) =>{
-//        let genre = name.toLowerCase();
-// // console.log(this.props)
-//         this.props.addGenre(genre);
-//     }
     
             
     getUser = () => {
-        const user = this.props.loggedIn.users.user;
-   
-        if (user){              
+        const user = this.props?.loggedIn.users.user;
+
+        if (this.props.loggedIn.users.user){              
             return user
             this.props.addUser(user);
         }   // user.find( (user) => user.token === token)
@@ -41,7 +33,7 @@ class Navbar extends Component {
 
 
     logout = () => {
-      console.log("HERE")
+      // console.log("HERE")
         localStorage.clear();
         this.props.logout();
         this.props.history.push('/')
@@ -55,7 +47,7 @@ class Navbar extends Component {
         const { activeItem } = this.state
         const foundUser = this.getUser()
 
-        
+        // console.log(this.props.loggedIn)
         return (
             
              <div className='navBar'>
@@ -131,4 +123,6 @@ class Navbar extends Component {
 
 }
 
-export default connect(state => ({loggedIn: state}), { addUser, addGenre, logout })(withRouter(Navbar))
+
+
+ export default connect(state => ({loggedIn: state}), { addUser, addGenre, logout }) (withRouter(Navbar))

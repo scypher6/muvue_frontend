@@ -31,11 +31,13 @@ export class MoviesItem extends Component {
     }
 
     renderMovieId = () =>{
-        let videoId = this.props.videoId
+        let videoId = this.props?.videoId
         if(this.props.movies.movies){
+            console.log(this.props.movies)
             let foundMovie = this.props.movies.movies.find( movie => movie.videoId === videoId)
-            localStorage.setItem('movieID', foundMovie.id)
             console.log(foundMovie)
+            localStorage.setItem('movieID', foundMovie?.id)
+            // console.log(foundMovie)
             return foundMovie
         }
         else
@@ -44,14 +46,13 @@ export class MoviesItem extends Component {
     }
 
     render() {
+        console.log(this.props)
     
         const foundUser = this.getUser()
         let videoId = this.props.videoId
 // console.log(this.props.movies)
         let clickedMovie = this.renderMovieId();
-
-         
-        // let {title} = this.props.movie.snippet
+        
         console.log(clickedMovie)
    
         return (
