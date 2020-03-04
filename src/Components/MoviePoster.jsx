@@ -7,22 +7,11 @@ const token = localStorage.token;
 
 export class MoviePoster extends Component {
 
-    getUser = () => {
-        const user = this.props.loggedIn.users.user;
-   
-        if (user)               
-            return user
-            // user.find( (user) => user.token === token)
-        else
-            return null
-    }
-
-
     render() {
+        let {movie} = this.props
         let {videoId} = this.props.movie
         let {title} = this.props.movie
-        const foundUser = this.getUser()
-
+        
         return (
 
             <div class="five wide column">
@@ -32,8 +21,8 @@ export class MoviePoster extends Component {
                         <Image src={`https://i.ytimg.com/vi_webp/${videoId}/movieposter.webp`} alt={title} wrapped ui={false} />
                         <Card.Content extra>
                         <a>
-                        <Icon name='thumbs up' onClick={this.handleLike}/>
-                            {foundUser ? foundUser.user.likes : 0} Likes
+                        <Icon name='thumbs up'/>
+                            {movie?.likes.length}
                         </a>
                         <a>
                             &nbsp; 

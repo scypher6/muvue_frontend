@@ -76,7 +76,6 @@ class App extends React.Component {
         .then( r => r.json() )
         .then( movieData => {
 
-             console.log("2ND FETCH", movieData)
              this.props.getMovies(movieData)
 
         })
@@ -127,7 +126,7 @@ class App extends React.Component {
   render() {
 
     return (
-        <div className="panel-list">
+        <div className="panel-list bg" >
           <Container>
               <Navbar />
               
@@ -141,7 +140,7 @@ class App extends React.Component {
                 <Route path='/watch/:videoId' render={this.showMovie}/>
                 {/* <Route path='/:genre' render={routerProps => (<MoviesContainer newGenre = {routerProps.match.url.split('/')[1]}/>)}/> */}
                 <Route path='/action' render={routerProps => (<MoviesContainer newGenre = 'action' />)}/>
-                <Route path='/animation' render={routerProps => (<MoviesContainer newGenre = {routerProps.match.url.split('/')[1]}/>)} />
+                <Route path='/horror' render={routerProps => (<MoviesContainer newGenre = {routerProps.match.url.split('/')[1]}/>)} />
                 <Route path='/comedy' render={routerProps => (<MoviesContainer newGenre = {routerProps.match.url.split('/')[1]}/>)}/>
                 
                 {/* <Route path='/comedy' component={MoviesContainer}/> */}

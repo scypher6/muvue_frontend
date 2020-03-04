@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { addLikes } from '../Actions/userActions';
+import { addLikedMovie } from '../Actions/movieActions';
 import { Link, withRouter } from 'react-router-dom';
 import {Card, Icon} from 'semantic-ui-react';
 
@@ -21,23 +22,43 @@ export class MoviesItem extends Component {
 
 
     handleLike = () =>{
-        console.log('inside handleLike', this.props.clickedMovie)
         let foundUser = this.getUser();
         if (foundUser){
             this.props.addLikes(foundUser)
+            let clickedMovie = this.findMovie()
+            let vidID = clickedMovie?.videoId
+            let userID = foundUser.user.id
+            let token = localStorage.getItem('token');
+
+            
+            fetch(`http://localhost:3000/users/${userID}/likes`, {
+                method: "POST",
+                headers: {
+                        'Content-type' : 'application/json',
+                        "Authorization": `bearer ${token}`
+                },
+                body: JSON.stringify({
+                     id: userID,
+                     videoId: vidID
+                     
+                })
+            })
+            .then( r => r.json())
+            .then( movie => {
+                  this.props.addLikedMovie(movie)
+            })
         }
         else
         return null
     }
 
-    renderMovieId = () =>{
+    findMovie = () =>{
         let videoId = this.props?.videoId
         if(this.props.movies.movies){
-            console.log(this.props.movies)
+
             let foundMovie = this.props.movies.movies.find( movie => movie.videoId === videoId)
-            console.log(foundMovie)
             localStorage.setItem('movieID', foundMovie?.id)
-            // console.log(foundMovie)
+
             return foundMovie
         }
         else
@@ -46,36 +67,38 @@ export class MoviesItem extends Component {
     }
 
     render() {
-        console.log(this.props)
-    
+        // console.log(this.props)
         const foundUser = this.getUser()
         let videoId = this.props.videoId
-// console.log(this.props.movies)
-        let clickedMovie = this.renderMovieId();
-        
-        console.log(clickedMovie)
-   
+        let foundMovie = this.props.movies.movies.find( movie => movie.videoId === videoId)
+
+console.log(foundMovie)
         return (
             <div>
-                {/* <h1>{title}</h1> */}
-                <Card color='green'>
-                    <iframe width="420" height="315" title='movieContainer'
+                    <h1>{foundMovie?.title}</h1>
+   
+                    <iframe width="1020" height="715" title='movieContainer'
                         src={`https://www.youtube.com/embed/${videoId}`} allow='encrypted-media' >
                     </iframe>
-       
+                        <br />
                         <Link>
                             <Icon name='thumbs up' onClick={this.handleLike}/>
-                            {foundUser ? foundUser.user.likes : 0} Likes
+                            {foundMovie?.likes.length}
                         </Link>
                         <Link>
                             &nbsp; 
                         <Icon name='star' />
                         4
                         </Link>
-                </Card>
+                        <br />
+                        <strong>Description:</strong> {foundMovie?.description}
+                        <br />
+                        <br />
+                        <br />
+                        <br />
             </div>
         )
     }
 }
 
-export default connect( state => ({loggedIn: state, movies: state.movies}), { addLikes })(withRouter(MoviesItem))
+export default connect( state => ({loggedIn: state, movies: state.movies}), { addLikes, addLikedMovie })(withRouter(MoviesItem))

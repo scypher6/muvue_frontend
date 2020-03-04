@@ -7,20 +7,26 @@ import { withRouter } from 'react-router';
 
 export class MoviesContainer extends Component {
 
+    state = {
+            localMovies: [],
+            searchTerm: ''
+    }
+
     // state = {
     //     movies: []
     // }
     componentDidUpdate(prevProps) {
+
         if (prevProps.newGenre !== this.props.newGenre) {
             // console.log("Props changed", this.props.newGenre)
 
         let genre = this.props.newGenre
-        console.log('genre:', this.props.location.pathname)
+        // console.log('genre:', this.props.location.pathname)
                 if (!genre)
                     genre = 'action'
                 else
                     genre = this.props.newGenre
-                    console.log(genre)     
+                    // console.log(genre, `http://localhost:3000/genres/${genre}`)     
                 // this.props.passGenre ? 'action' : this.props.history.location.pathname.split('/')[1];
          
                 fetch(`http://localhost:3000/genres/${genre}`)
@@ -31,8 +37,9 @@ export class MoviesContainer extends Component {
                     this.props.getMovies(movieData)
           
                 })
-        } else 
+        } else {
                 return null
+            }
         
     }
 
@@ -73,28 +80,46 @@ export class MoviesContainer extends Component {
 
             console.log(movieData)
             this.props.getMovies(movieData)
+            this.setState({
+                localMovies: movieData
+            })
   
         })
     }
 
     movieMapper = () => {
       
-        let movies = this.props.moviesProps.movies
+        // let movies = this.props.moviesProps.movies
+        let movies = this.state.localMovies
         let {videoId} = movies
-        return movies.map( movie => <MoviePoster key={videoId} movie={movie} /> )   
+        // console.log(movies[49].title.includes('tai'))
+        let filteredMovies = movies.filter(
+            movie => movie.title.toLowerCase().includes(this.state.searchTerm.toLowerCase())
+        )
+
+     return filteredMovies.map( movie => <MoviePoster key={videoId} movie={movie} /> )   
+    }
+
+    handleChange = (e) =>{
+        this.setState({
+            searchTerm: e.target.value
+        })
     }
 
     render() {
         document.title = 'Muvue: Movies that move you!'
+        console.log(this.props.movieProps)
+        let {searchTerm} = this.state
 
         return (
                 <div className = "ui container"> 
+                <input className='searchField' type='text' placeholder='Search' name='search' value={searchTerm} onChange={this.handleChange}/>
                   <div class="ui grid">
                      {this.movieMapper()}  
+
                   </div>
-                </div> 
-                
-        )
+                </div>             
+               )
     }
 }
 

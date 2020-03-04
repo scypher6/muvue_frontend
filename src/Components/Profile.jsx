@@ -45,10 +45,10 @@ export class Profile extends Component {
 
 
     handleChange = (e) => {
-        let {name, username, password} = e.target
+        let {name, value} = e.target
 
         this.setState({
-            [name]: e.target.value
+            [name]: value
         })
     }
 
@@ -57,7 +57,7 @@ export class Profile extends Component {
         const user = this.getUser().user
         let theirToken = localStorage.token
         let {name, username} = this.state
-console.log('HERE:', username)
+// console.log('HERE:', username)
         fetch(`http://localhost:3000/users/${user.id}`, {
             method: "PATCH",
             headers: {
@@ -72,10 +72,11 @@ console.log('HERE:', username)
         .then( r => r.json())
         .then(user => {
             this.props.addUser(user)
-        })
-        
+        })    
 
     }
+
+    // likedMovies = () => 
 
 
     render() {
@@ -88,6 +89,9 @@ console.log('HERE:', username)
             return (
                 <div> 
                     Welcome {foundUser.user.username} !
+                    <br /><br /><br />
+
+
                     <br /><br /><br />
                     <h1>Update Your profile</h1>
                         <form class="ui form" onSubmit={this.handleSubmit}>
