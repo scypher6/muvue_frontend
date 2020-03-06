@@ -56,30 +56,30 @@ class Navbar extends Component {
                  <Menu fluid widths={3}>
                     <Menu.Item
                       as={ Link }
-                      to='/action'
-                      name='Action'
-                      active={activeItem === 'Action'}
+                      to='/stats'
+                      name='Stats'
+                      active={activeItem === 'stats'}
                       onClick={this.handleItemClick}
                     />
                     <Menu.Item
                       as={ Link }
-                      to='/horror'
-                      name='Horror'
-                      active={activeItem === 'Horror'}
+                      to='/action'
+                      name='Movies'
+                      active={activeItem === 'action'}
                       onClick={this.handleItemClick}
                     /> 
                     <Menu.Item
                       as = { Link }
-                      to='/comedy'
-                      name='Comedy'
-                      active={activeItem === 'Comedy'}
+                      to='/about'
+                      name='About'
+                      active={activeItem === 'about'}
                       onClick={this.handleItemClick}
                     />
                  </Menu>
 
                  {foundUser ? 'Logged in as: ' + foundUser.user.username : ""}
                   <br />
-                  <Link to='/signup'>
+                  <Link to='/signup' className='signup'>
                     Signup
                   </Link>
                   {

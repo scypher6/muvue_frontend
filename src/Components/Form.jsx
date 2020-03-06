@@ -25,14 +25,52 @@ export default class Form extends Component {
         let {username, password} = this.state
 
         return (
-            <form onSubmit = {this.handleSubmit}>
-                <h1>{this.props.formName}</h1>
-                <label htmlFor='username'>Username:</label> <br />
-                <input type='text' name='username' value={username} onChange={this.handleChange}/> <br />
-                <label htmlFor='password'>Password:</label> <br />
-                <input type='password' name='password' value={password} onChange={this.handleChange} /> <br />
-                <input type='submit' value='submit'/>
-            </form>
+            <div className='form'>
+                <form onSubmit = {this.handleSubmit}>
+                    <h1>{this.props.formName}</h1>
+                    <label htmlFor='username'>Username:</label> <br />
+                    <input type='text' name='username' value={username} onChange={this.handleChange}/> <br />
+                    <label htmlFor='password'>Password:</label> <br />
+                    <input type='password' name='password' value={password} onChange={this.handleChange} /> <br />
+                    <br />
+                    <input type='submit' value='submit'/>
+                </form>
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+            </div>
         )
     }
 }

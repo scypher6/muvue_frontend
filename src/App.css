@@ -51,20 +51,78 @@
 
 .header {
   background-color: black;
+  text-align: center;
   padding-left: 1%;
   padding-top: 1%;
   padding-bottom: 1%;
-  color: green;
+  color: rgb(22, 197, 31);
+
 }
 
 .navBar {
+  color: white;
   margin-bottom: 1%;
+  background-color: black;
 }
 
 .bg {
-  background: url('MoviePosterCollage_Resized.jpg') no-repeat center center fixed;
-  background-size: cover;
-  /* background-repeat: no-repeat; */
+    background: url('MoviePosterCollage_Resized.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+.main {
+    background-color: rgba(0,0,0,.8);
+
+}
+
+.mc {
+    padding-left: 8%;
+    background-color: rgba(0,0,0,.8);
+
+}
+
+
+.mvItem {
+  color: white;
+  padding-left: 3%;
+  background-color: black;
+}
+
+.profile {
+  color: white;
+  padding-left: 3%;
+  padding-right: 3%;
+  padding-top: 3%;
+  padding-bottom: 3%;
+    background-color: rgba(0,0,0,.8);
+}
+
+.searchField {
+  padding-top: 2%;
+  margin-bottom: 3%;
+  text-align: center;
+}
+
+.form {
+  color: rgb(22, 197, 31);
+  background-color: rgba(0,0,0,.8);
+  padding-left: 3%;
+  padding-right: 3%;
+  padding-bottom: 3%;
+  padding-top: 3%;
+
+}
+
+.signup {
+    padding-left: 2%;
+    margin-bottom: 3%;
+}
+
+.about {
+  color: rgb(22, 197, 31);
+  background-color: rgba(0,0,0,.8);
+  padding-left: 3%;
+  padding-top: 3%;
 }
 
 /* body {

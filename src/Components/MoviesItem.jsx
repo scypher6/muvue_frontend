@@ -74,7 +74,7 @@ export class MoviesItem extends Component {
 
 console.log(foundMovie)
         return (
-            <div>
+            <div className='mvItem'>
                     <h1>{foundMovie?.title}</h1>
    
                     <iframe width="1020" height="715" title='movieContainer'
@@ -90,6 +90,7 @@ console.log(foundMovie)
                         <Icon name='star' />
                         4
                         </Link>
+                        <br />
                         <br />
                         <strong>Description:</strong> {foundMovie?.description}
                         <br />

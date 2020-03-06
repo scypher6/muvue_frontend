@@ -8,7 +8,7 @@ export class Header extends Component {
                 <NavLink to='/' exact >
                     <div className='header'>
                         <h1>MuVue</h1>
-                        <span><em>Movies that move you</em></span>
+                        <span><h3><em>Movies that move you</em></h3></span>
                     </div>
                 </NavLink>
         )

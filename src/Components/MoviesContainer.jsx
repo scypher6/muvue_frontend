@@ -3,13 +3,14 @@ import MoviePoster from './MoviePoster';
 import { connect } from 'react-redux';
 import { getMovies } from '../Actions/movieActions'; 
 import { withRouter } from 'react-router';
-
+import { Search } from 'semantic-ui-react';
 
 export class MoviesContainer extends Component {
 
     state = {
             localMovies: [],
-            searchTerm: ''
+            searchTerm: '',
+            "isLoading": false
     }
 
     // state = {
@@ -20,12 +21,13 @@ export class MoviesContainer extends Component {
         if (prevProps.newGenre !== this.props.newGenre) {
             // console.log("Props changed", this.props.newGenre)
 
-        let genre = this.props.newGenre
+        // let genre = this.props.newGenre
+        let genre = 'action'
         // console.log('genre:', this.props.location.pathname)
-                if (!genre)
-                    genre = 'action'
-                else
-                    genre = this.props.newGenre
+                // if (!genre)
+                //     genre = 'action'
+                // else
+                //     genre = this.props.newGenre
                     // console.log(genre, `http://localhost:3000/genres/${genre}`)     
                 // this.props.passGenre ? 'action' : this.props.history.location.pathname.split('/')[1];
          
@@ -65,15 +67,15 @@ export class MoviesContainer extends Component {
         // let {videoId} = movieData.items[1].id
         // let {title} = movieData.items[1].snippet
         
-        let genre = this.props.newGenre
-// console.log('genre:', this.props.location.pathname)
-        if (!genre)
-            genre = 'action'
-        else
-            genre = this.props.newGenre
+//         let genre = this.props.newGenre
+// // console.log('genre:', this.props.location.pathname)
+//         if (!genre)
+//             genre = 'action'
+//         else
+//             genre = this.props.newGenre
 
         // this.props.passGenre ? 'action' : this.props.history.location.pathname.split('/')[1];
- 
+        let genre = 'action'
         fetch(`http://localhost:3000/genres/${genre}`)
         .then( r => r.json() )
         .then( movieData => {
@@ -112,8 +114,9 @@ export class MoviesContainer extends Component {
         let {searchTerm} = this.state
 
         return (
-                <div className = "ui container"> 
-                <input className='searchField' type='text' placeholder='Search' name='search' value={searchTerm} onChange={this.handleChange}/>
+                <div className = "ui container mc"> 
+                <Search className='searchField' name='search' loading={this.state.isLoading} value={searchTerm} onSearchChange={this.handleChange}/>
+                {/* <input className='searchField' type='text' placeholder='Search' name='search' value={searchTerm} onChange={this.handleChange}/> */}
                   <div class="ui grid">
                      {this.movieMapper()}  
 

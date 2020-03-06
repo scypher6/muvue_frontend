@@ -12,6 +12,9 @@ import { addGenre, getMovies } from './Actions/movieActions';
 import Profile from './Components/Profile'
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router'
+import About from './Components/About'
+import ChartJS from './Components/ChartJS'
+
 // import axios from 'axios';
 // import searchYoutube from 'youtube-api-v3-search';
 
@@ -122,6 +125,10 @@ class App extends React.Component {
       this.props.history.push('/profile')
   }
 
+  renderChart = () => {
+
+    return ChartJS
+  }
   
   render() {
 
@@ -139,9 +146,9 @@ class App extends React.Component {
                 <Route path='/logout' component={Main}/>
                 <Route path='/watch/:videoId' render={this.showMovie}/>
                 {/* <Route path='/:genre' render={routerProps => (<MoviesContainer newGenre = {routerProps.match.url.split('/')[1]}/>)}/> */}
-                <Route path='/action' render={routerProps => (<MoviesContainer newGenre = 'action' />)}/>
+                <Route path='/stats' component={ChartJS}/>
                 <Route path='/horror' render={routerProps => (<MoviesContainer newGenre = {routerProps.match.url.split('/')[1]}/>)} />
-                <Route path='/comedy' render={routerProps => (<MoviesContainer newGenre = {routerProps.match.url.split('/')[1]}/>)}/>
+                <Route path='/about' component={About}/>
                 
                 {/* <Route path='/comedy' component={MoviesContainer}/> */}
                 <Route path='/' component={Main} />

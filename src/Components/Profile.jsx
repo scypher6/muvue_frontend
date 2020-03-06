@@ -87,8 +87,8 @@ export class Profile extends Component {
 
         if(foundUser) {
             return (
-                <div> 
-                    Welcome {foundUser.user.username} !
+                <div className='profile'> 
+                    Welcome {foundUser.user.username}!
                     <br /><br /><br />
 
 
@@ -114,6 +114,40 @@ export class Profile extends Component {
                         </form>
                         <br/>
                     <button name='button' onClick={this.handleDelete}>Delete my account</button>
+                    <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
                 </div>
             )
         }
