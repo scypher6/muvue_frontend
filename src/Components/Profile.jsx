@@ -81,7 +81,7 @@ export class Profile extends Component {
 
     render() {
         const foundUser = this.getUser()
-        let {name, username, password} = this.state
+        let {name, username} = this.state
 
         // console.log(foundUser)
 

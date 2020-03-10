@@ -85,6 +85,7 @@
 .mvItem {
   color: white;
   padding-left: 3%;
+  padding-right: 3%;
   background-color: black;
 }
 
@@ -94,7 +95,7 @@
   padding-right: 3%;
   padding-top: 3%;
   padding-bottom: 3%;
-    background-color: rgba(0,0,0,.8);
+  background-color: rgba(0,0,0,.8);
 }
 
 .searchField {

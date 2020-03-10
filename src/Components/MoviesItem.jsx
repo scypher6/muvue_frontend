@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { addLikes } from '../Actions/userActions';
 import { addLikedMovie } from '../Actions/movieActions';
 import { Link, withRouter } from 'react-router-dom';
-import {Card, Icon} from 'semantic-ui-react';
+import {Icon} from 'semantic-ui-react';
 
 
 
@@ -52,6 +52,10 @@ export class MoviesItem extends Component {
         return null
     }
 
+    handleFav = (e) =>{
+        console.log("HandleFav")
+    }
+
     findMovie = () =>{
         let videoId = this.props?.videoId
         if(this.props.movies.movies){
@@ -68,24 +72,23 @@ export class MoviesItem extends Component {
 
     render() {
         // console.log(this.props)
-        const foundUser = this.getUser()
         let videoId = this.props.videoId
         let foundMovie = this.props.movies.movies.find( movie => movie.videoId === videoId)
 
-console.log(foundMovie)
+// console.log(foundMovie)
         return (
             <div className='mvItem'>
                     <h1>{foundMovie?.title}</h1>
    
-                    <iframe width="1020" height="715" title='movieContainer'
+                    <iframe width="100%" height="715" title='movieContainer'
                         src={`https://www.youtube.com/embed/${videoId}`} allow='encrypted-media' >
                     </iframe>
                         <br />
-                        <Link>
-                            <Icon name='thumbs up' onClick={this.handleLike}/>
+                        <Link onClick={this.handleLike}>
+                            <Icon name='thumbs up' />
                             {foundMovie?.likes.length}
                         </Link>
-                        <Link>
+                        <Link onClick={this.handleFav}>
                             &nbsp; 
                         <Icon name='star' />
                         4

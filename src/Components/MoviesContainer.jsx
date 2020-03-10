@@ -110,7 +110,7 @@ export class MoviesContainer extends Component {
 
     render() {
         document.title = 'Muvue: Movies that move you!'
-        console.log(this.props.movieProps)
+        // console.log(this.props.movieProps)
         let {searchTerm} = this.state
 
         return (
@@ -126,11 +126,11 @@ export class MoviesContainer extends Component {
     }
 }
 
-   const mapStateToProps = (state) =>{
-    // console.log(state)
-        return {moviesProps: state.movies}
-    }
+//    const mapStateToProps = (state) =>{
+//     // console.log(state)
+//         return {moviesProps: state.movies}
+//     }
 
 
-export default connect(mapStateToProps, {getMovies} ) (withRouter(MoviesContainer))
+export default connect(null, {getMovies} ) (withRouter(MoviesContainer))
 // state => ({moviesProps: state.movies, newGenre: state})
