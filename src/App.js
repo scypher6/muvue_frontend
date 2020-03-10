@@ -1,5 +1,5 @@
 import './App.css';
-import React from 'react';
+import React, {PureComponent} from 'react';
 import Navbar from './Components/Navbar';
 import Main from './Components/Main';
 import { Route, Switch} from 'react-router-dom';
@@ -8,7 +8,7 @@ import MoviesItem from './Components/MoviesItem';
 import Form from './Components/Form';
 import MoviesContainer from './Components/MoviesContainer';
 import { addUser } from './Actions/userActions';
-import { addGenre, getMovies } from './Actions/movieActions';
+import { getMovies } from './Actions/movieActions';
 import Profile from './Components/Profile'
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router'
@@ -18,7 +18,7 @@ import ChartJS from './Components/ChartJS'
 // import axios from 'axios';
 // import searchYoutube from 'youtube-api-v3-search';
 
-class App extends React.Component {
+class App extends React.PureComponent {
     
 
   showMovie = (routerProps) => {
@@ -146,11 +146,10 @@ class App extends React.Component {
                 <Route path='/logout' component={Main}/>
                 <Route path='/watch/:videoId' render={this.showMovie}/>
                 {/* <Route path='/:genre' render={routerProps => (<MoviesContainer newGenre = {routerProps.match.url.split('/')[1]}/>)}/> */}
-                <Route path='/stats' component={ChartJS}/>
-                <Route path='/horror' render={routerProps => (<MoviesContainer newGenre = {routerProps.match.url.split('/')[1]}/>)} />
-                <Route path='/about' component={About}/>
-                
+                {/* <Route path='/horror' render={routerProps => (<MoviesContainer newGenre = {routerProps.match.url.split('/')[1]}/>)} /> */}
                 {/* <Route path='/comedy' component={MoviesContainer}/> */}
+                <Route path='/stats' component={ChartJS}/>
+                <Route path='/about' component={About}/> 
                 <Route path='/' component={Main} />
               </Switch>
           </Container>
@@ -159,4 +158,4 @@ class App extends React.Component {
 }
 }
 
-export default connect(state => ({movies: state.movies.movies}), { addUser, addGenre, getMovies }) (withRouter(App));
+export default connect(state => ({movies: state.movies.movies}), { addUser, getMovies }) (withRouter(App));

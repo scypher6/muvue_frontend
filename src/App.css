@@ -126,6 +126,12 @@
   padding-top: 3%;
 }
 
+.videoFrame {
+
+  width: 100% !important;
+  height: 600px;
+}
+
 /* body {
   background-image: url("./movies_poster_2019_collage.jpg");
   background-repeat: no-repeat;

@@ -40,6 +40,19 @@ const movieReducer = ( state = initialState, action) => {
                     movies: movieArr,
                     genre: state.genre
             }
+        case 'ADD_FAV_MOVIE':
+            // map through all movies
+            const newMovieArr = state.movies.map(movie => {
+                if (movie.videoId === action.payload.movie.videoId){
+                    return action.payload.movie
+                }
+                return movie
+            })
+            return {
+                    ...state,
+                    movies: newMovieArr,
+                    genre: state
+            }
         default:
             return state;
     }

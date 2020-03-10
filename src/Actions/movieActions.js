@@ -10,3 +10,7 @@ export const addLikedMovie = (movie) => {
     return {type: 'ADD_LIKED_MOVIE', payload: movie}
 }
 
+export const addFavMovie = (movie) =>{
+    return {type: 'ADD_FAV_MOVIE', payload: movie}
+}
+
