@@ -27,7 +27,7 @@ export class MoviePoster extends Component {
                         <a>
                             &nbsp; 
                         <Icon name='star' />
-                        4
+                            {movie?.favorites.length}
                         </a>
                         </Card.Content>
                     </Card>

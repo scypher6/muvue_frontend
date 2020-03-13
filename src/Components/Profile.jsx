@@ -83,7 +83,7 @@ export class Profile extends Component {
         const foundUser = this.getUser()
         let {name, username} = this.state
 
-        // console.log(foundUser)
+        console.log(foundUser)
 
         if(foundUser) {
             return (
@@ -94,6 +94,10 @@ export class Profile extends Component {
 
                     <br /><br /><br />
                     <h1>Update Your profile</h1>
+
+
+
+
                         <form class="ui form" onSubmit={this.handleSubmit}>
                             <div class="field">
                                 <label>Name</label>

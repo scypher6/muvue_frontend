@@ -14,6 +14,7 @@ export default class About extends Component {
                     <li>React</li>
                     <li>Redux</li>
                     <li>Rails</li>
+                    <li>RestClient</li>
                     <li>ActionMailer</li>
                     <li>Auth/JWT</li>
                     <li>Figaro</li>

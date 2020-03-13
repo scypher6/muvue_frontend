@@ -43,7 +43,8 @@ const movieReducer = ( state = initialState, action) => {
         case 'ADD_FAV_MOVIE':
             // map through all movies
             const newMovieArr = state.movies.map(movie => {
-                if (movie.videoId === action.payload.movie.videoId){
+                // console.log(movie)
+                if (movie?.videoId === action.payload.movie?.videoId){
                     return action.payload.movie
                 }
                 return movie

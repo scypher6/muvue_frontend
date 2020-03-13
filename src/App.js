@@ -6,7 +6,6 @@ import { Route, Switch} from 'react-router-dom';
 import { Container } from 'semantic-ui-react';
 import MoviesItem from './Components/MoviesItem';
 import Form from './Components/Form';
-import MoviesContainer from './Components/MoviesContainer';
 import { addUser } from './Actions/userActions';
 import { getMovies } from './Actions/movieActions';
 import Profile from './Components/Profile'
@@ -138,13 +137,12 @@ class App extends React.PureComponent {
               <Navbar />
               
               <Switch>
-                {/* <Route path="/" render={(routerProps) => <Navbar user ={this.state.user} {...routerProps} handleSearch={this.handleSearch} logout={this.logout}/>} /> */}
-                
                 <Route path='/login' render={this.renderForm}/>
                 <Route path='/signup' render={this.renderForm}/>
                 <Route path='/profile' component={Profile}/>
                 <Route path='/logout' component={Main}/>
                 <Route path='/watch/:videoId' render={this.showMovie}/>
+                {/* <Route path="/" render={(routerProps) => <Navbar user ={this.state.user} {...routerProps} handleSearch={this.handleSearch} logout={this.logout}/>} /> */}
                 {/* <Route path='/:genre' render={routerProps => (<MoviesContainer newGenre = {routerProps.match.url.split('/')[1]}/>)}/> */}
                 {/* <Route path='/horror' render={routerProps => (<MoviesContainer newGenre = {routerProps.match.url.split('/')[1]}/>)} /> */}
                 {/* <Route path='/comedy' component={MoviesContainer}/> */}
