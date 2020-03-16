@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Grid } from 'semantic-ui-react';
 
 
 
@@ -26,7 +27,8 @@ export default class Form extends Component {
         let {username, password} = this.state
 
         return (
-            <div className='form'>
+               <div class='ui divided two column grid'>
+                <div className='form column'>
                 <form onSubmit = {this.handleSubmit}>
                     <h1>{this.props.formName}</h1>
                     <label htmlFor='username'>Username:</label> <br />
@@ -38,6 +40,7 @@ export default class Form extends Component {
                 </form>
                 <br />
                 <br />
+
                 <br />
                 <br />
                 <br />
@@ -47,30 +50,19 @@ export default class Form extends Component {
                 <br />
                 <br />
                 <br />
+            </div>
+            <div class ='form column'>
+                <h1>Why you should sign up </h1>
                 <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
+                As a signed user you can:
+                <ul>
+                    <li>like a movie</li>
+                    <li>save your favorite movies</li>
+                    <li>view a list of recommended movies</li>
+                    <li>have access to 24hr technical support</li>
+                    <li>And much more!</li>
+                </ul>
+            </div>
             </div>
         )
     }

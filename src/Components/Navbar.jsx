@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { addUser, logout } from '../Actions/userActions';
 import { addGenre } from '../Actions/movieActions';
-import { Menu } from 'semantic-ui-react';
+import { Menu, Button, Icon} from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import Header from './Header';
 
@@ -79,41 +79,49 @@ class Navbar extends Component {
 
                  {foundUser ? 'Logged in as: ' + foundUser.user.username : ""}
                   <br />
-                  <Link to='/signup' className='signup'>
-                    Signup
+ 
+                 {
+                  foundUser ?
+                  <div className = 'signDiv' >
+                  <Link to='/profile'>
+                    <Button positive animated='vertical'>
+                      <Button.Content visible>Profile</Button.Content>
+                      <Button.Content hidden>
+                        <Icon name='id card outline' />
+                      </Button.Content>
+                    </Button>
                   </Link>
-                  {
-                    foundUser ?
-                    <>
-                    .:.
-                          <Link to='/profile'>
-                            Profile
-                          </Link>
-                    </>
-                    :
-
-                    ""
-
-                  }
-                  <>
-                  </>
-                  
-                  { foundUser ?                      
-                      <>
-                  .:.
-                        <Link to='/logout' onClick={this.logout}>
-                          Log out
-                        </Link>
-                      </>
-                      :
-                      <>
-                  .:.
-                        <Link to='/login' >
-                          Log in
-                        </Link>
-                      </>
-                  }
-                  
+                  <Link to='/logout' onClick={this.logout}>
+                    <Button primary animated>
+                      <Button.Content visible>Log out</Button.Content>
+                      <Button.Content hidden>
+                        <Icon name='sign out' />
+                      </Button.Content>
+                    </Button>
+                  </Link>
+                  </div>
+                  :
+                  <div className = 'signDiv'>
+                  <Link to='/signup'>
+                    <Button primary animated='vertical'>
+                      <Button.Content visible>Sign up</Button.Content>
+                      <Button.Content hidden>
+                        <Icon name='play' />
+                      </Button.Content>
+                    </Button>       
+                  </Link>
+                  <Link to='/login'>
+                    <Button positive animated>
+                      <Button.Content visible>Log in</Button.Content>
+                      <Button.Content hidden>
+                        <Icon name='sign in' />
+                      </Button.Content>
+                    </Button>
+                  </Link>
+                  </div>            
+                 }
+                  <br />
+                  <br />
                 </div>
             </div>
             
