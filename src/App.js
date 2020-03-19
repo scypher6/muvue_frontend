@@ -13,6 +13,8 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router'
 import About from './Components/About'
 import ChartJS from './Components/ChartJS'
+import swal from 'sweetalert';
+
 
 // import axios from 'axios';
 // import searchYoutube from 'youtube-api-v3-search';
@@ -48,6 +50,8 @@ class App extends React.PureComponent {
             this.props.addUser(user)    
             this.props.history.push("/profile")
         }
+        else
+            swal("Login Denied!", user.error, "error")
     })
   }
 
@@ -102,6 +106,7 @@ class App extends React.PureComponent {
     .then( user => {
 
       if (user.token){
+          swal("Account created!", "Thank you for signing up!", "success")
           localStorage.setItem('token', user.token);
           localStorage.setItem('user', user);
           this.props.addUser(user);
