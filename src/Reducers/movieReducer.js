@@ -24,8 +24,10 @@ const movieReducer = ( state = initialState, action) => {
                     movies: [...state.movies, action.genre],
                     genre: newGenre
             }
-        case 'ADD_LIKED_MOVIE':
+        case 'ADD_LIKE':
             // map through all movies
+            // find the movie id that matches
+            // change the number of likes for that movie
             const movieArr = state.movies.map(movie => {
                 // console.log(action.payload)
                 if (movie.videoId === action.payload.movie.videoId){
@@ -33,11 +35,21 @@ const movieReducer = ( state = initialState, action) => {
                 }
                 return movie
             })
-            // find the movie id that matches
-            // change the number of likes for that movie
             return {
                     ...state,
                     movies: movieArr,
+                    genre: state.genre
+            }
+        case 'REMOVE_LIKE':
+            const unlikeMovieArr = state.movies.map( movie => {
+                // console.log(action.payload.videoId)
+                if (movie.videoId !== action.payload.videoId)
+                    return action.payload
+                return movie
+            })
+            return {
+                    ...state,
+                    movies: unlikeMovieArr,
                     genre: state.genre
             }
         case 'ADD_FAV_MOVIE':

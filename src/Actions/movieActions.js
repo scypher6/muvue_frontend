@@ -6,8 +6,12 @@ export const addGenre = (genre) => {
     return {type: 'ADD_GENRE', genre: genre }
 }
 
-export const addLikedMovie = (movie) => {
-    return {type: 'ADD_LIKED_MOVIE', payload: movie}
+export const addLike = (movie) => {
+    return {type: 'ADD_LIKE', payload: movie}
+}
+
+export const removeLike = (movie) => {
+    return {type: 'REMOVE_LIKE', payload: movie}
 }
 
 export const addFavMovie = (movie) =>{

@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux';
 import { addLikes } from '../Actions/userActions';
-import { addLikedMovie , addFavMovie} from '../Actions/movieActions';
+import { addLike , removeLike, addFavMovie} from '../Actions/movieActions';
 import { Link, withRouter } from 'react-router-dom';
 import {Icon} from 'semantic-ui-react';
 import swal from 'sweetalert';
@@ -46,7 +46,25 @@ export class MoviesItem extends PureComponent {
             })
             .then( r => r.json())
             .then( movie => {
-                  this.props.addLikedMovie(movie)
+                // console.log(movie.liked)
+                
+                if (movie.liked){
+                    // console.log(movie.likeID)
+                    fetch(`http://localhost:3000/users/likes/${movie.likeID}`, {
+                        method: 'DELETE',
+                        headers: {
+                            "Authorization": `bearer ${token}`
+                    }
+                })
+                .then(r => r.json())
+                .then(movie => {
+                    // console.log(movie)
+                    this.props.removeLike(movie)
+                })
+                    
+               }
+               else
+                    this.props.addLike(movie)
             })
         }
         else
@@ -134,4 +152,4 @@ console.log(foundMovie)
     }
 }
 
-export default connect( state => ({loggedIn: state, movies: state.movies}), { addLikes, addLikedMovie, addFavMovie })(withRouter(MoviesItem))
+export default connect( state => ({loggedIn: state, movies: state.movies}), { addLikes, addLike, removeLike, addFavMovie })(withRouter(MoviesItem))
