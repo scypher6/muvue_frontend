@@ -76,9 +76,11 @@ class Navbar extends Component {
                       onClick={this.handleItemClick}
                     />
                  </Menu>
-
-                 {foundUser ? 'Logged in as: ' + foundUser.user.username : ""}
-                  <br />
+                 <span class='signDiv'>
+                    {foundUser ? 'Signed in as: ' + foundUser.user.username : ""}
+                 </span>
+                 <br />
+                 <br />
  
                  {
                   foundUser ?

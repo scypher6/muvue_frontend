@@ -88,7 +88,7 @@ export class Profile extends Component {
         if(foundUser) {
             return (
                 <div className='profile'> 
-                    Welcome {foundUser.user.username}!
+                    <h3>Welcome {foundUser.user.username}!</h3>
                     <br /><br /><br />
 
 
