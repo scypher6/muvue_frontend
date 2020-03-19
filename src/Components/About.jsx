@@ -18,6 +18,7 @@ export default class About extends Component {
                     <li>ActionMailer</li>
                     <li>Auth/JWT</li>
                     <li>Figaro</li>
+                    <li>Sweet Alert</li>
                 </ul>
                 <br />
                 Thank you for using Muvue!
