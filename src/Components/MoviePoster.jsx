@@ -3,9 +3,11 @@ import { NavLink } from 'react-router-dom';
 import {Card, Image, Icon} from 'semantic-ui-react';
 import { connect } from 'react-redux';
 
+
 const token = localStorage.token;
 
 export class MoviePoster extends Component {
+
 
     render() {
         let {movie} = this.props
@@ -21,17 +23,16 @@ export class MoviePoster extends Component {
                         <Image src={`https://i.ytimg.com/vi_webp/${videoId}/movieposter.webp`} alt={title} wrapped ui={false} />
                         <Card.Content extra>
                         <a>
-                        <Icon name='thumbs up'/>
+                        <Icon name='thumbs up' color='green'/>
                             {movie?.likes.length}
                         </a>
                         <a>
                             &nbsp; 
-                        <Icon name='star' />
+                        <Icon name='star' color='green'/>
                             {movie?.favorites.length}
                         </a>
                         </Card.Content>
                     </Card>
-
              </NavLink>
             </div>
         )

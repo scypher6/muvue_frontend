@@ -4,6 +4,7 @@ import { addLikes } from '../Actions/userActions';
 import { addLikedMovie , addFavMovie} from '../Actions/movieActions';
 import { Link, withRouter } from 'react-router-dom';
 import {Icon} from 'semantic-ui-react';
+import swal from 'sweetalert';
 
 
 
@@ -49,7 +50,7 @@ export class MoviesItem extends PureComponent {
             })
         }
         else
-        return null
+        return swal("Not logged in!", "Please sign in to like a movie!", "info")
     }
 
     handleFav = (e) =>{
@@ -81,8 +82,7 @@ export class MoviesItem extends PureComponent {
             })
         }
         else
-            return null
-
+            return swal("Not logged in!", "Please sign in to favorite a movie!", "info")
         
     }
 
@@ -104,7 +104,7 @@ export class MoviesItem extends PureComponent {
         // console.log(this.props)
         let videoId = this.props.videoId
         let foundMovie = this.props.movies.movies.find( movie => movie.videoId === videoId)
-// console.log(foundMovie)
+console.log(foundMovie)
         return (
             <div className='mvItem'>
                     <h1>{foundMovie?.title}</h1>
