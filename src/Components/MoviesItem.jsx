@@ -24,6 +24,7 @@ export class MoviesItem extends PureComponent {
 
     handleLike = () =>{
         let foundUser = this.getUser();
+        console.log(foundUser)
         if (foundUser){
             this.props.addLikes(foundUser)
             let clickedMovie = this.findMovie()
@@ -72,7 +73,7 @@ export class MoviesItem extends PureComponent {
     }
 
     handleFav = (e) =>{
-        // console.log("HandleFav")
+        // console.log("HandleFav", foundUser)
         let foundUser = this.getUser();
         if (foundUser){
             console.log(foundUser)
@@ -123,6 +124,7 @@ export class MoviesItem extends PureComponent {
         let videoId = this.props.videoId
         let foundMovie = this.props.movies.movies.find( movie => movie.videoId === videoId)
 console.log(foundMovie)
+
         return (
             <div className='mvItem'>
                     <h1>{foundMovie?.title}</h1>

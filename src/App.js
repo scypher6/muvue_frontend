@@ -33,6 +33,7 @@ class App extends React.PureComponent {
 }
 
   loginSubmit = (userInfo) => {
+
     fetch("http://localhost:3000/login", {
       method: "POST",
       headers: {
@@ -51,7 +52,8 @@ class App extends React.PureComponent {
             this.props.history.push("/profile")
         }
         else
-            swal("Login Denied!", user.error, "error")
+            swal("Access Denied!", user.error, "error")
+        
     })
   }
 
@@ -86,10 +88,9 @@ class App extends React.PureComponent {
 
         })
     }//COMPONENTDIDMOUNT
-  
-  
-  
-  
+
+
+
 
   signupSubmit = (user) => {
    
