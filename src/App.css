@@ -90,7 +90,7 @@
 }
 
 .profile {
-  color: white;
+  color: rgb(22, 197, 31);
   padding-left: 3%;
   padding-right: 3%;
   padding-top: 3%;
@@ -133,6 +133,23 @@
   height: 600px;
 }
 
+div.scrollmenu {
+  background-color: rgb(58, 54, 54);
+  overflow: auto;
+  white-space: nowrap;
+}
+
+div.scrollmenu a {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px;
+  text-decoration: none;
+}
+
+div.scrollmenu a:hover {
+  background-color: rgb(48, 106, 145);
+}
 /* body {
   background-image: url("./movies_poster_2019_collage.jpg");
   background-repeat: no-repeat;

@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addUser, deleteUser } from '../Actions/userActions';
+import { getMovies } from '../Actions/movieActions';
 import { withRouter } from 'react-router';
+import {Card, Image} from 'semantic-ui-react';
+import { MoviePoster } from './MoviePoster';
+import { NavLink } from 'react-router-dom';
 
 const token = localStorage.token;
 
@@ -76,26 +80,64 @@ export class Profile extends Component {
 
     }
 
-    // likedMovies = () => 
+    likedMovies = (user) => { 
+        // console.log("LIKEDMOVS", user?.likedMovies)  
+            return user?.likedMovies.map(movie => {
+            return (
+                <NavLink to={`/watch/${movie.videoId}`} > 
+                    <Image src={`https://i.ytimg.com/vi_webp/${movie.videoId}/movieposter.webp`} alt={movie.title} wrapped ui={false} />
+                </NavLink>
+                )
+              }
+            )
+    }
+
+    favedMovies = (user) => { 
+        console.log("FAVED", user?.favorites)  
+            return user?.favorites.map(movie => {
+                // console.log(movie.movie)
+            return (
+                <NavLink to={`/watch/${movie.movie.videoId}`} > 
+                    <Image src={`https://i.ytimg.com/vi_webp/${movie.movie.videoId}/movieposter.webp`} alt={movie.title} wrapped ui={false} />
+                </NavLink>
+                )
+              }
+            )
+    }
+
 
 
     render() {
         const foundUser = this.getUser()
         let {name, username} = this.state
 
-        console.log(foundUser)
+        // console.log(this.likedMovies(foundUser?.user))
 
         if(foundUser) {
             return (
                 <div className='profile'> 
                     <h3>Welcome {foundUser.user.username}!</h3>
-                    <br /><br /><br />
+                    <br />
 
+                    <h2>My Favorite Movies</h2>
+
+                    <div className='scrollmenu'>
+                        <a href="#movie"> 
+                            {this.favedMovies(foundUser.user)}
+                        </a>                     
+                    </div>
+                    <br /><br /><br />
+                    <h2>Movies I Liked</h2>
+
+                    <div className='scrollmenu'>
+                        <a href="#movie"> 
+                            {this.likedMovies(foundUser.user)}
+                        </a>                     
+                    </div>
+                
 
                     <br /><br /><br />
                     <h1>Update Your profile</h1>
-
-
 
 
                         <form class="ui form" onSubmit={this.handleSubmit}>
@@ -160,4 +202,4 @@ export class Profile extends Component {
 }
 
        
-export default connect(state => ({loggedIn: state.users}), {addUser, deleteUser} ) (withRouter(Profile))
+export default connect(state => ({loggedIn: state.users}), {addUser, deleteUser, getMovies} ) (withRouter(Profile))

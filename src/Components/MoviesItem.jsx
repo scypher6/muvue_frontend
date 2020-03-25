@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux';
-import { addLikes } from '../Actions/userActions';
+import { addLikes, addUser, updateUser } from '../Actions/userActions';
 import { addLike , removeLike, addFavMovie} from '../Actions/movieActions';
 import { Link, withRouter } from 'react-router-dom';
 import {Icon} from 'semantic-ui-react';
@@ -24,7 +24,7 @@ export class MoviesItem extends PureComponent {
 
     handleLike = () =>{
         let foundUser = this.getUser();
-        console.log(foundUser)
+        // console.log(foundUser)
         if (foundUser){
             this.props.addLikes(foundUser)
             let clickedMovie = this.findMovie()
@@ -48,7 +48,7 @@ export class MoviesItem extends PureComponent {
             .then( r => r.json())
             .then( movie => {
                 // console.log(movie.liked)
-                
+                this.props.addUser(foundUser)
                 if (movie.liked){
                     // console.log(movie.likeID)
                     fetch(`http://localhost:3000/users/likes/${movie.likeID}`, {
@@ -61,11 +61,15 @@ export class MoviesItem extends PureComponent {
                 .then(movie => {
                     // console.log(movie)
                     this.props.removeLike(movie)
+
+                    
                 })
                     
                }
-               else
+               else{
                     this.props.addLike(movie)
+                }
+                    
             })
         }
         else
@@ -73,7 +77,7 @@ export class MoviesItem extends PureComponent {
     }
 
     handleFav = (e) =>{
-        // console.log("HandleFav", foundUser)
+        // console.log("HandleFav", foundUser)     
         let foundUser = this.getUser();
         if (foundUser){
             console.log(foundUser)
@@ -98,6 +102,8 @@ export class MoviesItem extends PureComponent {
             .then(r => r.json())
             .then( movie => {
                     this.props.addFavMovie(movie)
+                    this.props.addUser(foundUser)
+                    this.props.updateUser(movie)
             })
         }
         else
@@ -123,7 +129,7 @@ export class MoviesItem extends PureComponent {
         // console.log(this.props)
         let videoId = this.props.videoId
         let foundMovie = this.props.movies.movies.find( movie => movie.videoId === videoId)
-console.log(foundMovie)
+// console.log(foundMovie)
 
         return (
             <div className='mvItem'>
@@ -154,4 +160,4 @@ console.log(foundMovie)
     }
 }
 
-export default connect( state => ({loggedIn: state, movies: state.movies}), { addLikes, addLike, removeLike, addFavMovie })(withRouter(MoviesItem))
+export default connect( state => ({loggedIn: state, movies: state.movies}), { addLikes, addLike, removeLike, addFavMovie, addUser, updateUser })(withRouter(MoviesItem))

@@ -24,7 +24,7 @@ export class MoviePoster extends Component {
                         <Card.Content extra>
                         <a>
                         <Icon name='thumbs up' color='green'/>
-                            {movie?.likes.length}
+                            {movie?.likes?.length}
                         </a>
                         <a>
                             &nbsp; 
