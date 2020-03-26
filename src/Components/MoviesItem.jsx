@@ -169,7 +169,7 @@ export class MoviesItem extends PureComponent {
                     <h1>{foundMovie?.title}</h1>
    
                     <iframe className='videoFrame' title='movieContainer'
-                        src={`https://www.youtube.com/embed/${videoId}`} allow='encrypted-media' >
+                        src={`https://www.youtube.com/embed/${videoId}`} frameborder="0" allow='encrypted-media' allowFullScreen>
                     </iframe>
                         <br />
                         <Link onClick={this.handleLike}>
