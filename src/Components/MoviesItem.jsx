@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux';
 import { addLikes, addUser, updateUser } from '../Actions/userActions';
-import { addLike , removeLike, addFavMovie} from '../Actions/movieActions';
+import { addLike , removeLike, addFavMovie, removeFav} from '../Actions/movieActions';
 import { Link, withRouter } from 'react-router-dom';
 import {Icon} from 'semantic-ui-react';
 import swal from 'sweetalert';
@@ -68,6 +68,8 @@ export class MoviesItem extends PureComponent {
                }
                else{
                     this.props.addLike(movie)
+                    // foundUser.user.likedMovies.push(movie)
+                    // this.props.updateUser(foundUser)
                 }
                     
             })
@@ -101,15 +103,34 @@ export class MoviesItem extends PureComponent {
             })
             .then(r => r.json())
             .then( movie => {
-                    this.props.addFavMovie(movie)
-                    this.props.addUser(foundUser)
-                    this.props.updateUser(movie)
+                this.props.addUser(foundUser)
+                    if (!movie.faved){
+                        this.props.addFavMovie(movie)
+                        foundUser.user.favorites.push(movie)
+                        this.props.updateUser(foundUser)
+                    }
+                    else{
+                        this.props.removeFav(movie)
+                    }
             })
         }
         else
             return swal("Not logged in!", "Please sign in to favorite a movie!", "info")
         
     }
+
+
+    // Array.prototype.remove = function() {
+    //     let what, a = arguments, L = a.length, ax;
+    //     while (L && this.length) {
+    //         what = a[--L];
+    //         while ((ax = this.indexOf(what)) !== -1) {
+    //             this.splice(ax, 1);
+    //         }
+    //     }
+    //     return this;
+    // }
+    
 
     findMovie = () =>{
         let videoId = this.props?.videoId
@@ -160,4 +181,4 @@ export class MoviesItem extends PureComponent {
     }
 }
 
-export default connect( state => ({loggedIn: state, movies: state.movies}), { addLikes, addLike, removeLike, addFavMovie, addUser, updateUser })(withRouter(MoviesItem))
+export default connect( state => ({loggedIn: state, movies: state.movies}), { addLikes, addLike, removeLike, addFavMovie, removeFav, addUser, updateUser })(withRouter(MoviesItem))

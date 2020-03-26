@@ -2,8 +2,8 @@ export const addUser = (user) => {
     return {type: 'ADD_USER', user: user }
 }
 
-export const updateUser = (movie) => {
-    return {type: 'UPDATE_USER', payload: movie}
+export const updateUser = (user) => {
+    return {type: 'UPDATE_USER', payload: user}
 }
 
 export const logout = (user) => {

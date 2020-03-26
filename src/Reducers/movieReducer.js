@@ -66,6 +66,9 @@ const movieReducer = ( state = initialState, action) => {
                     movies: newMovieArr,
                     genre: state
             }
+        case 'REMOVE_FAV':
+            console.log("REMOVE FAV", action.payload)
+            return ""
         default:
             return state;
     }

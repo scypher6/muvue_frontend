@@ -22,9 +22,10 @@ const userReducer = (state = initialState, action) => {
         case 'LOGOUT':
             return initialState;
         case 'UPDATE_USER':
-            let newLikedMovies = [...state.user.movies.likedMovies, action.payload] 
-            state.user.movies.likedMovies = newLikedMovies
-            return {...state
+            return {...state,
+                    user: action.payload,
+                    token: action.payload.token,
+                    likes: action.payload.likes
             }
         case 'ADD_LIKES':
 
