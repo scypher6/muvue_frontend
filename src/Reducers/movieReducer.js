@@ -67,8 +67,18 @@ const movieReducer = ( state = initialState, action) => {
                     genre: state
             }
         case 'REMOVE_FAV':
-            console.log("REMOVE FAV", action.payload)
-            return ""
+            const unFavArray = state.movies.map(movie => {
+                // console.log(movie)
+                if (movie?.videoId !== action.payload.movie?.videoId){
+                    return action.payload
+                }
+                return movie
+            })
+            return {
+                    ...state,
+                    movies: unFavArray,
+                    genre: state
+            }
         default:
             return state;
     }

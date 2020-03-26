@@ -61,15 +61,22 @@ export class MoviesItem extends PureComponent {
                 .then(movie => {
                     // console.log(movie)
                     this.props.removeLike(movie)
-
+                    console.log(foundUser.user.likedMovies)
+                    let index = foundUser.user.likedMovies.findIndex(likedMovie => likedMovie.videoId === movie.videoId)
+                    let newArr = foundUser.user.likedMovies
+                    newArr.splice(index, 1)
+            //   console.log("NEWARR", newArr)                     
+                    foundUser.user.likedMovies = newArr
+            // console.log("UPDATEd", foundUser)
+                    this.props.updateUser(foundUser);
                     
                 })
                     
                }
                else{
                     this.props.addLike(movie)
-                    // foundUser.user.likedMovies.push(movie)
-                    // this.props.updateUser(foundUser)
+                    foundUser.user.likedMovies.push(movie)
+                    this.props.updateUser(foundUser)
                 }
                     
             })
@@ -104,32 +111,37 @@ export class MoviesItem extends PureComponent {
             .then(r => r.json())
             .then( movie => {
                 this.props.addUser(foundUser)
+
                     if (!movie.faved){
                         this.props.addFavMovie(movie)
                         foundUser.user.favorites.push(movie)
                         this.props.updateUser(foundUser)
                     }
-                    else{
+                    else{//Unfav
+                        fetch(`http://localhost:3000/users/favorites/${movie.favID}`, {
+                            method: 'DELETE',
+                            headers: {
+                                "Authorization": `bearer ${token}`
+                        }
+                })
+                .then(r => r.json())
+                .then( movie => {
                         this.props.removeFav(movie)
-                    }
+                        let index = foundUser.user.favorites.findIndex(favorite => favorite.movie.videoId === movie.videoId)
+                        let newArr = foundUser.user.favorites
+                        newArr.splice(index, 1)
+                //   console.log("NEWARR", newArr)                     
+                        foundUser.user.favorites = newArr
+                // console.log("UPDATEd", foundUser)
+                        this.props.updateUser(foundUser);
+                })
+             }
             })
         }
         else
             return swal("Not logged in!", "Please sign in to favorite a movie!", "info")
         
     }
-
-
-    // Array.prototype.remove = function() {
-    //     let what, a = arguments, L = a.length, ax;
-    //     while (L && this.length) {
-    //         what = a[--L];
-    //         while ((ax = this.indexOf(what)) !== -1) {
-    //             this.splice(ax, 1);
-    //         }
-    //     }
-    //     return this;
-    // }
     
 
     findMovie = () =>{
@@ -150,7 +162,7 @@ export class MoviesItem extends PureComponent {
         // console.log(this.props)
         let videoId = this.props.videoId
         let foundMovie = this.props.movies.movies.find( movie => movie.videoId === videoId)
-// console.log(foundMovie)
+ 
 
         return (
             <div className='mvItem'>
@@ -182,3 +194,14 @@ export class MoviesItem extends PureComponent {
 }
 
 export default connect( state => ({loggedIn: state, movies: state.movies}), { addLikes, addLike, removeLike, addFavMovie, removeFav, addUser, updateUser })(withRouter(MoviesItem))
+
+    // Array.prototype.remove = function() {
+    //     let what, a = arguments, L = a.length, ax;
+    //     while (L && this.length) {
+    //         what = a[--L];
+    //         while ((ax = this.indexOf(what)) !== -1) {
+    //             this.splice(ax, 1);
+    //         }
+    //     }
+    //     return this;
+    // }

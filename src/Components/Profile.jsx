@@ -93,7 +93,7 @@ export class Profile extends Component {
     }
 
     favedMovies = (user) => { 
-        console.log("FAVED", user?.favorites)  
+        // console.log("FAVED", user?.favorites)  
             return user?.favorites.map(movie => {
                 // console.log(movie.movie)
             return (
