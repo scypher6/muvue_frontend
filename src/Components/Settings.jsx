@@ -58,7 +58,7 @@ export class Settings extends Component {
     handleDelete = () => {
         const foundUser = this.getUser()
         let token = localStorage.token
-        
+
         if (foundUser){
             console.log('user', foundUser.user.id)
             fetch(`http://localhost:3000/users/${foundUser.user.id}`, {
