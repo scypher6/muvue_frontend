@@ -1,7 +1,4 @@
 import React, { Component } from 'react'
-import { Grid } from 'semantic-ui-react';
-
-
 
 
 export default class Form extends Component {

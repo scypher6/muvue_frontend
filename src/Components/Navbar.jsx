@@ -97,7 +97,7 @@ class Navbar extends Component {
                     <Button positive animated='vertical'>
                       <Button.Content visible>Settings</Button.Content>
                       <Button.Content hidden>
-                        <Icon name='id card outline' />
+                        <Icon name='settings' />
                       </Button.Content>
                     </Button>
                   </Link>

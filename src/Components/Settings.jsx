@@ -1,4 +1,8 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux';
+import { addUser, deleteUser } from '../Actions/userActions';
+import swal from 'sweetalert';
+
 
 export class Settings extends Component {
 
@@ -51,6 +55,27 @@ export class Settings extends Component {
 
     }
 
+    handleDelete = () => {
+        const foundUser = this.getUser()
+        let token = localStorage.token
+        
+        if (foundUser){
+            console.log('user', foundUser.user.id)
+            fetch(`http://localhost:3000/users/${foundUser.user.id}`, {
+                  method: "DELETE",
+                  headers: {
+                          "Authorization": `bearer ${token}`
+                  }
+            })
+            .then(r => r.json())
+            .then( data => {
+                  this.props.deleteUser();
+                  this.props.history.push('/');
+             })
+        }//IF
+        
+    }
+
     render() {
         const foundUser = this.getUser()
         let {name, username} = this.state
@@ -92,4 +117,4 @@ export class Settings extends Component {
     }
 }
 
-export default connect(state => ({loggedIn: state.users})) Settings
+export default connect(state => ({loggedIn: state.users}), { addUser, deleteUser })(Settings);
