@@ -3,8 +3,7 @@ import { connect } from 'react-redux';
 import { addUser, deleteUser } from '../Actions/userActions';
 import { getMovies } from '../Actions/movieActions';
 import { withRouter } from 'react-router';
-import {Card, Image} from 'semantic-ui-react';
-import { MoviePoster } from './MoviePoster';
+import { Image } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
 
 const token = localStorage.token;

@@ -86,8 +86,16 @@ class Navbar extends Component {
                   foundUser ?
                   <div className = 'signDiv' >
                   <Link to='/profile'>
-                    <Button positive animated='vertical'>
+                    <Button positive animated>
                       <Button.Content visible>Profile</Button.Content>
+                      <Button.Content hidden>
+                        <Icon name='id card outline' />
+                      </Button.Content>
+                    </Button>
+                  </Link>
+                  <Link to='/settings'>
+                    <Button positive animated='vertical'>
+                      <Button.Content visible>Settings</Button.Content>
                       <Button.Content hidden>
                         <Icon name='id card outline' />
                       </Button.Content>
