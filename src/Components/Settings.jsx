@@ -86,7 +86,7 @@ export class Settings extends Component {
                     <br />
                     <h1>Update Your profile</h1>
 
-                        <form class="ui form" onSubmit={this.handleSubmit}>
+                        <form class="ui inverted form"  onSubmit={this.handleSubmit}>
                             <div class="field">
                                 <label>Name</label>
                                 <input placeholder="Name" name='name'  value={name} onChange={this.handleChange}/>
@@ -94,12 +94,6 @@ export class Settings extends Component {
                             <div class="field">
                                 <label>Username</label>
                                 <input placeholder="username" name='username' value={username} onChange={this.handleChange}/>
-                            </div>
-                            <div class="field">
-                                <div class="ui checkbox">
-                                <input type="checkbox" class="hidden" readonly="" tabindex="0" />
-                                <label>I agree to the Terms and Conditions</label>
-                                </div>
                             </div>
                             
                             <button type="submit" class="ui button">Submit</button>
