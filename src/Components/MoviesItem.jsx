@@ -8,6 +8,13 @@ import swal from 'sweetalert';
 
 
 export class MoviesItem extends PureComponent {
+
+    state = {
+            liked: false,
+            faved: false,
+            clickedThumb: false,
+            clickedStar: false
+        }
     
     getUser = () => {
         const user = this.props.loggedIn.users.user;
@@ -58,6 +65,10 @@ export class MoviesItem extends PureComponent {
                 .then(r => r.json())
                 .then(movie => {
                     // console.log(movie)
+                    this.setState({
+                        liked: false,
+                        clickedThumb: true
+                    })
                     this.props.removeLike(movie)
                     console.log(foundUser.user.likedMovies)
                     let index = foundUser.user.likedMovies.findIndex(likedMovie => likedMovie.videoId === movie.videoId)
@@ -72,6 +83,10 @@ export class MoviesItem extends PureComponent {
                     
                }
                else{
+                    this.setState({
+                        liked: true,
+                        clickedThumb: true
+                    })
                     this.props.addLike(movie)
                     foundUser.user.likedMovies.push(movie)
                     this.props.updateUser(foundUser)
@@ -111,6 +126,10 @@ export class MoviesItem extends PureComponent {
                 this.props.addUser(foundUser)
 
                     if (!movie.faved){
+                        this.setState({
+                            faved: true,
+                            clickedStar: true
+                        })
                         this.props.addFavMovie(movie)
                         foundUser.user.favorites.push(movie)
                         this.props.updateUser(foundUser)
@@ -124,6 +143,10 @@ export class MoviesItem extends PureComponent {
                 })
                 .then(r => r.json())
                 .then( movie => {
+                        this.setState({
+                            faved: false,
+                            clickedStar: true
+                        })
                         this.props.removeFav(movie)
                         let index = foundUser.user.favorites.findIndex(favorite => favorite.movie.videoId === movie.videoId)
                         let newArr = foundUser.user.favorites
@@ -160,8 +183,37 @@ export class MoviesItem extends PureComponent {
         // console.log(this.props)
         let videoId = this.props.videoId
         let foundMovie = this.props.movies.movies.find( movie => movie.videoId === videoId )
-        let foundUser = this.getUser()
+        let foundUser = this.getUser();
+        let liked = this.state.liked;
+        let faved = this.state.faved;
+        let clickedThumb = this.state.clickedThumb;
+        let clickedStar = this.state.clickedStar;
 
+        if (!clickedThumb || !clickedStar){
+            let clickedMovie = foundUser?.user?.likedMovies.find( movie => movie?.videoId === foundMovie?.videoId )
+            let favedMovie = foundUser?.user?.favorites.find( movie => movie?.videoId === foundMovie?.videoId )
+
+            if (clickedMovie){
+
+                this.setState({
+                    liked: true
+                })
+                liked = true
+            }
+
+            if (favedMovie){
+
+                this.setState({
+                    faved: true
+                })
+                faved = true;
+            }
+   
+            
+        }
+
+
+        
         return (
             <div className='mvItem'>
                     <h1>{foundMovie?.title}</h1>
@@ -171,12 +223,12 @@ export class MoviesItem extends PureComponent {
                     </iframe>
                         <br />
                         <Link onClick={this.handleLike}>
-                            <Icon name='thumbs up' />
+                            <Icon name='thumbs up' color = {liked ? 'green' : ''} />
                             {foundMovie?.likes.length}
                         </Link>
                         <Link onClick={this.handleFav}>
                             &nbsp; 
-                            <Icon name='star' />
+                            <Icon name='star' color = {faved ? 'green' : ''}/>
                             {foundMovie?.favorites.length}
                         </Link>
                         <br />
