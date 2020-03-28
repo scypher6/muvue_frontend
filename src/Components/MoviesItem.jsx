@@ -7,8 +7,6 @@ import {Icon} from 'semantic-ui-react';
 import swal from 'sweetalert';
 
 
-
-
 export class MoviesItem extends PureComponent {
     
     getUser = () => {
@@ -161,8 +159,8 @@ export class MoviesItem extends PureComponent {
     render() {
         // console.log(this.props)
         let videoId = this.props.videoId
-        let foundMovie = this.props.movies.movies.find( movie => movie.videoId === videoId)
- 
+        let foundMovie = this.props.movies.movies.find( movie => movie.videoId === videoId )
+        let foundUser = this.getUser()
 
         return (
             <div className='mvItem'>

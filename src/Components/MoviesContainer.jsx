@@ -23,12 +23,7 @@ export class MoviesContainer extends Component {
 
         // let genre = this.props.newGenre
         let genre = 'action'
-        // console.log('genre:', this.props.location.pathname)
-                // if (!genre)
-                //     genre = 'action'
-                // else
-                //     genre = this.props.newGenre
-                    // console.log(genre, `http://localhost:3000/genres/${genre}`)     
+                // console.log(genre, `http://localhost:3000/genres/${genre}`)     
                 // this.props.passGenre ? 'action' : this.props.history.location.pathname.split('/')[1];
          
                 fetch(`http://localhost:3000/genres/${genre}`)
@@ -118,8 +113,9 @@ export class MoviesContainer extends Component {
                 <Search className='searchField' name='search' loading={this.state.isLoading} value={searchTerm} onSearchChange={this.handleChange}/>
                 {/* <input className='searchField' type='text' placeholder='Search' name='search' value={searchTerm} onChange={this.handleChange}/> */}
                   <div class="ui grid">
-                     {this.movieMapper()}  
 
+                        {this.movieMapper()}  
+                        
                   </div>
                 </div>             
                )

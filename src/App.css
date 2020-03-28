@@ -71,6 +71,8 @@
 }
 
 .main {
+  height: 100%; 
+
     background-color: rgba(0,0,0,.2);
 
 }
@@ -78,7 +80,6 @@
 .mc {
     padding-left: 8%;
     background-color: rgba(0,0,0,.8);
-
 }
 
 
@@ -150,7 +151,12 @@ div.scrollmenu a {
 div.scrollmenu a:hover {
   background-color: rgb(48, 106, 145);
 }
+
+
 /* body {
   background-image: url("./movies_poster_2019_collage.jpg");
-  background-repeat: no-repeat;
-} */
+  background-repeat: no-repeat; 
+   
+}*/
+
+
