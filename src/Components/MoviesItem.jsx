@@ -5,6 +5,7 @@ import { addLike , removeLike, addFavMovie, removeFav} from '../Actions/movieAct
 import { Link, withRouter } from 'react-router-dom';
 import {Icon, Button, Comment, Form, Header} from 'semantic-ui-react';
 import swal from 'sweetalert';
+import Review from './Review';
 
 
 export class MoviesItem extends PureComponent {
@@ -188,7 +189,10 @@ export class MoviesItem extends PureComponent {
     }
 
     handleSubmit = (e) =>{
+        e.preventDefault();
         let {review} = this.state;
+
+        
         
     }
 
@@ -201,6 +205,8 @@ export class MoviesItem extends PureComponent {
         let faved = this.state.faved;
         let clickedThumb = this.state.clickedThumb;
         let clickedStar = this.state.clickedStar;
+
+        
 
         if (!clickedThumb || !clickedStar){
             let clickedMovie = foundUser?.user?.likedMovies.find( movie => movie?.videoId === foundMovie?.videoId )
@@ -224,7 +230,6 @@ export class MoviesItem extends PureComponent {
    
             
         }
-
 
         
         return (
@@ -258,6 +263,7 @@ export class MoviesItem extends PureComponent {
                             </Form>
                         </Comment.Group>
                         <br />
+                        { Review }
                         <br />
             </div>
         )
