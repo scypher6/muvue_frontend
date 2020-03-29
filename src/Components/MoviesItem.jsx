@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { addLikes, addUser, updateUser } from '../Actions/userActions';
 import { addLike , removeLike, addFavMovie, removeFav} from '../Actions/movieActions';
 import { Link, withRouter } from 'react-router-dom';
-import {Icon} from 'semantic-ui-react';
+import {Icon, Button, Comment, Form, Header} from 'semantic-ui-react';
 import swal from 'sweetalert';
 
 
@@ -234,8 +234,16 @@ export class MoviesItem extends PureComponent {
                         <br />
                         <br />
                         <strong>Description:</strong> {foundMovie?.description}
-                        <br />
-                        <br />
+
+                        <Comment.Group>
+                            <Header as='h3' dividing color = 'green'>
+                                Reviews
+                            </Header>
+                            <Form >
+                                <Form.TextArea />
+                                <Button content='leave a review' labelPosition='left' icon='edit' primary />
+                            </Form>
+                        </Comment.Group>
                         <br />
                         <br />
             </div>
