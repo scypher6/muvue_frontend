@@ -13,7 +13,8 @@ export class MoviesItem extends PureComponent {
             liked: false,
             faved: false,
             clickedThumb: false,
-            clickedStar: false
+            clickedStar: false,
+            review: ''
         }
     
     getUser = () => {
@@ -179,6 +180,18 @@ export class MoviesItem extends PureComponent {
 
     }
 
+    handleChange = (e) =>{
+        let {name, value} = e.target
+        this.setState({
+            [name]: value
+        })
+    }
+
+    handleSubmit = (e) =>{
+        let {review} = this.state;
+        
+    }
+
     render() {
         // console.log(this.props)
         let videoId = this.props.videoId
@@ -236,12 +249,12 @@ export class MoviesItem extends PureComponent {
                         <strong>Description:</strong> {foundMovie?.description}
 
                         <Comment.Group>
-                            <Header as='h3' dividing color = 'green'>
+                            <Header as='h3' dividing color='green'>
                                 Reviews
                             </Header>
-                            <Form >
-                                <Form.TextArea />
-                                <Button content='leave a review' labelPosition='left' icon='edit' primary />
+                            <Form onSubmit={this.handleSubmit}>
+                                <Form.TextArea name='review' value={this.state.review} onChange={this.handleChange}/>
+                                <Button content='Write a review' labelPosition='left' icon='edit' primary />
                             </Form>
                         </Comment.Group>
                         <br />
