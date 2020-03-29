@@ -79,6 +79,19 @@ const movieReducer = ( state = initialState, action) => {
                     movies: unFavArray,
                     genre: state
             }
+            case 'ADD_REVIEW':
+                const reviewArray = state.movies.map(movie => {
+                    // console.log(movie)
+                    if (movie?.videoId === action.payload.movie?.videoId){
+                        return action.payload
+                    }
+                    return movie
+                })
+                return {
+                        ...state,
+                        movies: reviewArray,
+                        genre: state
+                }
         default:
             return state;
     }

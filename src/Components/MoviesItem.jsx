@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux';
 import { addLikes, addUser, updateUser } from '../Actions/userActions';
-import { addLike , removeLike, addFavMovie, removeFav} from '../Actions/movieActions';
+import { addLike , removeLike, addFavMovie, removeFav, addReview } from '../Actions/movieActions';
 import { Link, withRouter } from 'react-router-dom';
 import {Icon, Button, Comment, Form, Header} from 'semantic-ui-react';
 import swal from 'sweetalert';
@@ -191,8 +191,26 @@ export class MoviesItem extends PureComponent {
     handleSubmit = (e) =>{
         e.preventDefault();
         let {review} = this.state;
+        let movie = this.findMovie();
+        let user = this.getUser().user;
+        let token = localStorage.getItem('token');
 
-        
+        fetch(`http://localhost:3000/users/${user.id}/reviews`, {
+            method: "POST",
+            headers: {'Content-type' : 'application/json',
+                       'Authorization': `bearer ${token}`},
+            body: JSON.stringify({
+                movie_id: movie.id, 
+                user_id: user.id,
+                content: review,
+            })
+        })
+        .then(r => r.json())
+        .then( movie => {
+            this.props.addReview(movie);
+            user.reviewedMovies.push(movie);
+            this.props.updateUser(user);
+        })
         
     }
 
@@ -206,7 +224,6 @@ export class MoviesItem extends PureComponent {
         let clickedThumb = this.state.clickedThumb;
         let clickedStar = this.state.clickedStar;
 
-        
 
         if (!clickedThumb || !clickedStar){
             let clickedMovie = foundUser?.user?.likedMovies.find( movie => movie?.videoId === foundMovie?.videoId )
@@ -230,7 +247,8 @@ export class MoviesItem extends PureComponent {
    
             
         }
-
+console.log(foundMovie)
+        const reviewMapper = foundMovie?.reviews?.map( movie => <Review movie={movie} userInfo={foundUser} /> )
         
         return (
             <div className='mvItem'>
@@ -263,14 +281,14 @@ export class MoviesItem extends PureComponent {
                             </Form>
                         </Comment.Group>
                         <br />
-                        { Review }
+                        { reviewMapper }
                         <br />
             </div>
         )
     }
 }
 
-export default connect( state => ({loggedIn: state, movies: state.movies}), { addLikes, addLike, removeLike, addFavMovie, removeFav, addUser, updateUser })(withRouter(MoviesItem))
+export default connect( state => ({loggedIn: state, movies: state.movies}), { addLikes, addLike, removeLike, addFavMovie, removeFav, addReview, addUser, updateUser })(withRouter(MoviesItem))
 
     // Array.prototype.remove = function() {
     //     let what, a = arguments, L = a.length, ax;

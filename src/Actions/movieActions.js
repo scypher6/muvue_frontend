@@ -22,3 +22,6 @@ export const removeFav = (movie) =>{
     return {type: 'REMOVE_FAV', payload: movie}
 }
 
+export const addReview = (movie) => {
+    return {type: 'ADD_REVIEW', payload: movie}
+}
