@@ -209,10 +209,11 @@ export class MoviesItem extends PureComponent {
         .then( movie => {
             this.props.addReview(movie);
             user.reviewedMovies.push(movie);
-            this.props.updateUser(user);
-        })
-        
+            // this.props.updateUser(user);
+            
+        }) 
     }
+
 
     render() {
         // console.log(this.props)
@@ -248,7 +249,7 @@ export class MoviesItem extends PureComponent {
             
         }
 console.log(foundMovie)
-        const reviewMapper = foundMovie?.reviews?.map( movie => <Review movie={movie} userInfo={foundUser} /> )
+        const reviewMapper = foundMovie?.reviews?.map( movie => <Review movie={movie} /> )
         
         return (
             <div className='mvItem'>
