@@ -194,6 +194,7 @@ export class MoviesItem extends PureComponent {
         let movie = this.findMovie();
         let user = this.getUser().user;
         let token = localStorage.getItem('token');
+       
         if(user){
             fetch(`http://localhost:3000/users/${user.id}/reviews`, {
                 method: "POST",
@@ -206,10 +207,13 @@ export class MoviesItem extends PureComponent {
                 })
             })
             .then(r => r.json())
-            .then( movie => {
+            .then( review => {
+                console.log("CREATE", review)
+                movie.reviews.push(review)
                 this.props.addReview(movie);
-                user.reviewedMovies.push(movie);
+                user.reviewedMovies.push(review);
                 // this.props.updateUser(user);
+                
                 
             }) 
         }
@@ -251,7 +255,7 @@ export class MoviesItem extends PureComponent {
    
             
         }
-console.log(foundMovie)
+// console.log(foundMovie?.reviews)
         const reviewMapper = foundMovie?.reviews?.slice(0).reverse().map( movie => <Review movie={movie} /> )
         
         return (

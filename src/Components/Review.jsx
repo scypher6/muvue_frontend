@@ -6,12 +6,12 @@ class Review extends Component {
 
     
     render() {
-        console.log(this.props)
+        console.log("REVIEW", this.props.movie)
         let { content } = this.props.movie;
-        let { username } = this.props.movie.user
-        let timestamp  = this.props.movie.created_at
-        let date = timestamp.slice(0, 10)
-        let time = timestamp.slice(11, 19)
+        let username  = this.props.movie.user?.username
+        let timestamp  = this.props.movie?.created_at
+        let date = timestamp?.slice(0, 10)
+        let time = timestamp?.slice(11, 19)
 
         return (
             <div>
