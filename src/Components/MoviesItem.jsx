@@ -194,24 +194,27 @@ export class MoviesItem extends PureComponent {
         let movie = this.findMovie();
         let user = this.getUser().user;
         let token = localStorage.getItem('token');
-
-        fetch(`http://localhost:3000/users/${user.id}/reviews`, {
-            method: "POST",
-            headers: {'Content-type' : 'application/json',
-                       'Authorization': `bearer ${token}`},
-            body: JSON.stringify({
-                movie_id: movie.id, 
-                user_id: user.id,
-                content: review,
+        if(user){
+            fetch(`http://localhost:3000/users/${user.id}/reviews`, {
+                method: "POST",
+                headers: {'Content-type' : 'application/json',
+                        'Authorization': `bearer ${token}`},
+                body: JSON.stringify({
+                    movie_id: movie.id, 
+                    user_id: user.id,
+                    content: review,
+                })
             })
-        })
-        .then(r => r.json())
-        .then( movie => {
-            this.props.addReview(movie);
-            user.reviewedMovies.push(movie);
-            // this.props.updateUser(user);
-            
-        }) 
+            .then(r => r.json())
+            .then( movie => {
+                this.props.addReview(movie);
+                user.reviewedMovies.push(movie);
+                // this.props.updateUser(user);
+                
+            }) 
+        }
+        else
+            swal("Not logged in!", "Please sign in to favorite a movie!", "info")
     }
 
 
@@ -249,7 +252,7 @@ export class MoviesItem extends PureComponent {
             
         }
 console.log(foundMovie)
-        const reviewMapper = foundMovie?.reviews?.map( movie => <Review movie={movie} /> )
+        const reviewMapper = foundMovie?.reviews?.slice(0).reverse().map( movie => <Review movie={movie} /> )
         
         return (
             <div className='mvItem'>
