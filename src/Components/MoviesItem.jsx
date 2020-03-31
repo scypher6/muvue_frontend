@@ -280,10 +280,10 @@ export class MoviesItem extends PureComponent {
                         <strong>Description:</strong> {foundMovie?.description}
                         <Comment.Group>
                             <Header as='h3' dividing color='green'>
-                                Reviews
+                             Reviews 
                             </Header>
                             <Form onSubmit={this.handleSubmit}>
-                                <Form.TextArea className='styling' name='review' value={this.state.review} onChange={this.handleChange}/>
+                                <Form.TextArea placeholder='Please leave a comment ...' className='styling' name='review' value={this.state.review} onChange={this.handleChange}/>
                                 <Button content='Write a review' labelPosition='left' icon='edit' primary />
                             </Form>
                         </Comment.Group>
