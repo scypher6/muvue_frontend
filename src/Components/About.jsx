@@ -22,8 +22,8 @@ export default class About extends Component {
                 </h4>
                 <h3>Thank you for using Muvue!</h3>
                 <h5><em>Created by: Joseph Pyram, Full-Stack Developer, graduate of Flatiron School's Software Engineering program.</em></h5>
-                <br />
                 <small>Disclaimer: All the videos and materials featured in this application are all free. They are accessible to the public and are the property of YouTube, inc.</small>
+                <br />
                 <br />
                 <br />
                 <br />
