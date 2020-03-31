@@ -17,7 +17,7 @@ class Review extends Component {
             <div>
                 <Segment inverted>
                 <Comment>
-                    <Container textAlign='right'><Icon name='close' className='close'/></Container>
+                    <Container textAlign='right'><Icon name='close' className='close' color='blue'/></Container>
                     <Comment.Avatar src='https://react.semantic-ui.com/images/avatar/small/joe.jpg' />
                     <Comment.Content>
                         <Comment.Author as='a'> { username } </Comment.Author>
