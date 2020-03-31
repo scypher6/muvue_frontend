@@ -152,7 +152,22 @@ div.scrollmenu a:hover {
   background-color: rgb(48, 106, 145);
 }
 
+.close {
+    text-align: right;
+}
 
+.styling {
+      width: 100%;
+      padding: 0px;
+}
+
+.tip-left {
+  top: 10px;
+  left: -25px;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  border-bottom-color: transparent;  
+}
 
 /* body {
   background-image: url("./movies_poster_2019_collage.jpg");

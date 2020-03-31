@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Comment } from 'semantic-ui-react';
+import { Icon, Comment, Container, Segment } from 'semantic-ui-react';
 
 class Review extends Component {
 
@@ -15,17 +15,20 @@ class Review extends Component {
 
         return (
             <div>
-                    <Comment>
-                      <Comment.Avatar src='https://react.semantic-ui.com/images/avatar/small/joe.jpg' />
-                        <Comment.Content>
-                            <Comment.Author as='a'> { username } </Comment.Author>
-                            <Comment.Metadata>
-                            <div><small><em>{ date } at { time }</em></small></div>
-                            </Comment.Metadata>
-                            <Comment.Text> { content } </Comment.Text>
-                        </Comment.Content>
-                    </Comment>
-                    <br />
+                <Segment inverted>
+                <Comment>
+                    <Container textAlign='right'><Icon name='close' className='close'/></Container>
+                    <Comment.Avatar src='https://react.semantic-ui.com/images/avatar/small/joe.jpg' />
+                    <Comment.Content>
+                        <Comment.Author as='a'> { username } </Comment.Author>
+                        <Comment.Metadata>
+                        <div><small><em>{ date } at { time }</em></small></div>
+                        </Comment.Metadata>
+                        <Comment.Text> { content } </Comment.Text>
+                    </Comment.Content>
+                </Comment>
+                </Segment>
+                <br />
             </div>
         )
     }
