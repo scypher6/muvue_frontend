@@ -169,6 +169,24 @@ div.scrollmenu a:hover {
   border-bottom-color: transparent;  
 }
 
+.review a {
+  background-color: black;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.reviewNav {
+  background: rgb(0, 0, 0);
+  padding-right: 3%;
+  padding-left: 3%;
+  padding-top: 3%;
+  padding-bottom: 3%;
+}
+
+.review a:hover{
+  font-weight: bolder;
+  color: white;
+  
+}
 /* body {
   background-image: url("./movies_poster_2019_collage.jpg");
   background-repeat: no-repeat; 

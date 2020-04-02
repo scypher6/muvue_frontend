@@ -52,9 +52,11 @@ export class Profile extends Component {
             let movie = user?.reviewedMovies.find( movie => movie.id === review.movie_id)
             console.log(review)
         return (
-            <NavLink to={`/watch/${movie.videoId}`} > 
-                {review.content}
+        
+            <NavLink  to={`/watch/${movie.videoId}`} > 
+              <span className='reviewNav'> [ { review.content } ]</span> 
             </NavLink>
+             
             )
           }
         )        
@@ -90,10 +92,10 @@ export class Profile extends Component {
                     <br /><br /><br />
                     <h2>My Reviews</h2>
 
-                    <div className='scrollmenu'>
+                    <div className='scrollmenu review'>
                         <a href="#movie"> 
                             {this.myReviews(foundUser.user)}
-                        </a>                     
+                        </a>                  
                     </div>
 
                 <br />
