@@ -46,6 +46,17 @@ export class Profile extends Component {
             )
     }
 
+    myReviews = (user) =>{
+        return user?.favorites.map(movie => {
+             console.log(user)
+        return (
+            <NavLink to={`/watch/${movie.movie.videoId}`} > 
+                test
+            </NavLink>
+            )
+          }
+        )        
+    }
 
 
     render() {
@@ -59,7 +70,7 @@ export class Profile extends Component {
                     <h3>Welcome {foundUser.user.username}!</h3>
                     <br />
 
-                    <h2>My Favorite Movies</h2>
+                    <h2>My Favorites</h2>
 
                     <div className='scrollmenu'>
                         <a href="#movie"> 
@@ -74,6 +85,15 @@ export class Profile extends Component {
                             {this.likedMovies(foundUser.user)}
                         </a>                     
                     </div>
+                    <br /><br /><br />
+                    <h2>My Reviews</h2>
+
+                    <div className='scrollmenu'>
+                        <a href="#movie"> 
+                            {this.myReviews(foundUser.user)}
+                        </a>                     
+                    </div>
+
                 <br />
                 <br />
                 <br />
