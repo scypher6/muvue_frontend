@@ -54,7 +54,7 @@ export class Profile extends Component {
         return (
         
             <NavLink  to={`/watch/${movie.videoId}`} > 
-              <span className='reviewNav'> [ { review.content } ]</span> 
+              <span className='reviewNav'> [ { review.content.slice(0, 35) } ]</span> 
             </NavLink>
              
             )

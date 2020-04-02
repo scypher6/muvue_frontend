@@ -170,6 +170,7 @@ div.scrollmenu a:hover {
 }
 
 .review a {
+  font-weight: bolder;
   background-color: black;
   font-family: Georgia, 'Times New Roman', Times, serif;
 }
@@ -183,7 +184,8 @@ div.scrollmenu a:hover {
 }
 
 .review a:hover{
-  font-weight: bolder;
+  font-weight: lighter;
+  font-size: small;
   color: white;
   
 }
