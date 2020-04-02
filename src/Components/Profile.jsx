@@ -47,11 +47,13 @@ export class Profile extends Component {
     }
 
     myReviews = (user) =>{
-        return user?.favorites.map(movie => {
-             console.log(user)
+        return user?.reviews.map(review => {
+            //  console.log(user)
+            let movie = user?.reviewedMovies.find( movie => movie.id === review.movie_id)
+            console.log(review)
         return (
-            <NavLink to={`/watch/${movie.movie.videoId}`} > 
-                test
+            <NavLink to={`/watch/${movie.videoId}`} > 
+                {review.content}
             </NavLink>
             )
           }
