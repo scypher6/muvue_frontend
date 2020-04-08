@@ -5,6 +5,11 @@ import { Icon, Comment, Container, Segment } from 'semantic-ui-react';
 class Review extends Component {
 
     
+    handleClose = (e) =>{
+
+        this.props.deleteReview(e)
+    }
+
     render() {
         console.log("REVIEW", this.props.movie)
         let { content } = this.props.movie;
@@ -17,7 +22,7 @@ class Review extends Component {
             <div>
                 <Segment inverted>
                 <Comment>
-                    <Container textAlign='right'><Icon name='close' className='close' color='blue'/></Container>
+                    <Container textAlign='right'><Icon name='close' className='close' color='blue' onClick={this.handleClose}/></Container>
                     <Comment.Avatar src='https://react.semantic-ui.com/images/avatar/small/joe.jpg' />
                     <Comment.Content>
                         <Comment.Author as='a'> { username } </Comment.Author>

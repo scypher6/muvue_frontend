@@ -221,6 +221,11 @@ export class MoviesItem extends PureComponent {
             swal("Not logged in!", "Please sign in to favorite a movie!", "info")
     }
 
+    deleteReview = (e) =>{
+        // console.log(e)
+        movie = this.findMovie()
+    }
+
 
     render() {
         // console.log(this.props)
@@ -256,7 +261,7 @@ export class MoviesItem extends PureComponent {
             
         }
 // console.log(foundMovie?.reviews)
-        const reviewMapper = foundMovie?.reviews?.slice(0).reverse().map( movie => <Review movie={movie} /> )
+        const reviewMapper = foundMovie?.reviews?.slice(0).reverse().map( movie => <Review deleteReview = {this.deleteReview} movie = {movie} /> )
         
         return (
             <div className='mvItem'>
