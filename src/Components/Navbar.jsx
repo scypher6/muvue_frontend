@@ -76,6 +76,7 @@ class Navbar extends Component {
                       onClick={this.handleItemClick}
                     />
                  </Menu> */}
+
                 <ColorInvertedMenu />
                  <span class='signDiv'>
                     {foundUser ? 'Signed in as: ' + foundUser.user.username : ""}
