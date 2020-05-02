@@ -5,6 +5,7 @@ import { addGenre } from '../Actions/movieActions';
 import { Menu, Button, Icon} from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import Header from './Header';
+import ColorInvertedMenu from './NavMenu'
 
 const token = localStorage.token;
 
@@ -49,11 +50,10 @@ class Navbar extends Component {
 
         // console.log(this.props.loggedIn)
         return (
-            
-             <div className='navBar'>
+          <div className='navBar'>
                 <Header />
                 <div>
-                 <Menu fluid widths={3}>
+                 {/* <Menu fluid widths={3}>
                     <Menu.Item
                       as={ Link }
                       to='/stats'
@@ -75,7 +75,8 @@ class Navbar extends Component {
                       active={activeItem === 'about'}
                       onClick={this.handleItemClick}
                     />
-                 </Menu>
+                 </Menu> */}
+                <ColorInvertedMenu />
                  <span class='signDiv'>
                     {foundUser ? 'Signed in as: ' + foundUser.user.username : ""}
                  </span>
@@ -133,6 +134,7 @@ class Navbar extends Component {
                   <br />
                   <br />
                 </div>
+
             </div>
             
         )
