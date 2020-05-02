@@ -223,7 +223,7 @@ export class MoviesItem extends PureComponent {
 
     deleteReview = (e) =>{
         // console.log(e)
-        movie = this.findMovie()
+       let movie = this.findMovie()
     }
 
 

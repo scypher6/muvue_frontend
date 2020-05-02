@@ -6,9 +6,20 @@ export class Header extends Component {
     render() {
         return (
                 <NavLink to='/' exact >
-                    <div className='header'>
-                        <h1>MuVue</h1>
-                        <span><h3><em>Movies that move you</em></h3></span>
+                 <div className='header'>
+                  <svg viewBox="0 0 960 300">
+                    <symbol id="s-text">
+                        <text text-anchor="middle" x="50%" y="70%">Muvue</text>                     
+                    </symbol>
+                    <g class = "g-ants">
+                        <use xlinkHref="#s-text" class="text-copy"></use>
+                        <use xlinkHref="#s-text" class="text-copy"></use>
+                        <use xlinkHref="#s-text" class="text-copy"></use>
+                        <use xlinkHref="#s-text" class="text-copy"></use>
+                        <use xlinkHref="#s-text" class="text-copy"></use>
+                    </g>                        
+                  </svg>
+                        <span><h2><em>Movies that move you!</em></h2></span>
                     </div>
                 </NavLink>
         )
