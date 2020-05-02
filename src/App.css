@@ -50,7 +50,7 @@
 
 
 .header {
-  background-color: black;
+  background-color: rgba(0,0,0,.5);
   text-align: center;
   padding-left: 1%;
   padding-top: 0%;
@@ -206,7 +206,9 @@ html, body{
 }
 
 body{
-  background: #030321;
+  /* background: #030321; */
+  background-color: rgba(0,0,0,.5);
+
   font-family: Arial;
 }
 
@@ -248,7 +250,7 @@ svg {
 }
 
 .text-copy:nth-child(5){
-	stroke: #FDB731;
+	stroke: rgb(251, 255, 0);
 	animation-delay: -3s;
 }
 
@@ -257,3 +259,5 @@ svg {
 }
 
 /******************************* SVG EFFECTS ************************************/
+
+

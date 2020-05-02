@@ -14,8 +14,7 @@ export class ChartJS extends Component {
         
             <div className='profile'>
                     CHART JS
-                
-                    <br />
+                <br />
                 <br />
                 <br />
                 <br />
