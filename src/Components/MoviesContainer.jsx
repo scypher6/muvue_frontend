@@ -10,7 +10,8 @@ export class MoviesContainer extends Component {
     state = {
             localMovies: [],
             searchTerm: '',
-            "isLoading": false
+            "isLoading": false,
+            "results": []
     }
 
     // state = {
@@ -99,9 +100,10 @@ export class MoviesContainer extends Component {
 
     handleChange = (e) =>{
         this.setState({
-            searchTerm: e.target.value
+            searchTerm: e.target.value,
         })
     }
+
 
     render() {
         document.title = 'Muvue: Movies that move you!'
@@ -110,7 +112,7 @@ export class MoviesContainer extends Component {
 
         return (
                 <div className = "ui container mc"> 
-                <Search className='searchField' name='search' loading={this.state.isLoading} value={searchTerm} onSearchChange={this.handleChange}/>
+                <Search className='searchField' name='search' loading={this.state.isLoading} value={searchTerm} onSearchChange={this.handleChange} noResultsMessage={this.state.searchTerm}/>
                 {/* <input className='searchField' type='text' placeholder='Search' name='search' value={searchTerm} onChange={this.handleChange}/> */}
                   <div class="ui grid">
 
