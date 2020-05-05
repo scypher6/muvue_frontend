@@ -240,7 +240,7 @@ export class MoviesItem extends PureComponent {
     .then (deletedReview => {
             //make sure user is updated in the state (IMPORTANT)
             this.props.addUser(foundUser)
-            console.log('DEL REV', movie)
+            //Remove the review from the movie's list of reviews
             let tempArray = movie.reviews.filter( review => review.id !== deletedReview.id)
             movie.reviews = tempArray
             removeReview(movie);
