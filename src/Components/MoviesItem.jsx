@@ -244,7 +244,7 @@ export class MoviesItem extends PureComponent {
             let tempArray = movie.reviews.filter( review => review.id !== deletedReview.id)
             movie.reviews = tempArray
             removeReview(movie);
-
+            //Remove the review from the user's reviews and update the user in memory
             let newUserReviews = foundUser.user.reviews.filter (review => review.id !== deletedReview.id)
             foundUser.user.reviews = newUserReviews;
             this.props.updateUser(foundUser);
