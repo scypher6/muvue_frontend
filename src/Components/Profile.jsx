@@ -65,13 +65,13 @@ export class Profile extends Component {
 
     render() {
         const foundUser = this.getUser()
-console.log(foundUser)
+        const { username } = foundUser.user
         // console.log(this.likedMovies(foundUser?.user))
 
         if(foundUser) {
             return (
                 <div className='profile'> 
-                    <h3>Welcome {foundUser.user.username}!</h3>
+                    <h3>Welcome {username}!</h3>
                     <br />
 
                     <h2>My Favorites</h2>

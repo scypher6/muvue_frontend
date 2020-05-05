@@ -79,11 +79,16 @@ export class Settings extends Component {
     render() {
         const foundUser = this.getUser()
         let {name, username} = this.state
-
+        // let {usersName, usersUsername} = foundUser?.user
         if(foundUser){
             return (
                 <div className='profile'>
-                    <br />
+                    <h1>Settings</h1>
+                    <h4>
+                        Name: <em>{ foundUser.user.name }</em>
+                        <br />
+                        Username: <em>{ foundUser.user.username }</em>
+                    </h4>
                     <h1>Update Your profile</h1>
 
                         <form class="ui inverted form"  onSubmit={this.handleSubmit}>
