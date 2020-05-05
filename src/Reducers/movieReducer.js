@@ -92,6 +92,18 @@ const movieReducer = ( state = initialState, action) => {
                         movies: reviewArray,
                         genre: state
                 }
+            case 'REMOVE_REVIEW':
+                const removedReviewArray = state.movies.map (movie => {
+                    if (movie?.videoId === action.payload.movie?.videoId){
+                        return action.payload
+                    }
+                    return movie
+                })
+                return {
+                    ...state,
+                    movies: removedReviewArray,
+                    genre: state
+                }
         default:
             return state;
     }

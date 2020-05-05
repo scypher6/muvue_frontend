@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux';
 import { addLikes, addUser, updateUser } from '../Actions/userActions';
-import { addLike , removeLike, addFavMovie, removeFav, addReview } from '../Actions/movieActions';
+import { addLike , removeLike, addFavMovie, removeFav, addReview, removeReview } from '../Actions/movieActions';
 import { Link, withRouter } from 'react-router-dom';
 import {Icon, Button, Comment, Form, Header} from 'semantic-ui-react';
 import swal from 'sweetalert';
@@ -201,8 +201,8 @@ export class MoviesItem extends PureComponent {
                 headers: {'Content-type' : 'application/json',
                         'Authorization': `bearer ${token}`},
                 body: JSON.stringify({
-                    movie_id: movie.id, 
-                    user_id: user.id,
+                    movie_id: movie?.id, 
+                    user_id: user?.id,
                     content: review,
                 })
             })
@@ -221,9 +221,38 @@ export class MoviesItem extends PureComponent {
             swal("Not logged in!", "Please sign in to favorite a movie!", "info")
     }
 
-    deleteReview = (e) =>{
-        // console.log(e)
+    deleteReview = (review) =>{
+         console.log(review)
        let movie = this.findMovie()
+       let user_id = review.user_id
+       let foundUser = this.getUser();
+       let foundUserID = foundUser?.user?.id
+       let token = localStorage.getItem('token');
+
+       if (foundUser && foundUserID === user_id){
+           fetch(`http://localhost:3000/users/reviews/${review.id}`, {
+            method: 'DELETE',
+            headers: {
+                "Authorization": `bearer ${token}`
+        }
+    })
+    .then (r => r.json())
+    .then (deletedReview => {
+            //make sure user is updated in the state (IMPORTANT)
+            this.props.addUser(foundUser)
+            console.log('DEL REV', movie)
+            let tempArray = movie.reviews.filter( review => review.id !== deletedReview.id)
+            movie.reviews = tempArray
+            removeReview(movie);
+
+            let newUserReviews = foundUser.user.reviews.filter (review => review.id !== deletedReview.id)
+            foundUser.user.reviews = newUserReviews;
+            this.props.updateUser(foundUser);
+    })
+       }
+       else 
+            return null
+
     }
 
 
@@ -300,7 +329,7 @@ export class MoviesItem extends PureComponent {
     }
 }
 
-export default connect( state => ({loggedIn: state, movies: state.movies}), { addLikes, addLike, removeLike, addFavMovie, removeFav, addReview, addUser, updateUser })(withRouter(MoviesItem))
+export default connect( state => ({loggedIn: state, movies: state.movies}), { addLikes, addLike, removeLike, addFavMovie, removeFav, addReview, removeReview, addUser, updateUser })(withRouter(MoviesItem))
 
     // Array.prototype.remove = function() {
     //     let what, a = arguments, L = a.length, ax;

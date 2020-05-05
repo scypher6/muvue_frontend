@@ -4,10 +4,17 @@ import { Icon, Comment, Container, Segment } from 'semantic-ui-react';
 
 class Review extends Component {
 
+    state = {
+        username: '',
+    
+    }
     
     handleClose = (e) =>{
-
-        this.props.deleteReview(e)
+        let username  = this.props.movie.user?.username
+        this.setState({
+            username: username
+        })
+        this.props.deleteReview(this.props.movie)
     }
 
     render() {
