@@ -9,7 +9,9 @@ export class Settings extends Component {
     state = {
         name: '',
         username: '',
-        password: ''
+        picture: '',
+        password: '',
+        email: ''
     }
 
     getUser = () => {
