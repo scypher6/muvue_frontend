@@ -37,7 +37,7 @@ export class Settings extends Component {
         e.preventDefault();
         const user = this.getUser().user
         let theirToken = localStorage.token
-        let {name, username} = this.state
+        let {name, username, email, picture} = this.state
 // console.log('HERE:', username)
         fetch(`http://localhost:3000/users/${user.id}`, {
             method: "PATCH",
@@ -47,6 +47,8 @@ export class Settings extends Component {
             body: JSON.stringify({
                     name: name,
                     username: username,
+                    pictuer: picture,
+                    email: email,
                     token: theirToken
             })
         })
@@ -80,7 +82,7 @@ export class Settings extends Component {
 
     render() {
         const foundUser = this.getUser()
-        let { name, username } = this.state
+        let { name, username, email } = this.state
         // let {usersName, usersUsername} = foundUser?.user
         if(foundUser){
             return (
@@ -105,6 +107,10 @@ export class Settings extends Component {
                             <div class="field">
                                 <label>Username</label>
                                 <input placeholder="username" name='username' value={username} onChange={this.handleChange}/>
+                            </div>
+                            <div class="field">
+                                <label>Email</label>
+                                <input placeholder="email" name='email' value={email} onChange={this.handleChange}/>
                             </div>
                             
                             <button type="submit" class="ui button">Submit</button>
