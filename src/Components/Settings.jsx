@@ -78,16 +78,20 @@ export class Settings extends Component {
 
     render() {
         const foundUser = this.getUser()
-        let {name, username} = this.state
+        let { name, username } = this.state
         // let {usersName, usersUsername} = foundUser?.user
         if(foundUser){
             return (
                 <div className='profile'>
                     <h1>Settings</h1>
                     <h4>
+                        <img scr='' alt='Profile Picture' />
+                        <br />
                         Name: <em>{ foundUser.user.name }</em>
                         <br />
                         Username: <em>{ foundUser.user.username }</em>
+                        <br />
+                        Email: <em>{ foundUser.user.email }</em>
                     </h4>
                     <h1>Update Your profile</h1>
 
