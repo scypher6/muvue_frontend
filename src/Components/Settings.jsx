@@ -31,6 +31,9 @@ export class Settings extends Component {
         this.setState({
             [name]: value
         })
+        debugger
+        console.log(e.target)
+
     }
 
     handleSubmit = (e) =>{
@@ -47,7 +50,7 @@ export class Settings extends Component {
             body: JSON.stringify({
                     name: name,
                     username: username,
-                    pictuer: picture,
+                    picture: picture,
                     email: email,
                     token: theirToken
             })
@@ -82,14 +85,15 @@ export class Settings extends Component {
 
     render() {
         const foundUser = this.getUser()
-        let { name, username, email } = this.state
+        let { name, username, email, picture } = this.state
         // let {usersName, usersUsername} = foundUser?.user
         if(foundUser){
             return (
                 <div className='profile'>
                     <h1>Settings</h1>
-                    <h4>
                         <img scr='' alt='Profile Picture' />
+                        <br />
+                    <h4>
                         <br />
                         Name: <em>{ foundUser.user.name }</em>
                         <br />
@@ -111,6 +115,11 @@ export class Settings extends Component {
                             <div class="field">
                                 <label>Email</label>
                                 <input placeholder="email" name='email' value={email} onChange={this.handleChange}/>
+                            </div>
+                            <div class="field">
+                                <label for="img">Select image:</label>
+                                <br />
+                                <input type="file" id="img" name='picture' accept="image/*" value={picture} onChange={this.handleChange}/>
                             </div>
                             
                             <button type="submit" class="ui button">Submit</button>
