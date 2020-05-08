@@ -31,7 +31,6 @@ export class Settings extends Component {
         this.setState({
             [name]: value
         })
-        debugger
         console.log(e.target)
 
     }
@@ -91,7 +90,7 @@ export class Settings extends Component {
             return (
                 <div className='profile'>
                     <h1>Settings</h1>
-                        <img scr='' alt='Profile Picture' />
+                        <img scr="" alt='profile pic' />
                         <br />
                     <h4>
                         <br />
