@@ -90,7 +90,7 @@ export class Settings extends Component {
             return (
                 <div className='profile'>
                     <h1>Settings</h1>
-                        <img scr="" alt='profile pic' />
+                        <img scr='/Users/scypher6/Documents/Gimp/JS_This.png' alt='profile pic' />
                         <br />
                     <h4>
                         <br />
