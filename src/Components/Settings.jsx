@@ -82,6 +82,19 @@ export class Settings extends Component {
         
     }
 
+    handlePic = (e) => {
+        let fileObj = e.target.files[0];
+        let imgName = fileObj.name;
+        fileObj.
+        let fileReader = new FileReader();
+        fileReader.readAsDataURL(fileObj);
+        fileReader.onload = function () {
+            let result = fileReader.result;
+            let img = document.querySelector('#preview');
+            img.setAttribute('src', result)
+        }
+    }
+
     render() {
         const foundUser = this.getUser()
         let { name, username, email, picture } = this.state
@@ -118,7 +131,8 @@ export class Settings extends Component {
                             <div class="field">
                                 <label for="img">Select image:</label>
                                 <br />
-                                <input type="file" id="img" name='picture' accept="image/*" value={picture} onChange={this.handleChange}/>
+                                <input type="file" id="file-input" name='picture' accept="image/*" value={picture} onChange={this.handlePic}/>
+                                <img id = 'preview' alt='Image'/>
                             </div>
                             
                             <button type="submit" class="ui button">Submit</button>
