@@ -91,13 +91,13 @@ class Navbar extends Component {
                     <Button positive animated>
                       <Button.Content visible>My Movies</Button.Content>
                       <Button.Content hidden>
-                        <Icon name='id card outline' />
+                        <Icon name='tv' />
                       </Button.Content>
                     </Button>
                   </Link>
                   <Link to='/settings'>
                     <Button positive animated='vertical'>
-                      <Button.Content visible>Settings</Button.Content>
+                      <Button.Content visible>Profile</Button.Content>
                       <Button.Content hidden>
                         <Icon name='settings' />
                       </Button.Content>
