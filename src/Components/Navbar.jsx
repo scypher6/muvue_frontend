@@ -89,7 +89,7 @@ class Navbar extends Component {
                   <div className = 'signDiv' >
                   <Link to='/profile'>
                     <Button positive animated>
-                      <Button.Content visible>Profile</Button.Content>
+                      <Button.Content visible>My Movies</Button.Content>
                       <Button.Content hidden>
                         <Icon name='id card outline' />
                       </Button.Content>

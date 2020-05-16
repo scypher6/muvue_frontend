@@ -65,7 +65,7 @@ export class Profile extends Component {
 
     render() {
         const foundUser = this.getUser()
-        const { username } = foundUser.user
+        const { username } = foundUser?.user
         // console.log(this.likedMovies(foundUser?.user))
 
         if(foundUser) {

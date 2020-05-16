@@ -85,7 +85,7 @@ export class Settings extends Component {
     handlePic = (e) => {
         let fileObj = e.target.files[0];
         let imgName = fileObj.name;
-        fileObj.
+
         let fileReader = new FileReader();
         fileReader.readAsDataURL(fileObj);
         fileReader.onload = function () {
