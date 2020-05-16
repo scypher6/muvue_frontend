@@ -146,7 +146,7 @@ class App extends React.PureComponent {
               <Switch>
                 <Route path='/login' render={this.renderForm}/>
                 <Route path='/signup' render={this.renderForm}/>
-                <Route path='/profile' component={Profile}/>
+                <Route path='/myMovies' component={Profile}/>
                 <Route path='/logout' component={Main}/>
                 <Route path='/watch/:videoId' render={this.showMovie}/>
                 {/* <Route path="/" render={(routerProps) => <Navbar user ={this.state.user} {...routerProps} handleSearch={this.handleSearch} logout={this.logout}/>} /> */}

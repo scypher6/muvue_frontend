@@ -188,7 +188,7 @@ export class MoviesItem extends PureComponent {
         })
     }
 
-    handleSubmit = (e) =>{
+    handleReview = (e) =>{
         e.preventDefault();
         let {review} = this.state;
         let movie = this.findMovie();
@@ -212,7 +212,7 @@ export class MoviesItem extends PureComponent {
                 movie.reviews.push(review)
                 this.props.addReview(movie);
                 user.reviewedMovies.push(review);
-                // this.props.updateUser(user);
+                this.props.updateUser(user);
                 
                 
             }) 
@@ -316,7 +316,7 @@ export class MoviesItem extends PureComponent {
                             <Header as='h3' dividing color='green'>
                              Reviews 
                             </Header>
-                            <Form onSubmit={this.handleSubmit}>
+                            <Form onSubmit={this.handleReview}>
                                 <Form.TextArea placeholder='Please leave a comment ...' className='styling' name='review' value={this.state.review} onChange={this.handleChange}/>
                                 <Button content='Write a review' labelPosition='left' icon='edit' primary />
                             </Form>

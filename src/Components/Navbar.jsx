@@ -87,7 +87,7 @@ class Navbar extends Component {
                  {
                   foundUser ?
                   <div className = 'signDiv' >
-                  <Link to='/profile'>
+                  <Link to='/myMovies'>
                     <Button positive animated>
                       <Button.Content visible>My Movies</Button.Content>
                       <Button.Content hidden>
