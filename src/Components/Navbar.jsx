@@ -95,7 +95,7 @@ class Navbar extends Component {
                       </Button.Content>
                     </Button>
                   </Link>
-                  <Link to='/settings'>
+                  <Link to='/profile'>
                     <Button positive animated='vertical'>
                       <Button.Content visible>Profile</Button.Content>
                       <Button.Content hidden>

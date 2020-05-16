@@ -153,7 +153,7 @@ class App extends React.PureComponent {
                 {/* <Route path='/:genre' render={routerProps => (<MoviesContainer newGenre = {routerProps.match.url.split('/')[1]}/>)}/> */}
                 {/* <Route path='/horror' render={routerProps => (<MoviesContainer newGenre = {routerProps.match.url.split('/')[1]}/>)} /> */}
                 {/* <Route path='/comedy' component={MoviesContainer}/> */}
-                <Route path='/settings' component={Settings}/>
+                <Route path='/profile' component={Settings}/>
                 <Route path='/stats' component={ChartJS}/>
                 <Route path='/about' component={About}/> 
                 <Route path='/' component={Main} />
