@@ -102,7 +102,7 @@ export class Settings extends Component {
         if(foundUser){
             return (
                 <div className='profile'>
-                    <h1>Profile</h1>
+                    <h1>My Profile</h1>
                         <img scr='/Users/scypher6/Documents/Gimp/JS_This.png' alt='profile pic' />
                         <br />
                     <h4>
