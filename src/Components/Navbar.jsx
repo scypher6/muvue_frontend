@@ -99,7 +99,7 @@ class Navbar extends Component {
                     <Button positive animated='vertical'>
                       <Button.Content visible>Profile</Button.Content>
                       <Button.Content hidden>
-                        <Icon name='settings' />
+                        <Icon name='user circle' />
                       </Button.Content>
                     </Button>
                   </Link>
