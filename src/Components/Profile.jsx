@@ -22,7 +22,7 @@ export class Profile extends Component {
 
 
     likedMovies = (user) => { 
-        // console.log("LIKEDMOVS", user?.likedMovies)  
+    console.log("LIKEDMOVS", user?.likedMovies)  
             return user?.likedMovies.map(movie => {
             return (
                 <NavLink to={`/watch/${movie.videoId}`} > 
@@ -65,13 +65,12 @@ export class Profile extends Component {
 
     render() {
         const foundUser = this.getUser()
-        const { username } = foundUser?.user
         // console.log(this.likedMovies(foundUser?.user))
 
         if(foundUser) {
             return (
                 <div className='profile'> 
-                    <h3>Welcome {username}!</h3>
+                    <h3>Welcome {foundUser?.user?.username}!</h3>
                     <br />
 
                     <h2>My Favorites</h2>

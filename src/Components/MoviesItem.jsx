@@ -54,7 +54,7 @@ export class MoviesItem extends PureComponent {
             })
             .then( r => r.json())
             .then( movie => {
-                // console.log(movie.liked)
+                 console.log("LIKE", movie)
                 this.props.addUser(foundUser)
                 if (movie.liked){
                     // console.log(movie.likeID)
@@ -78,13 +78,13 @@ export class MoviesItem extends PureComponent {
                     newArr.splice(index, 1)
             //   console.log("NEWARR", newArr)                     
                     foundUser.user.likedMovies = newArr
-            // console.log("UPDATEd", foundUser)
+            // console.log("UPDATEd User", foundUser)
                     this.props.updateUser(foundUser);
                     
                 })
                     
                }
-               else{
+               else{ //Like a movie
                     this.setState({
                         liked: true,
                         clickedThumb: true
@@ -92,8 +92,7 @@ export class MoviesItem extends PureComponent {
                     this.props.addLike(movie)
                     foundUser.user.likedMovies.push(movie)
                     this.props.updateUser(foundUser)
-                }
-                    
+                }                   
             })
         }
         else
@@ -302,12 +301,12 @@ export class MoviesItem extends PureComponent {
                         <br />
                         <Link onClick={this.handleLike}>
                             <Icon name='thumbs up' color = {liked ? 'green' : ''} />
-                            {foundMovie?.likes.length}
+                            {foundMovie?.likes?.length}
                         </Link>
                         <Link onClick={this.handleFav}>
                             &nbsp; 
                             <Icon name='star' color = {faved ? 'green' : ''}/>
-                            {foundMovie?.favorites.length}
+                            {foundMovie?.favorites?.length}
                         </Link>
                         <br />
                         <br />
