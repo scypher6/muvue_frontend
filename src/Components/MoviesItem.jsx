@@ -4,6 +4,7 @@ import { addLikes, addUser, updateUser } from '../Actions/userActions';
 import { addLike , removeLike, addFavMovie, removeFav, addReview, removeReview } from '../Actions/movieActions';
 import { Link, withRouter } from 'react-router-dom';
 import {Icon, Button, Comment, Form, Header} from 'semantic-ui-react';
+import { Dimmer, Loader, Image, Segment } from 'semantic-ui-react';
 import swal from 'sweetalert';
 import Review from './Review';
 
@@ -294,10 +295,11 @@ export class MoviesItem extends PureComponent {
         return (
             <div className='mvItem'>
                     <h1>{foundMovie?.title}</h1>
-   
-                    <iframe className='videoFrame' title='movieContainer'
-                        src={`https://www.youtube.com/embed/${videoId}`} frameborder="0" allow='encrypted-media' allowFullScreen>
-                    </iframe>
+
+                        <iframe className='videoFrame' title='movieContainer'
+                            src={`https://www.youtube.com/embed/${videoId}`} frameborder="0" allow='encrypted-media' allowFullScreen>
+                        </iframe>
+
                         <br />
                         <Link onClick={this.handleLike}>
                             <Icon name='thumbs up' color = {liked ? 'green' : ''} />

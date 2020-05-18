@@ -3,6 +3,10 @@ import { connect } from 'react-redux';
 import { addUser, deleteUser } from '../Actions/userActions';
 import swal from 'sweetalert';
 
+// Import React FilePond
+import { FilePond, registerPlugin } from 'react-filepond';
+// Import FilePond styles
+import 'filepond/dist/filepond.min.css';
 
 export class Settings extends Component {
 
@@ -13,6 +17,8 @@ export class Settings extends Component {
         password: '',
         email: ''
     }
+
+
 
     getUser = () => {
         const user = this.props.loggedIn.user;
@@ -95,6 +101,10 @@ export class Settings extends Component {
         }
     }
 
+    handleInit() {
+        console.log('FilePond instance has initialised', this.pond);
+    }
+
     render() {
         const foundUser = this.getUser()
         let { name, username, email, picture } = this.state
@@ -132,7 +142,9 @@ export class Settings extends Component {
                                 <label for="img">Select image:</label>
                                 <br />
                                 <input type="file" id="file-input" name='picture' accept="image/*" value={picture} onChange={this.handlePic}/>
-                                <img id = 'preview' alt='Image'/>
+                                <br />
+                                <br />
+                                <img id = 'preview' alt='Preview' height='300' width='300'/>
                             </div>
                             
                             <button type="submit" class="ui button">Submit</button>
