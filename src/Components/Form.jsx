@@ -65,6 +65,10 @@ export default class Form extends Component {
         return status;
     }
 
+    handleFocus = (e) =>{
+        console.log(e.target)
+      
+    }
     render() {
         let {name, username, email, password} = this.state
         let { isValidName, isValidUName, isValidEmail, isValidPassword } = this.state
@@ -81,7 +85,7 @@ export default class Form extends Component {
                      ? 
                      <>
                      <label htmlFor='name'>Name:</label> <br />
-                     <input type='text' name='name' value={name} onChange={this.handleChange}/> 
+                     <input type='text' name='name' value={name} onChange={this.handleChange} onSelect={this.handleChange} /> 
                      &nbsp; { isValidName ? <Icon name='check' /> : <Icon name='cancel' color = 'red' /> }
                      <br />
                      </>
@@ -91,7 +95,7 @@ export default class Form extends Component {
                      </>
                     }
                     <label htmlFor='username'>Username:</label> <br />
-                    <input type='text' name='username' value={username} onChange={this.handleChange}/> 
+                    <input type='text' name='username' value={username} onChange={this.handleChange} onSelect={this.handleChange} /> 
                     &nbsp; { isValidUName ? <Icon name='check' /> : <Icon name='cancel' color = 'red' /> }
                     <br />
 
@@ -99,7 +103,7 @@ export default class Form extends Component {
                      ? 
                      <>
                      <label htmlFor='email'>Email:</label> <br />
-                     <input type='text' name='email' value={email} onChange={this.handleChange} onFocus={this.handleFocus}/>  
+                     <input type='text' name='email' value={email} onChange={this.handleChange} onSelect={this.handleChange} />  
                      <span className='emailVal'> &nbsp; { isValidEmail ? <Icon name='check' /> : <Icon name='cancel' color = 'red' /> }</span> <br />
                      </>
                      : 
@@ -109,7 +113,7 @@ export default class Form extends Component {
                     }
                     <br />
                     <label htmlFor='password'>Password:</label> <br />
-                    <input type='password' name='password' value={password} onChange={this.handleChange} /> 
+                    <input type='password' name='password' value={password} onChange={this.handleChange} onSelect={this.handleChange} /> 
                     &nbsp; { isValidPassword ? <Icon name='check' /> : <Icon name='cancel' color = 'red' /> }
                     <br />
                     <br />
