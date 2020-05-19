@@ -4,7 +4,9 @@ import React, { Component } from 'react'
 export default class Form extends Component {
 
     state = {
+        name: "",
         username: "",
+        email: "",
         password: ""
     }
 
@@ -21,15 +23,40 @@ export default class Form extends Component {
     }
 
     render() {
-        let {username, password} = this.state
-
+        let {name, username, email, password} = this.state
+        let {formType} = this.props
+        let formTitle = this.props.formName
         return (
                <div class='ui divided two column grid'>
                 <div className='form column'>
                 <form onSubmit = {this.handleSubmit}>
-                    <h1>{this.props.formName}</h1>
+                    <h1>{ formTitle }</h1>
+                  
+                    {formType === 'signup' 
+                     ? 
+                     <>
+                     <label htmlFor='name'>Name:</label> <br />
+                     <input type='text' name='name' value={name} onChange={this.handleChange}/> <br />
+                     </>
+                     : 
+                     <>
+                   
+                     </>
+                    }
                     <label htmlFor='username'>Username:</label> <br />
                     <input type='text' name='username' value={username} onChange={this.handleChange}/> <br />
+
+                    {formType === 'signup' 
+                     ? 
+                     <>
+                     <label htmlFor='email'>Email:</label> <br />
+                     <input type='text' name='email' value={email} onChange={this.handleChange}/> <br />
+                     </>
+                     : 
+                     <>
+                   
+                     </>
+                    }
                     <label htmlFor='password'>Password:</label> <br />
                     <input type='password' name='password' value={password} onChange={this.handleChange} /> <br />
                     <br />

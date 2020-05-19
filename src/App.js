@@ -122,7 +122,7 @@ class App extends React.PureComponent {
       if (routerProps.location.pathname === '/login')
           return <Form formName='Log into your account' handleSubmit={this.loginSubmit} />
       else if (routerProps.location.pathname === '/signup')
-          return <Form formName='Sign up for a free account' handleSubmit={this.signupSubmit} />
+          return <Form formName='Sign up for a free account' formType='signup' handleSubmit={this.signupSubmit} />
 
   }
 
