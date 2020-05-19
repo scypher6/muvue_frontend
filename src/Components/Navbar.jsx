@@ -6,6 +6,8 @@ import { Menu, Button, Icon} from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import Header from './Header';
 import ColorInvertedMenu from './NavMenu'
+import Form from './Form';
+
 
 const token = localStorage.token;
 
@@ -34,10 +36,9 @@ class Navbar extends Component {
 
 
     logout = () => {
-      // console.log("HERE")
+      //  this.props.history.push('/login')
         localStorage.clear();
         this.props.logout();
-        this.props.history.push('/')
   }
 
 
@@ -99,7 +100,7 @@ class Navbar extends Component {
                       </Button.Content>
                     </Button>
                   </Link>
-                  <Link to='/logout' onClick={this.logout}>
+                  <Link to='/login' onClick={this.logout}>
                     <Button primary animated>
                       <Button.Content visible>Log out</Button.Content>
                       <Button.Content hidden>
