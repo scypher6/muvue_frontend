@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { Icon } from 'semantic-ui-react';
 
 
 export default class Form extends Component {
@@ -7,14 +8,21 @@ export default class Form extends Component {
         name: "",
         username: "",
         email: "",
-        password: ""
+        password: "",
+        isValidEmail: false
     }
 
     handleChange = (e) =>{
         let {name, value} = e.target
+        let validEmailPattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+        let emailValidation = this.state.email.match(validEmailPattern)
+
         this.setState({
-            [name]: value
+            [name]: value,
+            isValidEmail: emailValidation
         })
+
+       
     }
 
     handleSubmit = (e) =>{
@@ -26,6 +34,7 @@ export default class Form extends Component {
         let {name, username, email, password} = this.state
         let {formType} = this.props
         let formTitle = this.props.formName
+        
         return (
                <div class='ui divided two column grid'>
                 <div className='form column'>
@@ -50,13 +59,15 @@ export default class Form extends Component {
                      ? 
                      <>
                      <label htmlFor='email'>Email:</label> <br />
-                     <input type='text' name='email' value={email} onChange={this.handleChange}/> <br />
+                     <input type='text' name='email' value={email} onChange={this.handleChange} onFocus={this.handleFocus}/>  
+                     <span className='emailVal'> &nbsp; { this.state.isValidEmail ? <Icon name='check' /> : <Icon name='cancel' color = 'red' /> }</span> <br />
                      </>
                      : 
                      <>
                    
                      </>
                     }
+                    <br />
                     <label htmlFor='password'>Password:</label> <br />
                     <input type='password' name='password' value={password} onChange={this.handleChange} /> <br />
                     <br />

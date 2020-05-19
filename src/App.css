@@ -190,6 +190,10 @@ div.scrollmenu a:hover {
   color: white;
   
 }
+
+.emailVal {
+  color: 'red';
+}
 /* body {
   background-image: url("./movies_poster_2019_collage.jpg");
   background-repeat: no-repeat; 
