@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Icon } from 'semantic-ui-react';
+import swal from 'sweetalert';
 
 
 export default class Form extends Component {
@@ -9,29 +10,64 @@ export default class Form extends Component {
         username: "",
         email: "",
         password: "",
-        isValidEmail: false
+        isValidEmail: false,
+        isValidName: false,
+        isValidUName: false,
+        isValidPassword: false
     }
 
     handleChange = (e) =>{
         let {name, value} = e.target
         let validEmailPattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
-        let emailValidation = this.state.email.match(validEmailPattern)
+        let validateEmail = this.state.email.match(validEmailPattern)
+        let validateName = this.state.name.length >= 2;
+        let validateUName = this.state.username.length >= 3;
+        let validatePass = this.state.password.length > 1;
+
 
         this.setState({
             [name]: value,
-            isValidEmail: emailValidation
+            isValidEmail: validateEmail,
+            isValidName: validateName,
+            isValidUName: validateUName,
+            isValidPassword: validatePass
         })
 
        
     }
 
     handleSubmit = (e) =>{
-        e.preventDefault()
-        this.props.handleSubmit(this.state)
+        e.preventDefault();
+
+        if (this.validInput()){
+            e.preventDefault()
+            this.props.handleSubmit(this.state)
+        }
+        else
+            return null;
+    }
+
+    validInput = () =>{
+        let status  = false;
+        let { isValidName, isValidUName, isValidEmail, isValidPassword } = this.state
+        
+        if (!isValidName)
+            swal("Invalid Name!", "Name must be at least 4 letters long. Please try again.", "warning")
+        else if (!isValidUName)
+            swal("Invalid Username!", "Username must be at least 4 letters long. Please try again.", "warning")
+        else if (!isValidEmail)
+            swal("Invalid Email!", "Email address is invalid. Please try again.", "warning")
+        else if (!isValidPassword)
+            swal("Invalid Password!", "Password must be at least 3 characters long. Please try again", "warning")
+        else
+            status = true;
+
+        return status;
     }
 
     render() {
         let {name, username, email, password} = this.state
+        let { isValidName, isValidUName, isValidEmail, isValidPassword } = this.state
         let {formType} = this.props
         let formTitle = this.props.formName
         
@@ -45,7 +81,9 @@ export default class Form extends Component {
                      ? 
                      <>
                      <label htmlFor='name'>Name:</label> <br />
-                     <input type='text' name='name' value={name} onChange={this.handleChange}/> <br />
+                     <input type='text' name='name' value={name} onChange={this.handleChange}/> 
+                     &nbsp; { isValidName ? <Icon name='check' /> : <Icon name='cancel' color = 'red' /> }
+                     <br />
                      </>
                      : 
                      <>
@@ -53,14 +91,16 @@ export default class Form extends Component {
                      </>
                     }
                     <label htmlFor='username'>Username:</label> <br />
-                    <input type='text' name='username' value={username} onChange={this.handleChange}/> <br />
+                    <input type='text' name='username' value={username} onChange={this.handleChange}/> 
+                    &nbsp; { isValidUName ? <Icon name='check' /> : <Icon name='cancel' color = 'red' /> }
+                    <br />
 
                     {formType === 'signup' 
                      ? 
                      <>
                      <label htmlFor='email'>Email:</label> <br />
                      <input type='text' name='email' value={email} onChange={this.handleChange} onFocus={this.handleFocus}/>  
-                     <span className='emailVal'> &nbsp; { this.state.isValidEmail ? <Icon name='check' /> : <Icon name='cancel' color = 'red' /> }</span> <br />
+                     <span className='emailVal'> &nbsp; { isValidEmail ? <Icon name='check' /> : <Icon name='cancel' color = 'red' /> }</span> <br />
                      </>
                      : 
                      <>
@@ -69,7 +109,9 @@ export default class Form extends Component {
                     }
                     <br />
                     <label htmlFor='password'>Password:</label> <br />
-                    <input type='password' name='password' value={password} onChange={this.handleChange} /> <br />
+                    <input type='password' name='password' value={password} onChange={this.handleChange} /> 
+                    &nbsp; { isValidPassword ? <Icon name='check' /> : <Icon name='cancel' color = 'red' /> }
+                    <br />
                     <br />
                     <input type='submit' value='submit'/>
                 </form>
