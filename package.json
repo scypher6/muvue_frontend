@@ -7,10 +7,8 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "axios": "^0.19.2",
-    "filepond": "^4.13.6",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "react-filepond": "^7.0.1",
     "react-infinite-scroller": "^1.2.4",
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.1.2",
@@ -41,5 +39,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "devDependencies": {}
 }

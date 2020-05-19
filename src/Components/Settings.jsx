@@ -3,10 +3,6 @@ import { connect } from 'react-redux';
 import { addUser, deleteUser } from '../Actions/userActions';
 import swal from 'sweetalert';
 
-// Import React FilePond
-import { FilePond, registerPlugin } from 'react-filepond';
-// Import FilePond styles
-import 'filepond/dist/filepond.min.css';
 
 export class Settings extends Component {
 
@@ -41,12 +37,30 @@ export class Settings extends Component {
 
     }
 
+
+    handlePic = e => {
+        let fileObj = e.target.files[0];
+        let imgName = fileObj.name;
+
+        let fileReader = new FileReader();
+        fileReader.readAsDataURL(fileObj);
+        fileReader.onload = function () {
+            let result = fileReader.result;
+            let img = document.querySelector('#preview');
+            img.setAttribute('src', result);
+        }
+
+        console.log(this.state)
+    }
+
+
     handleSubmit = (e) =>{
         e.preventDefault();
         const user = this.getUser().user
         let theirToken = localStorage.token
         let {name, username, email, picture} = this.state
 // console.log('HERE:', username)
+console.log(e.target)
         fetch(`http://localhost:3000/users/${user.id}`, {
             method: "PATCH",
             headers: {
@@ -88,23 +102,7 @@ export class Settings extends Component {
         
     }
 
-    handlePic = (e) => {
-        let fileObj = e.target.files[0];
-        let imgName = fileObj.name;
-
-        let fileReader = new FileReader();
-        fileReader.readAsDataURL(fileObj);
-        fileReader.onload = function () {
-            let result = fileReader.result;
-            let img = document.querySelector('#preview');
-            img.setAttribute('src', result)
-        }
-    }
-
-    handleInit() {
-        console.log('FilePond instance has initialised', this.pond);
-    }
-
+    
     render() {
         const foundUser = this.getUser()
         let { name, username, email, picture } = this.state
@@ -113,7 +111,7 @@ export class Settings extends Component {
             return (
                 <div className='profile'>
                     <h1>My Profile</h1>
-                        <img scr='/Users/scypher6/Documents/Gimp/JS_This.png' alt='profile pic' />
+                        <img scr='' alt='profile pic' />
                         <br />
                     <h4>
                         <br />
@@ -141,10 +139,10 @@ export class Settings extends Component {
                             <div class="field">
                                 <label for="img">Select image:</label>
                                 <br />
-                                <input type="file" id="file-input" name='picture' accept="image/*" value={picture} onChange={this.handlePic}/>
+                                <input type="file" id="fileInput" name='picture' accept="image/*" value={picture} onChange={this.handlePic}/>
                                 <br />
                                 <br />
-                                <img id = 'preview' alt='Preview' height='300' width='300'/>
+                                <img id='preview' alt='Image Preview' height='300' width='300'/>
                             </div>
                             
                             <button type="submit" class="ui button">Submit</button>
