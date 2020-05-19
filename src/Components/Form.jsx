@@ -111,7 +111,6 @@ export default class Form extends Component {
                    
                      </>
                     }
-                    <br />
                     <label htmlFor='password'>Password:</label> <br />
                     <input type='password' name='password' value={password} onChange={this.handleChange} onSelect={this.handleChange} /> 
                     &nbsp; { isValidPassword ? <Icon name='check' /> : <Icon name='cancel' color = 'red' /> }
