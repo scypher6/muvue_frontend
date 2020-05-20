@@ -18,11 +18,12 @@ export default class Form extends Component {
 
     handleChange = (e) =>{
         let {name, value} = e.target
+        let { username, email, password } = this.state
         let validEmailPattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
-        let validateEmail = this.state.email.match(validEmailPattern)
-        let validateName = this.state.name.length >= 2;
-        let validateUName = this.state.username.length >= 3;
-        let validatePass = this.state.password.length > 1;
+        let validateEmail = email.match(validEmailPattern)
+        let validateName = this.state.name.length >= 3;
+        let validateUName = username.length >= 3;
+        let validatePass = password.length > 1;
 
 
         this.setState({
@@ -52,9 +53,9 @@ export default class Form extends Component {
         let { isValidName, isValidUName, isValidEmail, isValidPassword } = this.state
         
         if (!isValidName)
-            swal("Invalid Name!", "Name must be at least 4 letters long. Please try again.", "warning")
+            swal("Invalid Name!", "Name must be at least 3 letters long. Please try again.", "warning")
         else if (!isValidUName)
-            swal("Invalid Username!", "Username must be at least 4 letters long. Please try again.", "warning")
+            swal("Invalid Username!", "Username must be at least 3 letters long. Please try again.", "warning")
         else if (!isValidEmail)
             swal("Invalid Email!", "Email address is invalid. Please try again.", "warning")
         else if (!isValidPassword)
