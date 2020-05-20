@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { addUser, deleteUser } from '../Actions/userActions';
+import { Icon } from 'semantic-ui-react';
 import swal from 'sweetalert';
 
 
@@ -11,7 +12,8 @@ export class Settings extends Component {
         username: '',
         picture: '',
         password: '',
-        email: ''
+        email: '',
+        defaultPic: true
     }
 
 
@@ -105,14 +107,13 @@ console.log(e.target)
     
     render() {
         const foundUser = this.getUser()
-        let { name, username, email, picture } = this.state
+        let { name, username, email, picture, defaultPic } = this.state
         // let {usersName, usersUsername} = foundUser?.user
         if(foundUser){
             return (
                 <div className='profile'>
                     <h1>My Profile</h1>
-                        <img scr='' alt='profile pic' />
-                        <br />
+                        { defaultPic ? <Icon circular name='user' color='green' size='massive' /> : <img id='profilePic' scr='' alt='profile pic' />}         
                     <h4>
                         <br />
                         Name: <em>{ foundUser.user.name }</em>

@@ -8,15 +8,17 @@ export default class About extends Component {
                 <h2>Muvue was built using the following technologies:</h2> 
                 <h4>
                  <ul>
-                    <li>YouTube API</li>
                     <li>React</li>
                     <li>Redux</li>
                     <li>Rails</li>
+                    <li>Javascript</li>
+                    <li>YouTube API</li>
                     <li>PostgreSQL</li>
                     <li>RestClient</li>
                     <li>ActionMailer</li>
                     <li>Auth/JWT</li>
                     <li>Figaro</li>
+                    <li>Firebase</li>
                     <li>Sweet Alert</li>
                  </ul>
                 </h4>

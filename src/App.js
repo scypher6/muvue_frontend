@@ -78,7 +78,6 @@ class App extends React.PureComponent {
       })
     
     }
-  
     
   
     fetch(`http://localhost:3000/movies`)
