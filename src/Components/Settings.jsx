@@ -84,23 +84,41 @@ console.log(e.target)
     }
 
     handleDelete = () => {
-        const foundUser = this.getUser()
-        let token = localStorage.token
 
-        if (foundUser){
-            console.log('user', foundUser.user.id)
-            fetch(`http://localhost:3000/users/${foundUser.user.id}`, {
-                  method: "DELETE",
-                  headers: {
-                          "Authorization": `bearer ${token}`
-                  }
-            })
-            .then(r => r.json())
-            .then( data => {
-                  this.props.deleteUser();
-                  this.props.history.push('/');
-             })
-        }//IF
+        swal({
+            title: "Are you sure you want to delete your account?",
+            text: "Once deleted, you will not be able to recover it!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+          })
+          .then((stillDelete) => {
+            if (stillDelete) {
+
+                const foundUser = this.getUser()
+                let token = localStorage.token
+        
+                if (foundUser){
+                    console.log('user', foundUser.user.id)
+                    fetch(`http://localhost:3000/users/${foundUser.user.id}`, {
+                          method: "DELETE",
+                          headers: {
+                                  "Authorization": `bearer ${token}`
+                          }
+                    })
+                    .then(r => r.json())
+                    .then( data => {
+                          this.props.deleteUser();
+                          this.props.history.push('/');
+                     })
+                }//IF
+
+              swal("Sorry to see you go :(", {
+                icon: "success",
+              });
+            } else 
+                swal("Phew!", "Wise choice!")
+        })
         
     }
 
