@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { addUser, deleteUser } from '../Actions/userActions';
-import { Divider, Icon, Input } from 'semantic-ui-react';
+import { Grid, Icon, Input } from 'semantic-ui-react';
 import swal from 'sweetalert';
 
 
@@ -130,31 +130,41 @@ console.log(e.target)
                     </h3></span>
                     <br />
                     <h2>Update Your profile</h2>
-
-                        <form class="ui inverted form"  onSubmit={this.handleSubmit}>
-                            <div class="field">
-                                <label>Name</label>
-                                <Input size='small' placeholder="Name" name='name'  value={name} onChange={this.handleChange}/>
-                            </div>
-                            <div class="field">
-                                <label>Username</label>
-                                <Input size='small' placeholder="username" name='username' value={username} onChange={this.handleChange}/>
-                            </div>
-                            <div class="field">
-                                <label>Email</label>
-                                <Input size='small' placeholder="email" name='email' value={email} onChange={this.handleChange}/>
-                            </div>
-                            <div class="field">
-                                <label for="img">Select image:</label>
-                                <br />
-                                <Input size='small' type="file" id="fileInput" name='picture' accept="image/*" value={picture} onChange={this.handlePic}/>
-                                <br />
-                                <br />
-                                    <img id='preview' alt='Image Preview' height='300' width='300'/>
-                            </div>
-                            
-                            <button type="submit" class="ui button">Submit</button>
-                        </form>
+                        <Grid celled inverted>
+                          <Grid.Row>
+                            <Grid.Column width={11}>
+                                <form class="ui inverted form"  onSubmit={this.handleSubmit}>
+                                    <div class="field">
+                                        <label>Name</label>
+                                        <Input size='small' placeholder="Name" name='name'  value={name} onChange={this.handleChange}/>
+                                    </div>
+                                    <div class="field">
+                                        <label>Username</label>
+                                        <Input size='small' placeholder="username" name='username' value={username} onChange={this.handleChange}/>
+                                    </div>
+                                    <div class="field">
+                                        <label>Email</label>
+                                        <Input size='small' placeholder="email" name='email' value={email} onChange={this.handleChange}/>
+                                    </div>
+                                    <div class="field">
+                                        <label for="img">Select image:</label>
+                                        <br />
+                                        <Input size='small' type="file" id="fileInput" name='picture' accept="image/*" value={picture} onChange={this.handlePic}/>
+                                        <br />
+                                        <br />
+                                    </div>
+                                    
+                                    <button type="submit" class="ui button">Submit</button>
+                                </form>
+                            </Grid.Column>
+                            <Grid.Column width={5}>
+                            <br />
+                            <br />
+                            <br />
+                                <img id='preview' alt='' height='300' width='300'/>
+                            </Grid.Column>
+                          </Grid.Row>
+                        </Grid>
                         <br/>
                     <button name='button' onClick={this.handleDelete}>Delete my account</button>
                     <br />
