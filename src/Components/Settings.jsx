@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { addUser, deleteUser } from '../Actions/userActions';
-import { Icon } from 'semantic-ui-react';
+import { Divider, Icon, Input } from 'semantic-ui-react';
 import swal from 'sweetalert';
 
 
@@ -114,10 +114,10 @@ console.log(e.target)
                 <div className='profile'>
                     <h1>My Profile</h1>
                         { defaultPic ? 
-                                <Icon.Group size='huge'>
+                            <Icon.Group size='huge'>
                                 <Icon loading size='big' name='circle notch' />
                                 <Icon name='user' />
-                              </Icon.Group>
+                            </Icon.Group>
                             : 
                             <img id='profilePic' scr='' alt='profile pic' />
                         }         
@@ -128,28 +128,29 @@ console.log(e.target)
                         <br />
                         Email: <em>{ foundUser.user.email }</em>
                     </h3></span>
-                    <h1>Update Your profile</h1>
+                    <br />
+                    <h2>Update Your profile</h2>
 
                         <form class="ui inverted form"  onSubmit={this.handleSubmit}>
                             <div class="field">
                                 <label>Name</label>
-                                <input placeholder="Name" name='name'  value={name} onChange={this.handleChange}/>
+                                <Input size='small' placeholder="Name" name='name'  value={name} onChange={this.handleChange}/>
                             </div>
                             <div class="field">
                                 <label>Username</label>
-                                <input placeholder="username" name='username' value={username} onChange={this.handleChange}/>
+                                <Input size='small' placeholder="username" name='username' value={username} onChange={this.handleChange}/>
                             </div>
                             <div class="field">
                                 <label>Email</label>
-                                <input placeholder="email" name='email' value={email} onChange={this.handleChange}/>
+                                <Input size='small' placeholder="email" name='email' value={email} onChange={this.handleChange}/>
                             </div>
                             <div class="field">
                                 <label for="img">Select image:</label>
                                 <br />
-                                <input type="file" id="fileInput" name='picture' accept="image/*" value={picture} onChange={this.handlePic}/>
+                                <Input size='small' type="file" id="fileInput" name='picture' accept="image/*" value={picture} onChange={this.handlePic}/>
                                 <br />
                                 <br />
-                                <img id='preview' alt='Image Preview' height='300' width='300'/>
+                                    <img id='preview' alt='Image Preview' height='300' width='300'/>
                             </div>
                             
                             <button type="submit" class="ui button">Submit</button>
