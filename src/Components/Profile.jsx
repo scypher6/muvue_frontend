@@ -72,8 +72,7 @@ export class Profile extends Component {
             return (
                 <div className='profile'> 
                     <h3>Welcome {foundUser?.user?.username}!</h3>
-                    <br />
-
+        
                     <h2>My Favorites</h2>
 
                     <div className='scrollmenu'>
