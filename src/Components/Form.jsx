@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Icon } from 'semantic-ui-react';
+import { Icon, Input } from 'semantic-ui-react';
 import swal from 'sweetalert';
 
 
@@ -77,15 +77,17 @@ export default class Form extends Component {
         
         return (
                <div class='ui divided two column grid'>
+                {/* <div className='form column'> */}
                 <div className='form column'>
-                <form onSubmit = {this.handleSubmit}>
+
+                <form class='ui inverted form' onSubmit = {this.handleSubmit}>
                     <h1>{ formTitle }</h1>
                   
                     {formType === 'signup' 
                      ? 
                      <>
                      <label htmlFor='name'>Name:</label> <br />
-                     <input type='text' name='name' value={name} onChange={this.handleChange} onSelect={this.handleChange} /> 
+                     <Input size='large' type='text' name='name' value={name} onChange={this.handleChange} onSelect={this.handleChange} /> 
                      &nbsp; { isValidName ? <Icon name='check' /> : <Icon name='cancel' color = 'red' /> }
                      <br />
                      </>
@@ -95,7 +97,7 @@ export default class Form extends Component {
                      </>
                     }
                     <label htmlFor='username'>Username:</label> <br />
-                    <input type='text' name='username' value={username} onChange={this.handleChange} onSelect={this.handleChange} /> 
+                    <Input size='large' type='text' name='username' value={username} onChange={this.handleChange} onSelect={this.handleChange} /> 
                     &nbsp; { isValidUName ? <Icon name='check' /> : <Icon name='cancel' color = 'red' /> }
                     <br />
 
@@ -103,7 +105,7 @@ export default class Form extends Component {
                      ? 
                      <>
                      <label htmlFor='email'>Email:</label> <br />
-                     <input type='text' name='email' value={email} onChange={this.handleChange} onSelect={this.handleChange} />  
+                     <Input size='large' type='text' name='email' value={email} onChange={this.handleChange} onSelect={this.handleChange} />  
                      <span className='emailVal'> &nbsp; { isValidEmail ? <Icon name='check' /> : <Icon name='cancel' color = 'red' /> }</span> <br />
                      </>
                      : 
@@ -112,11 +114,11 @@ export default class Form extends Component {
                      </>
                     }
                     <label htmlFor='password'>Password:</label> <br />
-                    <input type='password' name='password' value={password} onChange={this.handleChange} onSelect={this.handleChange} /> 
+                    <Input size='large' type='password' name='password' value={password} onChange={this.handleChange} onSelect={this.handleChange} /> 
                     &nbsp; { isValidPassword ? <Icon name='check' /> : <Icon name='cancel' color = 'red' /> }
                     <br />
                     <br />
-                    <input type='submit' value='submit'/>
+                    <Input type='submit' value='submit'/>
                 </form>
                 <br />
                 <br />
