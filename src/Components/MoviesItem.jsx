@@ -170,7 +170,6 @@ export class MoviesItem extends PureComponent {
     findMovie = () =>{
         let videoId = this.props?.videoId
         if(this.props.movies.movies){
-
             let foundMovie = this.props.movies.movies.find( movie => movie.videoId === videoId)
             localStorage.setItem('movieID', foundMovie?.id)
 
@@ -208,13 +207,11 @@ export class MoviesItem extends PureComponent {
             })
             .then(r => r.json())
             .then( review => {
-                console.log("CREATE", review)
-                movie.reviews.push(review)
+                console.log("CREATE", review);
+                movie.reviews.push(review);
                 this.props.addReview(movie);
                 user.reviewedMovies.push(review);
-                this.props.updateUser(user);
-                
-                
+                this.props.updateUser(this.getUser());                            
             }) 
         }
         else
