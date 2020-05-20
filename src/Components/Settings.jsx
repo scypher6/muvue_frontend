@@ -113,15 +113,21 @@ console.log(e.target)
             return (
                 <div className='profile'>
                     <h1>My Profile</h1>
-                        { defaultPic ? <Icon circular name='user' color='green' size='massive' /> : <img id='profilePic' scr='' alt='profile pic' />}         
-                    <h4>
-                        <br />
+                        { defaultPic ? 
+                                <Icon.Group size='huge'>
+                                <Icon loading size='big' name='circle notch' />
+                                <Icon name='user' />
+                              </Icon.Group>
+                            : 
+                            <img id='profilePic' scr='' alt='profile pic' />
+                        }         
+                    <span><h3>
                         Name: <em>{ foundUser.user.name }</em>
                         <br />
                         Username: <em>{ foundUser.user.username }</em>
                         <br />
                         Email: <em>{ foundUser.user.email }</em>
-                    </h4>
+                    </h3></span>
                     <h1>Update Your profile</h1>
 
                         <form class="ui inverted form"  onSubmit={this.handleSubmit}>
