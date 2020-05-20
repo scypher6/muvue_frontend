@@ -79,7 +79,7 @@ class Navbar extends Component {
                  </Menu> */}
                 <ColorInvertedMenu />
                  <div class='signDiv'>
-                    {foundUser ? 'Signed in as: ' + foundUser.user.username : ""}
+                    {foundUser ? 'Signed in as: ' + foundUser.user?.username : ""}
                  </div>
                  {
                   foundUser ?

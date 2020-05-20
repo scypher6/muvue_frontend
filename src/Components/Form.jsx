@@ -52,16 +52,25 @@ export default class Form extends Component {
         let status  = false;
         let { isValidName, isValidUName, isValidEmail, isValidPassword } = this.state
         
-        if (!isValidName)
-            swal("Invalid Name!", "Name must be at least 3 letters long. Please try again.", "warning")
-        else if (!isValidUName)
-            swal("Invalid Username!", "Username must be at least 3 letters long. Please try again.", "warning")
-        else if (!isValidEmail)
-            swal("Invalid Email!", "Email address is invalid. Please try again.", "warning")
-        else if (!isValidPassword)
-            swal("Invalid Password!", "Password must be at least 3 characters long. Please try again", "warning")
-        else
-            status = true;
+        if(this.props.formType === 'signup'){
+            if (!isValidName)
+                swal("Invalid Name!", "Name must be at least 3 letters long. Please try again.", "warning")
+            else if (!isValidUName)
+                swal("Invalid Username!", "Username must be at least 3 letters long. Please try again.", "warning")
+            else if (!isValidEmail)
+                swal("Invalid Email!", "Email address is invalid. Please try again.", "warning")
+            else if (!isValidPassword)
+                swal("Invalid Password!", "Password must be at least 3 characters long. Please try again", "warning")
+            else
+                status = true;
+        } else {
+            if (!isValidUName)
+                swal("Invalid Username!", "Username must be at least 3 letters long. Please try again.", "warning")
+            else if (!isValidPassword)
+                swal("Invalid Password!", "Password must be at least 3 characters long. Please try again", "warning")
+            else
+                status = true;
+        }
 
         return status;
     }
