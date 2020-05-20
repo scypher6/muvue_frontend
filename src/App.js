@@ -50,7 +50,7 @@ class App extends React.PureComponent {
         if (!user.error) {
             localStorage.setItem("token", user.token)
             this.props.addUser(user)    
-            this.props.history.push("/profile")
+            this.props.history.push("/myMovies")
         }
         else
             swal("Access Denied!", user.error, "error")
