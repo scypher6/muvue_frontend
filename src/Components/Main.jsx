@@ -9,10 +9,29 @@ export class Main extends Component {
 
 
     render() {
+    
+
+        
+
         return (
                 
                     <div className='main'>
-                       <MoviesContainer />
+                       <MoviesContainer scrollRef = { this.props.scrollRef }/>
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        {/* <span ref={this.props.scrollRef}></span>  */}
                     </div>
                 
         )

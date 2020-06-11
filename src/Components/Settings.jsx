@@ -62,7 +62,7 @@ export class Settings extends Component {
         let theirToken = localStorage.token
         let {name, username, email, picture} = this.state
 // console.log('HERE:', username)
-console.log(e.target)
+
         fetch(`http://localhost:3000/users/${user.id}`, {
             method: "PATCH",
             headers: {

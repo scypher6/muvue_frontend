@@ -20,8 +20,47 @@ import swal from 'sweetalert';
 // import axios from 'axios';
 // import searchYoutube from 'youtube-api-v3-search';
 
+import MoviesContainer from './Components/MoviesContainer';
+
+//Infinite scroll options
+const PARAMETERS = {
+  root: 'null',
+  rootMargins: '0px',
+  threshold: 0.5
+};
+
+
 class App extends React.PureComponent {
-    
+  spanRef;
+  observer;  
+
+  constructor(){
+    super();
+
+    this.spanRef = React.createRef();
+    this.state = {
+        count: 0
+    }
+  }
+
+  handleIntersect = (entries) =>{
+
+    // if(entries[0].isIntersecting){
+    //     console.log("INTERSECTING!")
+    // }
+
+    let ratio = entries[0].intersectionRatio;
+    console.log("OBSERVING!!!", ratio)
+    let newArray = [];
+          if (ratio > 0){
+              this.setState({
+                  count: this.state.count + 5
+              })
+
+
+            }
+
+}
 
   showMovie = (routerProps) => {
     // console.log(routerProps)
@@ -78,7 +117,10 @@ class App extends React.PureComponent {
       })
     
     }
-    
+
+    // this.observer = new IntersectionObserver(this.handleIntersect);
+    // this.observer.observe(this.spanRef.current);
+
   
     fetch(`http://localhost:3000/movies`)
         .then( r => r.json() )
@@ -141,7 +183,7 @@ class App extends React.PureComponent {
         <div className="panel-list bg" >
           <Container>
               <Navbar />
-              
+            
               <Switch>
                 <Route path='/login' render={this.renderForm}/>
                 <Route path='/signup' render={this.renderForm}/>
@@ -155,7 +197,7 @@ class App extends React.PureComponent {
                 <Route path='/profile' component={Settings}/>
                 <Route path='/stats' component={ChartJS}/>
                 <Route path='/about' component={About}/> 
-                <Route path='/' component={Main} />
+                <Route path='/' render={ (routerProps) => <Main scrollRef = {this.spanRef} />} />
               </Switch>
           </Container>
         </div>

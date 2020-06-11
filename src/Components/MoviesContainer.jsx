@@ -5,9 +5,12 @@ import { getMovies } from '../Actions/movieActions';
 import { withRouter } from 'react-router';
 import { Search } from 'semantic-ui-react';
 
+
+
 export class MoviesContainer extends Component {
 
     state = {
+            countIntersect: -6,
             localMovies: [],
             searchTerm: '',
             "isLoading": false,
@@ -39,6 +42,32 @@ export class MoviesContainer extends Component {
                 return null
             }
         
+    }
+
+    handleIntersect = (entries) =>{
+
+        // if(entries[0].isIntersecting){
+        //     console.log("INTERSECTING!")
+        // }
+    
+        let ratio = entries[0].intersectionRatio;
+        console.log("OBSERVING!!!", ratio)
+        let newArray = [];
+        console.log(ratio > 0)
+              if (ratio > 0){
+                  this.setState({
+                      countIntersect: this.state.countIntersect + 6
+                  })
+              }
+              else {
+                // this.setState({
+                //     countIntersect: this.state.countIntersect - 6
+                // })
+              }
+
+
+
+    
     }
 
     componentDidMount() {
@@ -83,6 +112,9 @@ export class MoviesContainer extends Component {
             })
   
         })
+
+        this.observer = new IntersectionObserver(this.handleIntersect);
+        this.observer.observe(this.props.scrollRef.current);
     }
 
     movieMapper = () => {
@@ -93,9 +125,13 @@ export class MoviesContainer extends Component {
         // console.log(movies[49].title.includes('tai'))
         let filteredMovies = movies.filter(
             movie => movie.title.toLowerCase().includes(this.state.searchTerm.toLowerCase())
-        )
+        )  
+console.log("EUREKA!")
+        let sectionCounter = this.state.countIntersect
+        let displaySome = filteredMovies.slice(0, sectionCounter + 6);
 
-     return filteredMovies.map( movie => <MoviePoster key={videoId} movie={movie} /> )   
+        return displaySome.map( movie => <MoviePoster key={videoId} movie={movie} /> )
+    //  return filteredMovies.map( movie => <MoviePoster key={videoId} movie={movie} /> )   
     }
 
     handleChange = (e) =>{
@@ -106,6 +142,7 @@ export class MoviesContainer extends Component {
 
 
     render() {
+
         document.title = 'Muvue: Movies that move you!'
         // console.log(this.props.movieProps)
         let {searchTerm} = this.state
@@ -116,8 +153,10 @@ export class MoviesContainer extends Component {
                 {/* <input className='searchField' type='text' placeholder='Search' name='search' value={searchTerm} onChange={this.handleChange}/> */}
                   <div class="ui grid">
 
-                        {this.movieMapper()}  
-                        
+                        <span ref={this.props.scrollRef}></span> 
+                        { this.movieMapper() }  
+                        <span ref={this.props.scrollRef}></span> 
+                        <br />
                   </div>
                 </div>             
                )
