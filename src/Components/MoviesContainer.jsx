@@ -7,6 +7,13 @@ import { Search } from 'semantic-ui-react';
 
 
 
+const containerPage = {
+
+    height: '100%',
+    backgroundSize: 'cover'
+    
+}
+
 export class MoviesContainer extends Component {
 
     state = {
@@ -137,7 +144,7 @@ export class MoviesContainer extends Component {
         let {searchTerm} = this.state
 
         return (
-                <div className = "ui container mc"> 
+                <div className = "ui container mc" style={containerPage}> 
                 <Search className='searchField' name='search' loading={this.state.isLoading} value={searchTerm} onSearchChange={this.handleChange} noResultsMessage={this.state.searchTerm}/>
                 {/* <input className='searchField' type='text' placeholder='Search' name='search' value={searchTerm} onChange={this.handleChange}/> */}
                   <div class="ui grid">

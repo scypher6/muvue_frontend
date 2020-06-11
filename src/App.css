@@ -209,7 +209,10 @@ div.scrollmenu a:hover {
 
 @import url(https://fonts.googleapis.com/css?family=Montserrat);
 
-html, body{
+[data-reactroot] 
+        {height: 100% !important; }
+
+html, body, #app, #app>div {
   
   height: 50%;
   font-weight: 800;
