@@ -10,7 +10,7 @@ import { Search } from 'semantic-ui-react';
 export class MoviesContainer extends Component {
 
     state = {
-            countIntersect: -6,
+            countIntersect: 0,
             localMovies: [],
             searchTerm: '',
             "isLoading": false,
@@ -59,15 +59,7 @@ export class MoviesContainer extends Component {
                       countIntersect: this.state.countIntersect + 6
                   })
               }
-              else {
-                // this.setState({
-                //     countIntersect: this.state.countIntersect - 6
-                // })
-              }
 
-
-
-    
     }
 
     componentDidMount() {
@@ -128,7 +120,7 @@ export class MoviesContainer extends Component {
         )  
 console.log("EUREKA!")
         let sectionCounter = this.state.countIntersect
-        let displaySome = filteredMovies.slice(0, sectionCounter + 6);
+        let displaySome = filteredMovies.slice(0, sectionCounter);
 
         return displaySome.map( movie => <MoviePoster key={videoId} movie={movie} /> )
     //  return filteredMovies.map( movie => <MoviePoster key={videoId} movie={movie} /> )   
