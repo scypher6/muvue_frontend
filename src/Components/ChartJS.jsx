@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { getMovies } from '../Actions/movieActions'; 
+import { Grid } from 'semantic-ui-react';
 
 export class ChartJS extends Component {
 
@@ -20,8 +21,8 @@ export class ChartJS extends Component {
     moviesByLikes = () => {
         let moviesInState = this.props.movies
         let top10Liked = moviesInState.movies.sort( (a, b) => b.likes.length - a.likes.length ).slice(0, 10)
-        // console.log(top10Liked)
-        return top10Liked.map( movie => movie.title + `(${movie.likes.length})`)
+
+        return top10Liked.map( movie => <div> {movie.title + ` (${movie.likes.length})`} <br /> </div> )
     }
 
     render() {
@@ -31,9 +32,23 @@ export class ChartJS extends Component {
         return (
         
             <div className='profile'>
-                    CHART JS
+                    <h1> Trends </h1>
                 <br />
                 <br />
+                <Grid columns={3} divided>
+                    <Grid.Row>
+                        <Grid.Column>
+                            <h3>Most Liked Movies</h3>
+                            { top10Liked }
+                        </Grid.Column>
+                        <Grid.Column>
+                            <h3>Most Favorited Movies</h3>
+                        </Grid.Column>
+                        <Grid.Column>
+                            <h3>Most Reviewed Movies</h3>
+                        </Grid.Column>
+                    </Grid.Row>
+                </Grid>
                 <br />
                 <br />
                 <br />
