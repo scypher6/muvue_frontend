@@ -202,15 +202,16 @@ div.scrollmenu a:hover {
   background-image: url("./movies_poster_2019_collage.jpg");
   background-repeat: no-repeat; 
    
-}*/
+}
+  [data-reactroot] 
+        {height: 100% !important; }
+
+*/
 
 
 /******************************* SVG EFFECTS ************************************/
 
 @import url(https://fonts.googleapis.com/css?family=Montserrat);
-
-[data-reactroot] 
-        {height: 100% !important; }
 
 html, body, #app, #app>div {
   

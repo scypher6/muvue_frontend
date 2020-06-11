@@ -5,6 +5,10 @@ import { getMovies } from '../Actions/movieActions';
 import { Grid } from 'semantic-ui-react';
 
 
+const chartStyles = {
+    color: '#7a2fc0',
+    textShadow: '1px 1px #230242'
+}
 
 export class ChartJS extends Component {
     
@@ -42,20 +46,20 @@ export class ChartJS extends Component {
         return (
         
             <div className='profile'>
-                    <h1> Trends </h1>
+                    <h1 style={chartStyles}> Trends </h1>
                 <br />
                 <Grid columns={3} divided>
                     <Grid.Row>
                         <Grid.Column>
-                            <h3>Most Liked Movies</h3>
+                            <h3 style={chartStyles}>Most Liked Movies</h3>
                             { top10Liked }
                         </Grid.Column>
                         <Grid.Column>
-                            <h3>Most Favorited Movies</h3>
+                            <h3 style={chartStyles}>Most Favorited Movies</h3>
                             { top10Faved }
                         </Grid.Column>
                         <Grid.Column>
-                            <h3>Most Reviewed Movies</h3>
+                            <h3 style={chartStyles}>Most Reviewed Movies</h3>
                             { top10Reviewed }
                         </Grid.Column>
                     </Grid.Row>
