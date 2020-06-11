@@ -51,14 +51,12 @@ export class MoviesContainer extends Component {
         // }
     
         let ratio = entries[0].intersectionRatio;
-        console.log("OBSERVING!!!", ratio)
-        let newArray = [];
-        console.log(ratio > 0)
-              if (ratio > 0){
-                  this.setState({
-                      countIntersect: this.state.countIntersect + 6
-                  })
-              }
+        // console.log("OBSERVING!!!", ratio)
+        if (ratio > 0){
+            this.setState({
+                countIntersect: this.state.countIntersect + 6
+            })
+        }
 
     }
 
@@ -109,8 +107,7 @@ export class MoviesContainer extends Component {
         this.observer.observe(this.props.scrollRef.current);
     }
 
-    movieMapper = () => {
-      
+    movieMapper = () => {     
         // let movies = this.props.moviesProps.movies
         let movies = this.state.localMovies
         let {videoId} = movies
@@ -118,7 +115,7 @@ export class MoviesContainer extends Component {
         let filteredMovies = movies.filter(
             movie => movie.title.toLowerCase().includes(this.state.searchTerm.toLowerCase())
         )  
-console.log("EUREKA!")
+
         let sectionCounter = this.state.countIntersect
         let displaySome = filteredMovies.slice(0, sectionCounter);
 
