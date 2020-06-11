@@ -4,36 +4,45 @@ import { withRouter } from 'react-router';
 import { getMovies } from '../Actions/movieActions'; 
 import { Grid } from 'semantic-ui-react';
 
+
+
 export class ChartJS extends Component {
-
+    
     // getTop5movies = () => {
+        
+        //     const topFive = return fetch(http://localhost/topmovies)
+        // }
+    
+    moviesByLikes = () => { 
+        let moviesInState = this.props.movies;
+        let mostLiked = moviesInState.movies.sort( (a, b) => b.likes.length - a.likes.length ).slice(0, 10)
 
-    //     const topFive = return fetch(http://localhost/topmovies)
-    // }
+        return mostLiked.map( movie => <div> {movie.title + ` (${movie.likes.length})`} <br /> </div> )
+    }
 
-    // componentDidMount(){
-    //     fetch('http://localhost/topmovies')
-    //     .then(r => r.json())
-    //     .then(console.log)
+    moviesByFavs = () => {
+        let moviesInState = this.props.movies;
+        let mostFaved = moviesInState.movies.sort( (a , b) => b.favorites.length - a.favorites.length ).slice(0, 10)
+        return mostFaved.map( movie => <div> {movie.title + ` (${movie.likes.length})`} <br /> </div> )
+    }
 
-    // }
-
-    moviesByLikes = () => {
-        let moviesInState = this.props.movies
-        let top10Liked = moviesInState.movies.sort( (a, b) => b.likes.length - a.likes.length ).slice(0, 10)
-
-        return top10Liked.map( movie => <div> {movie.title + ` (${movie.likes.length})`} <br /> </div> )
+    moviesByReviews = () => {
+        let moviesInState = this.props.movies;
+        let mostReviewd = moviesInState.movies.sort( (a , b) => b.reviews.length - a.reviews.length ).slice(0, 10)
+        return mostReviewd.map( movie => <div> {movie.title + ` (${movie.likes.length})`} <br /> </div> )
     }
 
     render() {
 
         let top10Liked = this.moviesByLikes();
-        console.log(top10Liked)
+        let top10Faved = this.moviesByFavs();
+        let top10Reviewed = this.moviesByReviews();
+
+        // console.log(top10Liked)
         return (
         
             <div className='profile'>
                     <h1> Trends </h1>
-                <br />
                 <br />
                 <Grid columns={3} divided>
                     <Grid.Row>
@@ -43,9 +52,11 @@ export class ChartJS extends Component {
                         </Grid.Column>
                         <Grid.Column>
                             <h3>Most Favorited Movies</h3>
+                            { top10Faved }
                         </Grid.Column>
                         <Grid.Column>
                             <h3>Most Reviewed Movies</h3>
+                            { top10Reviewed }
                         </Grid.Column>
                     </Grid.Row>
                 </Grid>
