@@ -7,7 +7,7 @@ import { Image } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
 
 
-const token = localStorage.token;
+// const token = localStorage.token;
 
 export class Profile extends Component {
     

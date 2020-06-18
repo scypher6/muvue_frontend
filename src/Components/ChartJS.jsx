@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { getMovies } from '../Actions/movieActions'; 
 import { Grid } from 'semantic-ui-react';
+import LineChart from './LineChart'
 
 
 const chartStyles = {
@@ -17,30 +18,31 @@ export class ChartJS extends Component {
         //     const topFive = return fetch(http://localhost/topmovies)
         // }
     
-    moviesByLikes = () => { 
+    moviesByLikes = (bool) => { 
         let moviesInState = this.props.movies;
         let mostLiked = moviesInState.movies.sort( (a, b) => b.likes.length - a.likes.length ).slice(0, 10)
 
-        return mostLiked.map( movie => <div> {movie.title + ` (${movie.likes.length})`} <br /> </div> )
+
+        return mostLiked.map( movie => <div> {movie.title + (bool ? ` (${movie.likes.length})` : '')} <br /> </div> )
     }
 
-    moviesByFavs = () => {
+    moviesByFavs = (bool) => {
         let moviesInState = this.props.movies;
         let mostFaved = moviesInState.movies.sort( (a , b) => b.favorites.length - a.favorites.length ).slice(0, 10)
-        return mostFaved.map( movie => <div> {movie.title + ` (${movie.likes.length})`} <br /> </div> )
+        return mostFaved.map( movie => <div> {movie.title + (bool ? ` (${movie.likes.length})` : '')} <br /> </div> )
     }
 
-    moviesByReviews = () => {
+    moviesByReviews = (bool) => {
         let moviesInState = this.props.movies;
         let mostReviewd = moviesInState.movies.sort( (a , b) => b.reviews.length - a.reviews.length ).slice(0, 10)
-        return mostReviewd.map( movie => <div> {movie.title + ` (${movie.likes.length})`} <br /> </div> )
+        return mostReviewd.map( movie => <div> {movie.title + (bool ? ` (${movie.likes.length})` : '')} <br /> </div> )
     }
 
     render() {
 
-        let top10Liked = this.moviesByLikes();
-        let top10Faved = this.moviesByFavs();
-        let top10Reviewed = this.moviesByReviews();
+        let top10Liked = this.moviesByLikes(false);
+        let top10Faved = this.moviesByFavs(false);
+        let top10Reviewed = this.moviesByReviews(false);
 
         // console.log(top10Liked)
         return (
@@ -67,6 +69,9 @@ export class ChartJS extends Component {
                 <br />
                 <br />
                 <br />
+                <div className='chart'>
+                    <LineChart topLiked={this.moviesByLikes(true)} topFaved={this.moviesByFavs(true)}/>
+                </div>
                 <br />
                 <br />
                 <br />

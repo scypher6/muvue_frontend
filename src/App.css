@@ -198,6 +198,13 @@ div.scrollmenu a:hover {
 .emailVal {
   color: 'red';
 }
+
+.chart {
+  width:800px;
+  height: 500px;
+  text-align: center;
+}
+
 /* body {
   background-image: url("./movies_poster_2019_collage.jpg");
   background-repeat: no-repeat; 
