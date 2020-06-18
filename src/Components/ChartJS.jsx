@@ -70,7 +70,7 @@ export class ChartJS extends Component {
                 <br />
                 <br />
                 <div className='chart'>
-                    <LineChart topLiked={this.moviesByLikes(true)} topFaved={this.moviesByFavs(true)}/>
+                    <LineChart topLiked={this.moviesByLikes(true)} topFaved={this.moviesByFavs(true)} topReved={this.moviesByReviews(true)}/>
                 </div>
                 <br />
                 <br />

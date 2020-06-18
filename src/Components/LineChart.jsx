@@ -29,13 +29,24 @@ export default class LineChart extends Component {
             return parseInt(newVal.slice(newVal.length-3, newVal.length-1))
         })
 
+        /**************** TOP FAVED MOVIES ******************/
+        let topReviewedMovies = this.props.topReved.map( value => {
+            let newVal = value.props.children[1]
+            return newVal.slice(0, newVal.length-4)
+        })
+
+        let numRevs = this.props.topReved.map( value => {
+            let newVal = value.props.children[1]
+            return parseInt(newVal.slice(newVal.length-3, newVal.length-1))
+        })
+
         const data = {
             labels: toplikedMovies,
             datasets: [
                 {
                     label: 'Most Favorited movies',
                      data: numFavs,
-                     borderColor: ['darkorchid'],
+                     borderColor: ['darkorchid', 0.5],
                      backgroundColor: ['mediumpurple'],
                      pointBackgroundColor: ['black'],
                      pointBorderColor: ['darkorchid']
@@ -47,8 +58,16 @@ export default class LineChart extends Component {
                      backgroundColor: ['lightseagreen'],
                      pointBackgroundColor: ['black'],
                      pointBorderColor: ['green']
+                    },
+                    {
+                     label: 'Most Reviewed movies',
+                     data: numRevs,
+                     borderColor: ['saddlebrown'],
+                     backgroundColor: ['moccasin'],
+                     pointBackgroundColor: ['black'],
+                     pointBorderColor: ['saddlebrown']
                 }
-
+   
             ]
         }
 
