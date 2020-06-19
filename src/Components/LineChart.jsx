@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Line } from 'react-chartjs-2';
 
+
 export default class LineChart extends Component {
 
 
@@ -79,7 +80,8 @@ export default class LineChart extends Component {
             // console.log("PROPS", this.props.topLiked)
             return (
                 <div className='chart'>  
-                    <Line data={this.chartData} />
+                    <h1>Charts</h1>
+                        <Line data={this.chartData}/>
                 </div>
             )
 }

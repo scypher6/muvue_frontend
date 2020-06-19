@@ -20,6 +20,7 @@ export default class About extends Component {
                     <li>Figaro</li>
                     <li>Firebase</li>
                     <li>Sweet Alert</li>
+                    <li>& ChartJS!</li>
                  </ul>
                 </h4>
                 <h3>Thank you for using Muvue!</h3>
