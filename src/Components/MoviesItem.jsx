@@ -4,7 +4,6 @@ import { addLikes, addUser, updateUser } from '../Actions/userActions';
 import { addLike , removeLike, addFavMovie, removeFav, addReview, removeReview } from '../Actions/movieActions';
 import { Link, withRouter } from 'react-router-dom';
 import {Icon, Button, Comment, Form, Header} from 'semantic-ui-react';
-import { Dimmer, Loader, Image, Segment } from 'semantic-ui-react';
 import swal from 'sweetalert';
 import Review from './Review';
 
