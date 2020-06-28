@@ -2,14 +2,13 @@ import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { addUser, logout } from '../Actions/userActions';
 import { addGenre } from '../Actions/movieActions';
-import { Menu, Button, Icon} from 'semantic-ui-react';
+import { Button, Icon} from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import Header from './Header';
 import ColorInvertedMenu from './NavMenu'
-import Form from './Form';
 
 
-const token = localStorage.token;
+// const token = localStorage.token;
 
 class Navbar extends Component {
 
