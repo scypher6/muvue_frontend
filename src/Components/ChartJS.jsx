@@ -4,7 +4,6 @@ import { withRouter } from 'react-router';
 import { getMovies } from '../Actions/movieActions'; 
 import { Grid } from 'semantic-ui-react';
 import LineChart from './LineChart'
-import BarChart from './BarChart'
 
 
 const chartStyles = {
@@ -72,7 +71,6 @@ export class ChartJS extends Component {
                 <br />
                 <div className='chart'>
                     <LineChart topLiked={this.moviesByLikes(true)} topFaved={this.moviesByFavs(true)} topReved={this.moviesByReviews(true)}/>
-                    <BarChart topLiked={this.moviesByLikes(true)} topFaved={this.moviesByFavs(true)} topReved={this.moviesByReviews(true)}/>
                 </div>
                 <br />
                 <br />

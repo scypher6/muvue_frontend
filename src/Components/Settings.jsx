@@ -52,7 +52,7 @@ export class Settings extends Component {
             img.setAttribute('src', result);
         }
 
-        console.log(this.state)
+        console.log("HERE", e.target.title)
     }
 
 
