@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { addUser, deleteUser } from '../Actions/userActions';
 import { Grid, Icon, Input } from 'semantic-ui-react';
 import swal from 'sweetalert';
+import firebase from 'firebase/app';
+import 'firebase/storage';
 
 
 export class Settings extends Component {
@@ -42,7 +44,7 @@ export class Settings extends Component {
 
     handlePic = e => {
         let fileObj = e.target.files[0];
-        let imgName = fileObj.name;
+        let filename = fileObj.name;
 
         let fileReader = new FileReader();
         fileReader.readAsDataURL(fileObj);
@@ -52,7 +54,59 @@ export class Settings extends Component {
             img.setAttribute('src', result);
         }
 
-        console.log("HERE", e.target.title)
+    
+        let firebaseConfig = {
+            apiKey: "AIzaSyA9JDcpEbQ4291Sc7AWeYnoa7sfr4ZIj3g",
+            authDomain: "muvue-70e6c.firebaseapp.com",
+            databaseURL: "https://muvue-70e6c.firebaseio.com",
+            projectId: "muvue-70e6c",
+            storageBucket: "muvue-70e6c.appspot.com",
+            messagingSenderId: "443959109626",
+            appId: "1:443959109626:web:40b23d1ba1a1b31efc6643",
+            measurementId: "G-3Y21XEJ3LL"
+          };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        // Create a root reference
+        let storageRef = firebase.storage().ref(`/images/${filename}`);  
+
+        // // Create a reference to the image
+        // let imageRef = storageRef.child(filename);
+        // // Create a reference to 'images/filename'
+        // let bucketRef = storageRef.child(filename);
+
+        let uploadTask = storageRef.put(fileObj);
+
+
+
+        // 3. Completion observer, called on successful completion
+        uploadTask.on('state_changed', function(snapshot){
+            // Observe state change events such as progress, pause, and resume
+            // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+            var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            console.log('Upload is ' + progress + '% done');
+            switch (snapshot.state) {
+            case firebase.storage.TaskState.PAUSED: // or 'paused'
+                console.log('Upload is paused');
+                break;
+            case firebase.storage.TaskState.RUNNING: // or 'running'
+                console.log('Upload is running');
+                break;
+            }
+        }, function(error) {
+            // Handle unsuccessful uploads
+            console.log("ERROR")
+        }, function() {
+            // Handle successful uploads on complete
+            // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+            uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
+            console.log('File available at', downloadURL);
+            });
+        });
+
+
+
     }
 
 
@@ -167,7 +221,7 @@ export class Settings extends Component {
                                     <div class="field">
                                         <label for="img">Select image:</label>
                                         <br />
-                                        <Input size='small' type="file" id="fileInput" name='picture' accept="image/*" value={picture} onChange={this.handlePic}/>
+                                        <Input size='small' type="file" id="fileInput" name='picture' accept="image/*" title=" " onChange={this.handlePic}/>
                                         <br />
                                         <br />
                                     </div>
