@@ -12,11 +12,9 @@ export class Settings extends Component {
     state = {
         name: '',
         username: '',
-        picture: '',
         password: '',
         email: '',
-        picUrl: '',
-        defaultPic: true
+        picUrl: ''
     }
 
 
@@ -105,7 +103,6 @@ export class Settings extends Component {
             console.log('File available at', downloadURL);
             
             this.setState({
-                defaultPic: false,
                 picUrl: downloadURL 
             })
             });
@@ -186,7 +183,7 @@ export class Settings extends Component {
     
     render() {
         const foundUser = this.getUser()
-        let { name, username, email, defaultPic } = this.state
+        let { name, username, email } = this.state
         let picUrl = foundUser?.user.picture 
         let hasPic = ( picUrl !== null)
         // let {usersName, usersUsername} = foundUser?.user
