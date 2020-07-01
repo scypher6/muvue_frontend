@@ -187,19 +187,21 @@ export class Settings extends Component {
     render() {
         const foundUser = this.getUser()
         let { name, username, email, defaultPic } = this.state
+        let picUrl = foundUser?.user.picture 
+        let hasPic = ( picUrl !== null)
         // let {usersName, usersUsername} = foundUser?.user
-        console.log(foundUser)
+        console.log(foundUser?.user.picture)
         if(foundUser){
             return (
                 <div className='profile'>
                     <h1>My Profile</h1>
-                        { defaultPic ? 
+                        { hasPic ? 
+                            <img id='profilePic' src={picUrl} alt='profile pic' width='70px' height='70px'/>
+                            :
                             <Icon.Group size='huge'>
                                 <Icon loading size='big' name='circle notch' />
                                 <Icon name='user' />
                             </Icon.Group>
-                            : 
-                            <img id='profilePic' src={this.state.picUrl} alt='profile pic' width='70px' height='70px'/>
                         }         
                     <span><h3>
                         Name: <em>{ foundUser.user.name }</em>
