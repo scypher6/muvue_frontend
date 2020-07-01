@@ -44,7 +44,7 @@ export class Settings extends Component {
 
     handlePic = e => {
         let fileObj = e.target.files[0];
-        let filename = fileObj.name;
+        let fileName = fileObj.name;
 
         let fileReader = new FileReader();
         fileReader.readAsDataURL(fileObj);
@@ -63,18 +63,18 @@ export class Settings extends Component {
             storageBucket: "muvue-70e6c.appspot.com",
             messagingSenderId: "443959109626",
             appId: "1:443959109626:web:40b23d1ba1a1b31efc6643",
-            measurementId: "G-3Y21XEJ3LL"
+            measurementId: "G-3Y21XEJ3LL"  
           };
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
 
         // Create a root reference
-        let storageRef = firebase.storage().ref(`/images/${filename}`);  
+        let storageRef = firebase.storage().ref(`/images/${fileName}`);  
 
         // // Create a reference to the image
-        // let imageRef = storageRef.child(filename);
-        // // Create a reference to 'images/filename'
-        // let bucketRef = storageRef.child(filename);
+        // let imageRef = storageRef.child(fileName);
+        // // Create a reference to 'images/fileName'
+        // let bucketRef = storageRef.child(fileName);
 
         let uploadTask = storageRef.put(fileObj);
 
@@ -102,10 +102,16 @@ export class Settings extends Component {
             // For instance, get the download URL: https://firebasestorage.googleapis.com/...
             uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
             console.log('File available at', downloadURL);
+
+            this.setState({
+                defaultPic: false,
+                picture: downloadURL 
+            })
             });
         });
 
 
+        
 
     }
 
