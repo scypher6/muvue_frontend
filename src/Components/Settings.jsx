@@ -193,7 +193,7 @@ export class Settings extends Component {
                 <div className='profile'>
                     <h1>My Profile</h1>
                         { hasPic ? 
-                            <img id='profilePic' src={picUrl} alt='profile pic' width='70px' height='70px'/>
+                            <img id='profilePic' src={picUrl} alt='profile pic' width='80px' height='80px'/>
                             :
                             <Icon.Group size='huge'>
                                 <Icon loading size='big' name='circle notch' />
