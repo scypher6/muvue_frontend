@@ -187,7 +187,7 @@ export class Settings extends Component {
         let picUrl = foundUser?.user.picture 
         let hasPic = ( picUrl !== null)
         // let {usersName, usersUsername} = foundUser?.user
-        console.log(foundUser?.user.picture)
+        // console.log(foundUser?.user.picture)
         if(foundUser){
             return (
                 <div className='profile'>
