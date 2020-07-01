@@ -15,6 +15,7 @@ export class Settings extends Component {
         picture: '',
         password: '',
         email: '',
+        picUrl: '',
         defaultPic: true
     }
 
@@ -97,15 +98,15 @@ export class Settings extends Component {
         }, function(error) {
             // Handle unsuccessful uploads
             console.log("ERROR")
-        }, function() {
+        }, () => {
             // Handle successful uploads on complete
             // For instance, get the download URL: https://firebasestorage.googleapis.com/...
-            uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
+            uploadTask.snapshot.ref.getDownloadURL().then( (downloadURL) => {
             console.log('File available at', downloadURL);
-
+            
             this.setState({
                 defaultPic: false,
-                picture: downloadURL 
+                picUrl: downloadURL 
             })
             });
         });
@@ -120,7 +121,7 @@ export class Settings extends Component {
         e.preventDefault();
         const user = this.getUser().user
         let theirToken = localStorage.token
-        let {name, username, email, picture} = this.state
+        let {name, username, email, picUrl} = this.state
 // console.log('HERE:', username)
 
         fetch(`http://localhost:3000/users/${user.id}`, {
@@ -131,7 +132,7 @@ export class Settings extends Component {
             body: JSON.stringify({
                     name: name,
                     username: username,
-                    picture: picture,
+                    picture: picUrl,
                     email: email,
                     token: theirToken
             })
@@ -185,8 +186,9 @@ export class Settings extends Component {
     
     render() {
         const foundUser = this.getUser()
-        let { name, username, email, picture, defaultPic } = this.state
+        let { name, username, email, defaultPic } = this.state
         // let {usersName, usersUsername} = foundUser?.user
+        console.log(foundUser)
         if(foundUser){
             return (
                 <div className='profile'>
@@ -197,7 +199,7 @@ export class Settings extends Component {
                                 <Icon name='user' />
                             </Icon.Group>
                             : 
-                            <img id='profilePic' scr='' alt='profile pic' />
+                            <img id='profilePic' src={this.state.picUrl} alt='profile pic' width='70px' height='70px'/>
                         }         
                     <span><h3>
                         Name: <em>{ foundUser.user.name }</em>
