@@ -190,7 +190,7 @@ export class MoviesItem extends PureComponent {
         e.preventDefault();
         let {review} = this.state;
         let movie = this.findMovie();
-        let user = this.getUser().user;
+        let user = this.getUser()?.user;
         let token = localStorage.getItem('token');
        
         if(user){
@@ -214,7 +214,7 @@ export class MoviesItem extends PureComponent {
             }) 
         }
         else
-            swal("Not logged in!", "Please sign in to favorite a movie!", "info")
+            swal("Not logged in!", "Please sign in to review a movie!", "info")
     }
 
     deleteReview = (review) =>{
