@@ -18,19 +18,30 @@ class Review extends Component {
 
     render() {
         console.log("REVIEW", this.props.movie)
-        let { content } = this.props.movie;
-        let username  = this.props.movie.user?.username
-        let timestamp  = this.props.movie?.created_at
+        let movie = this.props.movie
+        let { content } = movie;
+        let username  = movie.user?.username
+        let timestamp  = movie?.created_at
         let date = timestamp?.slice(0, 10)
         let time = timestamp?.slice(11, 19)
+        let picUrl = movie.user?.picture;
+        let hasPic = (picUrl !== null)
 
         return (
             <div>
                 <Segment inverted>
                 <Comment>
                     <Container textAlign='right'><Icon name='close' className='close' color='blue' onClick={this.handleClose}/></Container>
-                    <Comment.Avatar src='https://react.semantic-ui.com/images/avatar/small/joe.jpg' />
                     <Comment.Content>
+                        { hasPic ? 
+                                <img id='profilePic' src={picUrl} alt='profile pic' width='30px' height='30px'/>
+                                :
+                                <Icon.Group size='medium'>
+                                    <Icon loading size='big' name='circle notch' />
+                                    <Icon name='user' />
+                                </Icon.Group>
+                        }  
+                        &nbsp;
                         <Comment.Author as='a'> { username } </Comment.Author>
                         <Comment.Metadata>
                         <div><small><em>{ date } at { time }</em></small></div>
