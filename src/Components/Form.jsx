@@ -149,6 +149,7 @@ export default class Form extends Component {
                 As a signed user you can:
                 <ul>
                     <li>like a movie</li>
+                    <li>Review a movie</li>
                     <li>save your favorite movies</li>
                     <li>view a list of recommended movies</li>
                     <li>have access to 24hr technical support</li>
