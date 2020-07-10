@@ -19,15 +19,14 @@ import swal from 'sweetalert';
 
 // import axios from 'axios';
 // import searchYoutube from 'youtube-api-v3-search';
+// import MoviesContainer from './Components/MoviesContainer';
 
-import MoviesContainer from './Components/MoviesContainer';
-
-//Infinite scroll options
-const PARAMETERS = {
-  root: 'null',
-  rootMargins: '0px',
-  threshold: 0.5
-};
+// //Infinite scroll options
+// const PARAMETERS = {
+//   root: 'null',
+//   rootMargins: '0px',
+//   threshold: 0.5
+// };
 
 
 class App extends React.PureComponent {
@@ -51,7 +50,7 @@ class App extends React.PureComponent {
 
     let ratio = entries[0].intersectionRatio;
     console.log("OBSERVING!!!", ratio)
-    let newArray = [];
+
           if (ratio > 0){
               this.setState({
                   count: this.state.count + 5
