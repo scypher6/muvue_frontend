@@ -4,8 +4,6 @@ import {Card, Image, Icon} from 'semantic-ui-react';
 import { connect } from 'react-redux';
 
 
-const token = localStorage.token;
-
 export class MoviePoster extends Component {
 
 
