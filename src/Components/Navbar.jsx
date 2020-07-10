@@ -45,7 +45,7 @@ class Navbar extends Component {
     render() {
       // console.log(this.props.loggedIn.users.users)
 
-        const { activeItem } = this.state
+        // const { activeItem } = this.state
         const foundUser = this.getUser()
 
         // console.log(this.props.loggedIn)
