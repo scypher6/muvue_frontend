@@ -93,10 +93,10 @@ export default class LineChart extends Component {
                     {
                      label: 'Most Reviewed movies',
                      data: numRevs,
-                     borderColor: ['saddlebrown'],
-                     backgroundColor: ['moccasin'],
+                     borderColor: ['cyan'],
+                     backgroundColor: ['lightcyan'],
                      pointBackgroundColor: ['black'],
-                     pointBorderColor: ['saddlebrown']
+                     pointBorderColor: ['cyan']
                 }
    
             ],
