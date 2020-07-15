@@ -128,6 +128,8 @@ export class Settings extends Component {
             username = user.username;
         if (this.state.email === '')
             email = user.email;
+        if (this.state.picUrl === '')
+            picUrl = user.picture;
 
         fetch(`http://localhost:3000/users/${user.id}`, {
             method: "PATCH",
