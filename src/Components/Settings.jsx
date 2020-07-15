@@ -119,7 +119,15 @@ export class Settings extends Component {
         const user = this.getUser().user
         let theirToken = localStorage.token
         let {name, username, email, picUrl} = this.state
-// console.log('HERE:', username)
+        // console.log('HERE:', username)
+        
+        //Keep name, uname & email the same if field is left blank
+        if (this.state.name === '')
+            name = user.name;
+        if (this.state.username === '')
+            username = user.username;
+        if (this.state.email === '')
+            email = user.email;
 
         fetch(`http://localhost:3000/users/${user.id}`, {
             method: "PATCH",
