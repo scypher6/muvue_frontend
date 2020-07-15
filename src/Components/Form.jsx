@@ -23,7 +23,7 @@ export default class Form extends Component {
         let validateEmail = email.match(validEmailPattern)
         let validateName = this.state.name.length >= 3;
         let validateUName = username.length >= 3;
-        let validatePass = password.length > 1;
+        let validatePass = password.length > 2;
 
 
         this.setState({

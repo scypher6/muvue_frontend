@@ -64,8 +64,15 @@ export class Settings extends Component {
             appId: "1:443959109626:web:40b23d1ba1a1b31efc6643",
             measurementId: "G-3Y21XEJ3LL"  
           };
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
+        
+          if (!firebase.apps.length) {
+              // Initialize Firebase
+              try {
+                firebase.initializeApp(firebaseConfig);
+            } catch (err) {
+                console.log("Firebase initialization error raised", err.stack)
+            }
+        } 
 
         // Create a root reference
         let storageRef = firebase.storage().ref(`/images/${fileName}`);  
@@ -119,7 +126,7 @@ export class Settings extends Component {
         const user = this.getUser().user
         let theirToken = localStorage.token
         let {name, username, email, picUrl} = this.state
-        // console.log('HERE:', username)
+        //  console.log('HERE:', user)
         
         //Keep name, uname & email the same if field is left blank
         if (this.state.name === '')
