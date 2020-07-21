@@ -11,7 +11,7 @@ Muvue is an app that uses YouTube API to allow you to stream free full-length mo
 * View your collection of saved, liked movies and the reviews that you wrote
 * Delete your account if needed (highly discouraged ;)
 
-###  Demo: [See it here](https://www.youtube.com/watch?v=l2wYcDdrcDs)
+###  Demo: [See it here](https://www.youtube.com/watch?v=UcMHDkl9_go)
 
 ### Getting Started
 - Git clone this directory
