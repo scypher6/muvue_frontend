@@ -3,7 +3,7 @@
 # Muvue
 Muvue is an app that uses YouTube API to allow you to stream free full-length movies online, directly from your browser.
 
-### Features:
+## Features:
 * Search dynamically from a list of available movies
 * Features infinite-scrolling list of movies
 * Displays charts and list of top ten most liked, favorited, and reviewed
@@ -15,15 +15,23 @@ Muvue is an app that uses YouTube API to allow you to stream free full-length mo
 
 ###  Demo: [See it here](https://www.youtube.com/watch?v=UcMHDkl9_go)
 
-### Getting Started
+## Prerequisites
+Latest versions of the following:
+- React
+- Redux
+- PostgreSQL
+
+
+## Getting Started
 - Git clone this directory
 - cd into Muvue directory
 - Install npm with all dependencies:
   *npm install*
 - Start react server:
   *npm start*
+- Run rails: [backend](https://github.com/scypher6/muvue_backend)
   
-### Tech Stack:
+## Tech Stack:
 - HTML/CSS
 - JavaScript
 - ReactJS
