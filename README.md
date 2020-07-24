@@ -18,6 +18,8 @@ Muvue is an app that uses YouTube API to allow you to stream free full-length mo
 ### Getting Started
 - Git clone this directory
 - cd into Muvue directory
+- Install npm with all dependencies:
+  *npm install*
 - Start react server:
   *npm start*
   
@@ -27,3 +29,4 @@ Muvue is an app that uses YouTube API to allow you to stream free full-length mo
 - ReactJS
 - ChartJS
 - Firebase
+- Semantic-UI-React
