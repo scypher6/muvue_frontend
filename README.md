@@ -1,4 +1,4 @@
-![Muvue](https://i.imgur.com/0sfX2hI.png)
+![Muvue](https://i.imgur.com/0n6RVEJ.png)
 
 # Muvue
 Muvue is an app that uses YouTube API to allow you to stream free full-length movies online, directly from your browser.
