@@ -21,7 +21,6 @@ Latest versions of the following:
 - Redux
 - PostgreSQL
 
-
 ## Getting Started
 - Git clone this directory
 - cd into Muvue directory
@@ -30,6 +29,8 @@ Latest versions of the following:
 - Start react server:
   *npm start*
 - Run rails: [backend](https://github.com/scypher6/muvue_backend)
+
+## Backend: [Here](https://github.com/scypher6/muvue_backend)
   
 ## Tech Stack:
 - HTML/CSS
