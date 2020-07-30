@@ -36,6 +36,7 @@ Latest versions of the following:
 - HTML/CSS
 - JavaScript
 - ReactJS
+- Redux
 - ChartJS
 - Firebase
 - Semantic-UI-React
