@@ -36,6 +36,7 @@ Latest versions of the following:
 - HTML/CSS
 - JavaScript
 - ReactJS
+- React-Router
 - Redux
 - ChartJS
 - Firebase
