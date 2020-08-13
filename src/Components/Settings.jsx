@@ -9,6 +9,7 @@ import 'firebase/storage';
 
 export class Settings extends Component {
 
+    //Local state for update form
     state = {
         name: '',
         username: '',
@@ -18,7 +19,7 @@ export class Settings extends Component {
     }
 
 
-
+    /* Get a user object if they're logged in */
     getUser = () => {
         const user = this.props.loggedIn.user;
    
@@ -40,6 +41,7 @@ export class Settings extends Component {
 
     }
 
+    /* Handle the process of uploading a file.*/
 
     handlePic = e => {
         let fileObj = e.target.files[0];
@@ -53,7 +55,7 @@ export class Settings extends Component {
             img.setAttribute('src', result);
         }
 
-        //Set up firerbase
+        //Setting up firerbase
         let firebaseConfig = {
             apiKey: "AIzaSyA9JDcpEbQ4291Sc7AWeYnoa7sfr4ZIj3g",
             authDomain: "muvue-70e6c.firebaseapp.com",
@@ -115,12 +117,10 @@ export class Settings extends Component {
             });
         });
 
-
-        
-
-    }
+    } //handlePic
 
 
+    /* Handles submission of the 'update form' */
     handleSubmit = (e) =>{
         e.preventDefault();
         const user = this.getUser().user
@@ -158,6 +158,7 @@ export class Settings extends Component {
 
     }
 
+    /* Handles deletion of account */
     handleDelete = () => {
 
         swal({
