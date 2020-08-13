@@ -9,7 +9,7 @@ import 'firebase/storage';
 
 export class Settings extends Component {
 
-    //Local state for update form
+    //Local state for 'update' form
     state = {
         name: '',
         username: '',
@@ -19,7 +19,10 @@ export class Settings extends Component {
     }
 
 
-    /* Get a user object if they're logged in */
+    /* Get a user object if they're logged in 
+        Returns object if user exists
+        Else returns null
+    */
     getUser = () => {
         const user = this.props.loggedIn.user;
    
@@ -30,7 +33,9 @@ export class Settings extends Component {
             return null
     }
 
-
+    /* Allows form to control the local state 
+        Necessary for controlled form
+    */
     handleChange = (e) => {
         let {name, value} = e.target
 
