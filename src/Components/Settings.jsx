@@ -53,7 +53,7 @@ export class Settings extends Component {
             img.setAttribute('src', result);
         }
 
-    
+        //Set up firerbase
         let firebaseConfig = {
             apiKey: "AIzaSyA9JDcpEbQ4291Sc7AWeYnoa7sfr4ZIj3g",
             authDomain: "muvue-70e6c.firebaseapp.com",
