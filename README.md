@@ -23,7 +23,7 @@ Latest versions of the following:
 
 ## Getting Started
 - Git clone this directory
-  In the Muvue directory:
+> In the Muvue directory:
 - Install npm with all dependencies:
   *npm install*
 - Start react server:
